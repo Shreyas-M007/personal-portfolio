@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shreyas M Chanabasannavar | Student Portfolio</title>
+  
+  <meta name="description" content="Personal portfolio of Shreyas M Chanabasannavar, an AI & ML undergrad student at BMSCE. Showcasing my projects and development progress.">
+  <meta name="author" content="Shreyas M Chanabasannavar">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <canvas id="particles-canvas"></canvas>
+
+  <header class="main-header" id="navbar">
+    <div class="header-container">
+      <nav class="nav-links">
+        <a href="#about" class="nav-link active">Dashboard</a>
+        <a href="#projects" class="nav-link">My Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+      
+      <div class="mobile-toggle" id="mobile-menu-btn">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="#about" class="mobile-link">Dashboard</a>
+    <a href="#projects" class="mobile-link">My Projects</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+  </div>
+
+  <main>
+    
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-container">
+        <div class="hero-tag">🎓 3rd Semester Student @ BMSCE</div>
+        
+        <h1 class="hero-title">
+          Hi, I'm <span class="glow-text">Shreyas</span>
+        </h1>
+        
+        <h2 class="hero-subtitle">
+          I'm a student who loves <span id="typing-text"></span><span class="cursor-pipe">|</span>
+        </h2>
+        
+        <p class="hero-desc">
+          I am currently pursuing my B.E. in <strong>Artificial Intelligence & Machine Learning</strong> at B.M.S. College of Engineering (Bengaluru). I am in my <strong>3rd semester</strong> with a <strong>9.825 CGPA</strong> from my freshman year, and I'm super excited to dive deeper into machine learning concepts, data structures, and algorithms in my sophomore year.
+        </p>
+        
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">Check out my projects <i class="fa-solid fa-arrow-down"></i></a>
+          <div class="social-hero-group">
+            <a href="https://github.com/Shreyas-M007" target="_blank" class="btn-social" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/shreyas-m-143b673b9/" target="_blank" class="btn-social" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/shreyas._._.007/" target="_blank" class="btn-social" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Student Dashboard -->
+    <section class="dashboard-section" id="about">
+      <div class="container">
+        <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Student Dashboard</h2>
+        <p class="section-subtitle">Here is a quick look at my college progress, stats, and current courses.</p>
+        
+        <div class="dashboard-grid">
+          
+          <!-- Card 1: Profile & About Me -->
+          <div class="flip-card-container" onclick="toggleFlip(this, event)">
+            <div class="flip-card-inner">
+              
+              <div class="flip-card-front profile-front">
+                <i class="fa-solid fa-arrows-rotate card-flip-hint"></i>
+                <div class="card-content-top">
+                  <div class="profile-header">
+                    <div class="profile-avatar">
+                      <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <div class="profile-meta">
+                      <h3>Shreyas M Chanabasannavar</h3>
+                      <p>AI & ML Undergraduate</p>
+                      <span class="badge-college">BMS College of Engineering</span>
+                    </div>
+                  </div>
+                  
+                  <ul class="profile-details-list">
+                    <li>
+                      <span class="label">Major:</span>
+                      <span class="val">AI & ML B.E.</span>
+                    </li>
+                    <li>
+                      <span class="label">Semester Track:</span>
+                      <span class="val text-highlight">3rd Semester</span>
+                    </li>
+                    <li>
+                      <span class="label">Location:</span>
+                      <span class="val">Basavanagudi, Bengaluru</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div class="flip-card-back profile-back">
+                <i class="fa-solid fa-arrows-rotate card-flip-hint"></i>
+                <div class="card-content-top">
+                  <h4 class="card-back-title"><i class="fa-solid fa-user-tag text-highlight"></i> About Me</h4>
+                  <div class="profile-about-summary" style="border-bottom: none; padding-bottom: 0; font-size: 0.825rem; margin-top: 12px; text-align: left;">
+                    <p>AIML undergraduate at BMSCE. Passionate about developing intelligent software and scalable machine learning workflows. Experienced in writing efficient code in Python and C, implementing core algorithms, and building software projects from concept to deployment. Constantly exploring emerging AI paradigms, predictive modeling techniques, and clean software architecture.</p>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+
+          <!-- Card 2: GPA & Timeline -->
+          <div class="flip-card-container" onclick="toggleFlip(this, event)">
+            <div class="flip-card-inner">
+              
+              <div class="flip-card-front gpa-front">
+                <i class="fa-solid fa-arrows-rotate card-flip-hint"></i>
+                <div class="card-content-top" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                  <h4>Academic Performance</h4>
+                  
+                  <div class="cgpa-card-better">
+                    <div class="cgpa-main-display">
+                      <span class="cgpa-label">Cumulative GPA</span>
+                      <span class="cgpa-value-large">9.825</span>
+                      <span class="cgpa-scale-label">Scale: 10.00 Max</span>
+                    </div>
+                    
+                    <div class="sgpa-breakdown">
+                      <div class="sgpa-tile">
+                        <span class="sgpa-sem">1st Sem SGPA</span>
+                        <span class="sgpa-score-val text-cyan">9.95</span>
+                        <div class="sgpa-bar"><div class="sgpa-fill fill-cyan" style="width: 99.5%;"></div></div>
+                      </div>
+                      <div class="sgpa-tile">
+                        <span class="sgpa-sem">2nd Sem SGPA</span>
+                        <span class="sgpa-score-val text-lime">9.70</span>
+                        <div class="sgpa-bar"><div class="sgpa-fill fill-lime" style="width: 97.0%;"></div></div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div style="height: 10px;"></div>
+                </div>
+              </div>
+              
+              <div class="flip-card-back gpa-back">
+                <i class="fa-solid fa-arrows-rotate card-flip-hint"></i>
+                <div class="card-content-top">
+                  <h4 class="card-back-title"><i class="fa-solid fa-route text-lime"></i> Study Timeline</h4>
+                  
+                  <div class="academic-timeline" style="margin-top: 15px; text-align: left;">
+                    <div class="timeline-step finished">
+                      <div class="timeline-dot"></div>
+                      <div class="timeline-content">
+                        <h5>1st Semester (SGPA: 9.95)</h5>
+                        <p>C Language, Mathematics, Physics, Introduction to Electronics</p>
+                      </div>
+                    </div>
+                    <div class="timeline-step finished">
+                      <div class="timeline-dot"></div>
+                      <div class="timeline-content">
+                        <h5>2nd Semester (SGPA: 9.70)</h5>
+                        <p>Python, Mathematics, Introduction to Electrical, Chemistry</p>
+                      </div>
+                    </div>
+                    <div class="timeline-step current">
+                      <div class="timeline-dot"></div>
+                      <div class="timeline-content">
+                        <h5>3rd Semester (Sophomore - Active)</h5>
+                        <p>Data Structures (DSA), AIML subjects, Software Projects</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+
+          <!-- Card 3: Skills & Certificates -->
+          <div class="flip-card-container" onclick="toggleFlip(this, event)">
+            <div class="flip-card-inner">
+              
+              <div class="flip-card-front skills-front">
+                <i class="fa-solid fa-arrows-rotate card-flip-hint"></i>
+                <div class="card-content-top">
+                  <h4>Technical Toolkit</h4>
+                  <div class="toolkit-group" style="margin-bottom: 12px;">
+                    <span class="toolkit-tag"><i class="fa-brands fa-python text-highlight"></i> Python</span>
+                    <span class="toolkit-tag"><i class="fa-solid fa-code text-violet"></i> C Language</span>
+                    <span class="toolkit-tag"><i class="fa-solid fa-gears text-lime"></i> DSA</span>
+                    <span class="toolkit-tag"><i class="fa-solid fa-brain text-highlight"></i> ML Basics</span>
+                    <span class="toolkit-tag"><i class="fa-solid fa-globe text-violet"></i> Web Tech</span>
+                    <span class="toolkit-tag"><i class="fa-solid fa-code text-highlight"></i> TypeScript</span>
+                    <span class="toolkit-tag"><i class="fa-brands fa-html5 text-highlight"></i> HTML</span>
+                    <span class="toolkit-tag"><i class="fa-brands fa-css3-alt text-lime"></i> CSS</span>
+                    <span class="toolkit-tag"><i class="fa-solid fa-chart-line text-violet"></i> Streamlit</span>
+                    <span class="toolkit-tag"><i class="fa-brands fa-git-alt text-highlight"></i> Git / GitHub</span>
+                    <span class="toolkit-tag"><i class="fa-solid fa-cubes text-lime"></i> OOP Concepts</span>
+                  </div>
+                  
+                  <h4 class="mt-3">Focus Interests</h4>
+                  <div class="toolkit-group">
+                    <span class="interest-tag"><i class="fa-solid fa-microchip"></i> Applied AI</span>
+                    <span class="interest-tag"><i class="fa-solid fa-lightbulb text-highlight"></i> Tech Innovation</span>
+                    <span class="interest-tag"><i class="fa-solid fa-layer-group"></i> Full-Stack Dev</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="flip-card-back skills-back">
+                <i class="fa-solid fa-arrows-rotate card-flip-hint"></i>
+                <div class="card-content-top">
+                  <h4 class="card-back-title"><i class="fa-solid fa-award text-highlight"></i> Specialised Course Certificates</h4>
+                  
+                  <div class="badges-list" style="margin-top: 15px; text-align: left;">
+                    <a href="https://www.credly.com/users/shreyas-m.b78b69d9" target="_blank" class="badge-item">
+                      <div class="badge-icon"><i class="fa-solid fa-award"></i></div>
+                      <div class="badge-info">
+                        <h5>AI Fundamentals</h5>
+                        <p>IBM Certificate</p>
+                      </div>
+                    </a>
+                    <a href="https://www.credly.com/users/shreyas-m.b78b69d9" target="_blank" class="badge-item">
+                      <div class="badge-icon"><i class="fa-solid fa-award"></i></div>
+                      <div class="badge-info">
+                        <h5>Web Development Fundamentals</h5>
+                        <p>IBM Certificate</p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects-section" id="projects">
+      <div class="container">
+        <h2 class="section-title"><i class="fa-solid fa-code-branch"></i> Things I've Built</h2>
+        <p class="section-subtitle">A collection of academic and side projects from my first year. Click any card to visit the live website!</p>
+        
+        <div class="projects-grid">
+          
+          <!-- Project 1: Drone Simulator -->
+          <a href="https://drone-aero-engineering-lab.vercel.app" target="_blank" class="project-card-link">
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="proj-badge">JS / Three.js</span>
+                <i class="fa-solid fa-paper-plane project-type-icon icon-cyan"></i>
+              </div>
+              <h3 class="project-title">Drone-Aero-Engineering-Lab</h3>
+              <p class="project-summary">A 3D drone assembler and aerodynamic flight simulator sandbox.</p>
+              <div class="project-details">
+                <p>This is a web project featuring DJI-referenced component parameters. It includes a 3D component assembling system, custom physics modeling for thrust, lift, drag, and pitch/yaw controls, and a rendered sandbox city layout to fly in.</p>
+              </div>
+              <div class="project-skills">
+                <span class="skill-tag">Three.js</span>
+                <span class="skill-tag">Aerodynamics Physics</span>
+                <span class="skill-tag">JavaScript (ES6)</span>
+              </div>
+              <div class="project-card-footer">
+                <span>Visit Live Site <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Project 2: Library Management -->
+          <a href="https://lib-management-system.streamlit.app" target="_blank" class="project-card-link">
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="proj-badge">Python</span>
+                <i class="fa-solid fa-book project-type-icon icon-violet"></i>
+              </div>
+              <h3 class="project-title">library-management-system</h3>
+              <p class="project-summary">Automated borrower records, log tracker, and fine calculator portal.</p>
+              <div class="project-details">
+                <p>Built as my 2nd semester Applied Academic Tag (AAT) project for our Programming Language Course (PLC). It handles book details, user search, checkout/return logs, inventory status, and auto-calculates borrow fines.</p>
+              </div>
+              <div class="project-skills">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">OOP Concepts</span>
+                <span class="skill-tag">File Operations</span>
+              </div>
+              <div class="project-card-footer">
+                <span>Visit Live Site <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Project 3: Jan-Sathi -->
+          <a href="https://code-rouge-kappa.vercel.app" target="_blank" class="project-card-link">
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="proj-badge">TypeScript</span>
+                <i class="fa-solid fa-users-rectangle project-type-icon icon-lime"></i>
+              </div>
+              <h3 class="project-title">Jan-Sathi</h3>
+              <p class="project-summary">A citizen service portal tracker for verifying public welfare schemes.</p>
+              <div class="project-details">
+                <p>Designed this web platform to help check social services eligibility. Written with strict types in TypeScript to structure API requests, track application submissions, and manage scheme logs smoothly.</p>
+              </div>
+              <div class="project-skills">
+                <span class="skill-tag">TypeScript</span>
+                <span class="skill-tag">API Integration</span>
+                <span class="skill-tag">CSS Flex/Grid</span>
+              </div>
+              <div class="project-card-footer">
+                <span>Visit Live Site <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+              </div>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <h2 class="section-title"><i class="fa-solid fa-envelope"></i> Contact Me</h2>
+        <p class="section-subtitle">Have a project in mind, want to collaborate, or just want to chat? Drop me an email!</p>
+        
+        <div class="contact-emails-container">
+          
+          <div class="email-tile">
+            <div class="email-tile-header">
+              <i class="fa-solid fa-user-tag text-highlight"></i>
+              <div>
+                <h5>Personal Email</h5>
+                <p>For side projects, chats, and general inquiries</p>
+              </div>
+            </div>
+            <div class="email-address-row">
+              <a href="mailto:shreyasm1200@gmail.com" class="email-link">shreyasm1200@gmail.com</a>
+              <button class="btn-copy-mail" onclick="copyEmailAddress('shreyasm1200@gmail.com', this)" title="Copy to clipboard">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+          </div>
+          
+          <div class="email-tile">
+            <div class="email-tile-header">
+              <i class="fa-solid fa-graduation-cap text-lime"></i>
+              <div>
+                <h5>College Email</h5>
+                <p>For academic discussions and BMSCE activities</p>
+              </div>
+            </div>
+            <div class="email-address-row">
+              <a href="mailto:shreyasm.ai25@bmsce.ac.in" class="email-link">shreyasm.ai25@bmsce.ac.in</a>
+              <button class="btn-copy-mail" onclick="copyEmailAddress('shreyasm.ai25@bmsce.ac.in', this)" title="Copy to clipboard">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="main-footer">
+    <div class="container footer-container">
+      <p>Designed &amp; Handcrafted by Shreyas M Chanabasannavar &copy; 2026 • Coded with passion &amp; pixels</p>
+      <div class="footer-socials">
+        <a href="https://github.com/Shreyas-M007" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/shreyas-m-143b673b9/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://www.instagram.com/shreyas._._.007/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
