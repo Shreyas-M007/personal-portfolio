@@ -112,7 +112,7 @@ section {
 
 .header-container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   height: 100%;
 }
@@ -120,13 +120,21 @@ section {
 .logo {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   color: #fff;
   text-decoration: none;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
 }
 
-.logo-bracket {
+.logo:hover {
   color: var(--color-cyan);
+}
+
+.logo-cursor {
+  color: var(--color-cyan);
+  animation: blink 0.9s step-end infinite;
 }
 
 .nav-links {
