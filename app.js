@@ -1,106 +1,31 @@
-// Particles Canvas Background Animation
-const canvas = document.getElementById('particles-canvas');
-const ctx = canvas.getContext('2d');
+// Mobile Hamburg Toggle Overlay Nav Handler
+const toggleBtn = document.getElementById('toggle');
+const overlayMenu = document.getElementById('overlay');
+const menuItems = document.querySelectorAll('.overlay-menu a');
 
-let particles = [];
-const particleCount = 60;
-let mouse = { x: null, y: null, radius: 100 };
+if (toggleBtn && overlayMenu) {
+  toggleBtn.addEventListener('click', () => {
+    toggleBtn.classList.toggle('active');
+    overlayMenu.classList.toggle('open');
+    document.body.classList.toggle('noScroll');
+  });
 
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-
-window.addEventListener('mousemove', (e) => {
-  mouse.x = e.x;
-  mouse.y = e.y;
-});
-
-window.addEventListener('mouseout', () => {
-  mouse.x = null;
-  mouse.y = null;
-});
-
-class Particle {
-  constructor() {
-    this.x = Math.random() * canvas.width;
-    this.y = Math.random() * canvas.height;
-    this.vx = (Math.random() - 0.5) * 0.4;
-    this.vy = (Math.random() - 0.5) * 0.4;
-    this.radius = Math.random() * 2 + 1;
-  }
-
-  update() {
-    this.x += this.vx;
-    this.y += this.vy;
-
-    if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-    if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-  }
-
-  draw() {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(0, 240, 255, 0.3)';
-    ctx.fill();
-  }
+  menuItems.forEach(item => {
+    item.addEventListener('click', () => {
+      toggleBtn.classList.remove('active');
+      overlayMenu.classList.remove('open');
+      document.body.classList.remove('noScroll');
+    });
+  });
 }
 
-for (let i = 0; i < particleCount; i++) {
-  particles.push(new Particle());
-}
-
-function drawBackground() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  for (let i = 0; i < particles.length; i++) {
-    particles[i].update();
-    particles[i].draw();
-
-    for (let j = i + 1; j < particles.length; j++) {
-      const dx = particles[i].x - particles[j].x;
-      const dy = particles[i].y - particles[j].y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-
-      if (dist < 90) {
-        ctx.beginPath();
-        ctx.moveTo(particles[i].x, particles[i].y);
-        ctx.lineTo(particles[j].x, particles[j].y);
-        ctx.strokeStyle = `rgba(0, 240, 255, ${0.1 * (1 - dist / 90)})`;
-        ctx.lineWidth = 0.8;
-        ctx.stroke();
-      }
-    }
-
-    if (mouse.x !== null) {
-      const dx = particles[i].x - mouse.x;
-      const dy = particles[i].y - mouse.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-
-      if (dist < mouse.radius) {
-        ctx.beginPath();
-        ctx.moveTo(particles[i].x, particles[i].y);
-        ctx.lineTo(mouse.x, mouse.y);
-        ctx.strokeStyle = `rgba(171, 71, 188, ${0.12 * (1 - dist / mouse.radius)})`;
-        ctx.lineWidth = 1;
-        ctx.stroke();
-      }
-    }
-  }
-
-  requestAnimationFrame(drawBackground);
-}
-drawBackground();
-
-// Typing Loop Effect
+// Typing Loop Animation in Hero Header
 const typingElement = document.getElementById('typing-text');
 const rolesList = [
   "solving puzzles",
   "building with Python",
-  "designing web layout projects",
-  "learning artificial intelligence"
+  "learning artificial intelligence",
+  "designing web layouts"
 ];
 let currentRoleIndex = 0;
 let characterIndex = 0;
@@ -136,71 +61,87 @@ if (typingElement) {
   handleTyping();
 }
 
-// Active Link Highlight on Scroll
-const scrollSections = document.querySelectorAll('section');
-const headerLinks = document.querySelectorAll('.nav-link');
+// Floating Form Label Wrapper Focus/Blur Handlers
+const formInputs = document.querySelectorAll('.contact-input');
+
+formInputs.forEach(input => {
+  const wrapper = input.parentElement;
+
+  // Initialize input state on load (in case browser auto-fills values)
+  if (input.value.trim() !== '') {
+    wrapper.classList.add('is-completed');
+  }
+
+  input.addEventListener('focus', () => {
+    wrapper.classList.add('is-active');
+    wrapper.classList.add('is-completed');
+  });
+
+  input.addEventListener('blur', () => {
+    wrapper.classList.remove('is-active');
+    if (input.value.trim() === '') {
+      wrapper.classList.remove('is-completed');
+    }
+  });
+
+  input.addEventListener('input', () => {
+    if (input.value.trim() !== '') {
+      wrapper.classList.add('is-completed');
+    }
+  });
+});
+
+// Scrollspy for Right Dot Navigation Active Highlighting
+const sections = document.querySelectorAll('section');
+const dotNav = document.getElementById('dot-nav');
+const dotLinks = document.querySelectorAll('#dot-nav a');
 
 window.addEventListener('scroll', () => {
-  let activeId = '';
-  
-  scrollSections.forEach(section => {
-    const sectionTop = section.offsetTop;
-    if (window.scrollY >= sectionTop - 110) {
-      activeId = section.getAttribute('id');
-    }
-  });
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  let currentSectionId = '';
 
-  headerLinks.forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href').slice(1) === activeId) {
-      link.classList.add('active');
-    }
-  });
-});
-
-// Mobile Hamburger Navigation Drawer
-const menuBtn = document.getElementById('mobile-menu-btn');
-const mobileDropdown = document.getElementById('mobile-nav');
-
-menuBtn.addEventListener('click', () => {
-  if (mobileDropdown.style.display === 'flex') {
-    mobileDropdown.style.display = 'none';
-    menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+  // 1. Hide dot navigation on the intro cover panel
+  if (scrollTop > window.innerHeight * 0.4) {
+    dotNav.classList.add('active');
   } else {
-    mobileDropdown.style.display = 'flex';
-    menuBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+    dotNav.classList.remove('active');
   }
-});
 
-document.querySelectorAll('.mobile-link').forEach(link => {
-  link.addEventListener('click', () => {
-    mobileDropdown.style.display = 'none';
-    menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
-  });
-});
-
-// Clipboard Helper to Copy Email Addresses
-function copyEmailAddress(email, button) {
-  navigator.clipboard.writeText(email).then(() => {
-    const originalHTML = button.innerHTML;
-    button.innerHTML = '<i class="fa-solid fa-check"></i>';
-    button.classList.add('copied');
+  // 2. Scan which section coordinates overlap user viewport
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.clientHeight;
     
-    setTimeout(() => {
-      button.innerHTML = originalHTML;
-      button.classList.remove('copied');
-    }, 1800);
-  }).catch(err => {
-    console.error('Copy failed: ', err);
+    if (scrollTop >= sectionTop - window.innerHeight * 0.4) {
+      currentSectionId = section.getAttribute('id');
+    }
   });
-}
 
-// 3D Dashboard Card Flip handler
-function toggleFlip(cardContainer, event) {
-  if (event && (event.target.closest('a') || event.target.closest('.btn-social'))) {
-    return;
-  }
-  if (cardContainer) {
-    cardContainer.classList.toggle('flipped');
-  }
+  // 3. Highlight corresponding dot link
+  dotLinks.forEach(link => {
+    const targetId = link.getAttribute('href').slice(1);
+    if (targetId === currentSectionId) {
+      link.classList.add('is-selected');
+    } else {
+      link.classList.remove('is-selected');
+    }
+  });
+});
+
+// Contact Form Submission handler (mailto redirect)
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const subject = document.getElementById('subject').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    const emailBody = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+    const mailtoUri = `mailto:shreyasm1200@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+    
+    // Redirect to default mail client
+    window.location.href = mailtoUri;
+  });
 }

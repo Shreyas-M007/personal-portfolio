@@ -2,398 +2,552 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shreyas M Chanabasannavar | Student Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Shreyas M Chanabasannavar | AIML Student</title>
   
-  <meta name="description" content="Personal portfolio of Shreyas M Chanabasannavar, an AI & ML undergrad student at BMSCE. Showcasing my projects and development progress.">
-  <meta name="author" content="Shreyas M Chanabasannavar">
-  
+  <!-- Font Styles -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
   
+  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <canvas id="particles-canvas"></canvas>
+  <!-- Floating Right Dot Nav Menu -->
+  <nav id="dot-nav">
+    <ul>
+      <li class="dot-container">
+        <a href="#intro-section" class="is-selected">
+          <span class="dot-label">Intro</span>
+          <span class="dot"></span>
+        </a>
+      </li>
+      <li class="dot-container">
+        <a href="#about-section">
+          <span class="dot-label">About</span>
+          <span class="dot"></span>
+        </a>
+      </li>
+      <li class="dot-container">
+        <a href="#services-section">
+          <span class="dot-label">What I Do</span>
+          <span class="dot"></span>
+        </a>
+      </li>
+      <li class="dot-container">
+        <a href="#skills-section">
+          <span class="dot-label">Skills</span>
+          <span class="dot"></span>
+        </a>
+      </li>
+      <li class="dot-container">
+        <a href="#experience-section">
+          <span class="dot-label">Experience</span>
+          <span class="dot"></span>
+        </a>
+      </li>
+      <li class="dot-container">
+        <a href="#certificates-section">
+          <span class="dot-label">Certificates</span>
+          <span class="dot"></span>
+        </a>
+      </li>
+      <li class="dot-container">
+        <a href="#portfolio-section">
+          <span class="dot-label">Portfolio</span>
+          <span class="dot"></span>
+        </a>
+      </li>
+      <li class="dot-container">
+        <a href="#contact-section">
+          <span class="dot-label">Contact</span>
+          <span class="dot"></span>
+        </a>
+      </li>
+    </ul>
+  </nav>
 
-  <header class="main-header" id="navbar">
-    <div class="header-container">
-      <a href="#" class="logo">Shreyas<span class="logo-cursor">_</span></a>
-      
-      <nav class="nav-links">
-        <a href="#about" class="nav-link active">Dashboard</a>
-        <a href="#projects" class="nav-link">My Projects</a>
-        <a href="#contact" class="nav-link">Contact</a>
-      </nav>
-      
-      <div class="mobile-toggle" id="mobile-menu-btn">
-        <i class="fa-solid fa-bars"></i>
-      </div>
-    </div>
-  </header>
-
-  <div class="mobile-nav" id="mobile-nav">
-    <a href="#about" class="mobile-link">Dashboard</a>
-    <a href="#projects" class="mobile-link">My Projects</a>
-    <a href="#contact" class="mobile-link">Contact</a>
+  <!-- Mobile Hamburger Menu Button -->
+  <div id="toggle">
+    <span class="line top"></span>
+    <span class="line middle"></span>
+    <span class="line bottom"></span>
   </div>
 
-  <main>
+  <!-- Mobile Overlay Full Screen Menu -->
+  <div id="overlay" class="overlay">
+    <div class="logo">Shreyas M.</div>
+    <nav class="overlay-menu">
+      <ul class="menu-container">
+        <li class="menu-item"><a href="#intro-section">Intro</a></li>
+        <li class="menu-item"><a href="#about-section">About</a></li>
+        <li class="menu-item"><a href="#services-section">What I Do</a></li>
+        <li class="menu-item"><a href="#skills-section">Skills</a></li>
+        <li class="menu-item"><a href="#experience-section">Experience</a></li>
+        <li class="menu-item"><a href="#certificates-section">Certificates</a></li>
+        <li class="menu-item"><a href="#portfolio-section">Portfolio</a></li>
+        <li class="menu-item"><a href="#contact-section">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div id="skrollr-body">
     
-    <!-- Hero Section -->
-    <section class="hero-section" id="hero">
-      <div class="container hero-container">
-        <div class="hero-tag">🎓 3rd Semester Student @ BMSCE</div>
+    <!-- Section 1: Intro -->
+    <section id="intro-section" class="section">
+      <div class="intro-wrapper">
+        <div class="intro-content">
+          <h1 class="heading">Shreyas M Chanabasannavar</h1>
+          <div class="action-wrapper">
+            <p class="subtext">
+              <a class="btn main-action">AIML Student &amp; Developer</a>
+            </p>
+          </div>
+        </div>
         
-        <h1 class="hero-title">
-          Hi, I'm <span class="glow-text">Shreyas</span>
-        </h1>
+        <div class="scroll-down-wrapper">
+          <a href="#about-section" class="scroll-down">
+            <span>Learn More</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: About Me -->
+    <section id="about-section" class="section">
+      <div class="section-wrapper">
+        <h1 class="section-heading">Hey, I'm Shreyas.</h1>
+        <h3 class="section-subheading">I am currently pursuing my B.E. in Artificial Intelligence &amp; Machine Learning at B.M.S. College of Engineering in Basavanagudi, Bengaluru.</h3>
+        <span class="divider"></span>
         
-        <h2 class="hero-subtitle">
-          I'm a student who loves <span id="typing-text"></span><span class="cursor-pipe">|</span>
-        </h2>
-        
-        <p class="hero-desc">
-          I am currently pursuing my B.E. in <strong>Artificial Intelligence & Machine Learning</strong> at B.M.S. College of Engineering (Bengaluru). I am in my <strong>3rd semester</strong> with a <strong>9.825 CGPA</strong> from my freshman year, and I'm super excited to dive deeper into machine learning concepts, data structures, and algorithms in my sophomore year.
-        </p>
-        
-        <div class="hero-actions">
-          <a href="#projects" class="btn btn-primary">Check out my projects <i class="fa-solid fa-arrow-down"></i></a>
-          <div class="social-hero-group">
-            <a href="https://github.com/Shreyas-M007" target="_blank" class="btn-social" title="GitHub"><i class="fa-brands fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/shreyas-m007/" target="_blank" class="btn-social" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="https://www.instagram.com/shreyas._._.007/" target="_blank" class="btn-social" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <div class="about-wrapper">
+          <div class="about-text-wrapper">
+            <p class="about-text">
+              <strong>I am a sophomore AIML student</strong> with a strong academic foundation, maintaining a <strong>9.825 CGPA</strong> from my freshman year. I am passionate about writing clean, optimized software code, implementing complex data structures, and building projects from concept to deployment.
+            </p>
+            <p class="about-text">
+              I enjoy finding creative solutions to technical challenges and exploring predictive models, AI paradigms, and frontend system layouts. I approach software development as a continuous learning process and look forward to collaborating with others who love sharing their knowledge.
+            </p>
+            <p class="about-text">
+              <strong>When I'm away from my computer screen,</strong> you'll likely find me exploring mountain trails, riding my bike through scenic routes or stargazing under the night sky.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Student Dashboard -->
-    <section class="dashboard-section" id="about">
-      <div class="container">
-        <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Student Dashboard</h2>
-        <p class="section-subtitle">Here is a quick look at my college progress, stats, and current courses.</p>
+    <!-- Section 3: What I Do -->
+    <section id="services-section" class="section gap">
+      <div class="overlay-wrapper">
+        <h1 class="section-heading">What I Do</h1>
+        <span class="divider"></span>
         
-        <div class="dashboard-grid">
+        <div class="services-wrapper">
+          <!-- Row 1 -->
+          <div class="service-row">
+            <div class="service-column">
+              <div class="service-header-row">
+                <div class="service-icon-box"><i class="fa-brands fa-html5"></i></div>
+                <h2 class="service-heading">Web Development</h2>
+              </div>
+              <p class="service-text">
+                Developing responsive interfaces using HTML, CSS, JavaScript, and TypeScript. I have a passion for creating clean layouts while maintaining a modular and readable codebase.
+              </p>
+            </div>
+            
+            <div class="service-column">
+              <div class="service-header-row">
+                <div class="service-icon-box"><i class="fa-solid fa-brain"></i></div>
+                <h2 class="service-heading">Machine Learning</h2>
+              </div>
+              <p class="service-text">
+                Studying core machine learning models, statistical datasets, and predictive modeling workflows to turn raw data into intelligent software applications.
+              </p>
+            </div>
+          </div>
           
-          <!-- Card 1: Profile & About Me -->
-          <div class="flip-card-container" onclick="toggleFlip(this, event)">
-            <div class="flip-card-inner">
-              
-              <div class="flip-card-front profile-front">
-                <i class="fa-solid fa-arrows-rotate card-flip-hint"></i>
-                <div class="card-content-top">
-                  <div class="profile-header">
-                    <div class="profile-avatar">
-                      <i class="fa-solid fa-laptop-code"></i>
-                    </div>
-                    <div class="profile-meta">
-                      <h3>Shreyas M Chanabasannavar</h3>
-                      <p>AI & ML Undergraduate</p>
-                      <span class="badge-college">BMS College of Engineering</span>
-                    </div>
-                  </div>
-                  
-                  <ul class="profile-details-list">
-                    <li>
-                      <span class="label">Major:</span>
-                      <span class="val">AI & ML B.E.</span>
-                    </li>
-                    <li>
-                      <span class="label">Semester Track:</span>
-                      <span class="val text-highlight">3rd Semester</span>
-                    </li>
-                    <li>
-                      <span class="label">Location:</span>
-                      <span class="val">Basavanagudi, Bengaluru</span>
-                    </li>
+          <!-- Row 2 -->
+          <div class="service-row">
+            <div class="service-column">
+              <div class="service-header-row">
+                <div class="service-icon-box"><i class="fa-solid fa-gears"></i></div>
+                <h2 class="service-heading">Data Structures &amp; Algorithms</h2>
+              </div>
+              <p class="service-text">
+                Designing algorithms and optimizing operations using Python and C. Focusing on solving technical challenges with clean, robust logic.
+              </p>
+            </div>
+            
+            <div class="service-column">
+              <div class="service-header-row">
+                <div class="service-icon-box"><i class="fa-solid fa-users"></i></div>
+                <h2 class="service-heading">Academic Projects</h2>
+              </div>
+              <p class="service-text">
+                Collaborating in student project contexts to build real applications. Applying best practices in git version control, architecture, and deployment schedules.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Skills -->
+    <section id="skills-section" class="section">
+      <div class="section-wrapper">
+        <h1 class="section-heading">Skills</h1>
+        <span class="divider"></span>
+        
+        <div class="skills-flex-wrapper">
+          <!-- Column 1: Technical Toolkit -->
+          <div class="flex-item dev-wrapper">
+            <h2 class="skills-heading">
+              <i class="fa-solid fa-laptop-code"></i>
+              <span>Technical Toolkit</span>
+            </h2>
+            <div class="dev-list">
+              <div class="dev-item">Python</div>
+              <div class="dev-item">C Language</div>
+              <div class="dev-item">TypeScript</div>
+              <div class="dev-item">HTML / CSS</div>
+              <div class="dev-item">ML Basics</div>
+              <div class="dev-item">Web Tech</div>
+            </div>
+          </div>
+          
+          <!-- Column 2: Focus Interests -->
+          <div class="flex-item interests-wrapper">
+            <h2 class="skills-heading">
+              <i class="fa-solid fa-star"></i>
+              <span>Focus Interests</span>
+            </h2>
+            <ul class="interests-list">
+              <li class="interests-item"><i class="fa-solid fa-microchip"></i> Applied AI</li>
+              <li class="interests-item"><i class="fa-solid fa-lightbulb"></i> Tech Innovation</li>
+              <li class="interests-item"><i class="fa-solid fa-layer-group"></i> Full-Stack Dev</li>
+            </ul>
+          </div>
+          
+          <!-- Column 3: Tools & Knowledge -->
+          <div class="flex-item check-wrapper">
+            <h2 class="skills-heading">
+              <i class="fa-solid fa-check-double"></i>
+              <span>Tools &amp; Knowledge</span>
+            </h2>
+            <ul class="check-list-col">
+              <li class="check-list-item"><i class="fa-solid fa-circle-check"></i> Git &amp; GitHub</li>
+              <li class="check-list-item"><i class="fa-solid fa-circle-check"></i> Chrome DevTools</li>
+              <li class="check-list-item"><i class="fa-solid fa-circle-check"></i> OOP Concepts</li>
+              <li class="check-list-item"><i class="fa-solid fa-circle-check"></i> DSA Basics</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Experience (Timeline Tree) -->
+    <section id="experience-section" class="section gap">
+      <div class="overlay-wrapper">
+        <div class="center">
+          <h1 class="section-heading">Academic Timeline</h1>
+          <span class="divider center"></span>
+          <p class="experience-description">
+            Here is a timeline tracking my academic progression, SGPA scores, and core course topics since starting my undergraduate studies at BMS College of Engineering.
+          </p>
+        </div>
+        
+        <div class="experience-wrapper">
+          <div id="timeline" class="timeline-tree">
+            
+            <!-- Sem 1 block -->
+            <div class="timeline-block">
+              <div class="timeline-content">
+                <h2 class="position">Semester 1</h2>
+                <h3 class="company">Freshman Year (BMSCE)</h3>
+                <p class="job-desc">
+                  Completed introductory engineering courses with an SGPA of <strong>9.95</strong>. Mastered logical constructs, flow control, and memory structures using the C Programming Language. Covered syllabus on Mathematics, Electronics, and Physics.
+                </p>
+                <span class="date">Nov 2025 - Mar 2026</span>
+              </div>
+              <div class="timeline-img">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </div>
+            </div>
+            
+            <!-- Sem 2 block -->
+            <div class="timeline-block">
+              <div class="timeline-content">
+                <h2 class="position">Semester 2</h2>
+                <h3 class="company">Freshman Year (BMSCE)</h3>
+                <p class="job-desc">
+                  Built software applications in Python, implementing object-oriented programming (OOP) paradigms. Completed chemistry, math, and electrical modules. Designed and launched a Library Management System using Streamlit for our Programming Language course. SGPA: <strong>9.70</strong>.
+                </p>
+                <span class="date">Apr 2026 - Aug 2026</span>
+              </div>
+              <div class="timeline-img">
+                <i class="fa-solid fa-book"></i>
+              </div>
+            </div>
+            
+            <!-- Sem 3 block -->
+            <div class="timeline-block">
+              <div class="timeline-content">
+                <h2 class="position">Semester 3</h2>
+                <h3 class="company">Sophomore Year (Active Track)</h3>
+                <p class="job-desc">
+                  Eagerly diving into core sophomore disciplines. Focusing on implementing optimal Data Structures and Algorithms (DSA) in Python/C. Exploring machine learning models, database integration, and UI frameworks.
+                </p>
+                <span class="date">Sep 2026 - Present</span>
+              </div>
+              <div class="timeline-img">
+                <i class="fa-solid fa-laptop-code"></i>
+              </div>
+            </div>
+            
+          </div>
+          
+          <div class="timeline-tree-footer">
+            <div class="timeline-tree-arrow"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Specialised Certifications -->
+    <section id="certificates-section" class="section">
+      <div class="section-wrapper">
+        <h1 class="section-heading"><span>03.</span> Specialised Certifications</h1>
+        <span class="divider"></span>
+        
+        <div class="certificates-grid">
+          
+          <!-- Card 1: AI Fundamentals -->
+          <div class="certificate-card">
+            <div class="cert-card-top">
+              <div class="cert-icons">
+                <i class="fa-solid fa-award cert-icon"></i>
+                <a href="https://www.credly.com/users/shreyas-m.b78b69d9" target="_blank" title="View IBM Badge" class="cert-link-icon"><i class="fa-solid fa-up-right-from-square"></i></a>
+              </div>
+              <h3 class="cert-title">Artificial Intelligence Fundamentals</h3>
+              <p class="cert-issuer">IBM Credentials</p>
+              <p class="cert-details">
+                Covers foundational Artificial Intelligence models, deep learning neural networks, natural language processing paradigms, and machine learning pipelines.
+              </p>
+            </div>
+            <div class="cert-footer">
+              <span class="cert-date"><i class="fa-regular fa-calendar-days"></i> Completed 2026</span>
+            </div>
+          </div>
+          
+          <!-- Card 2: Web Development -->
+          <div class="certificate-card">
+            <div class="cert-card-top">
+              <div class="cert-icons">
+                <i class="fa-solid fa-code cert-icon"></i>
+                <a href="https://www.credly.com/users/shreyas-m.b78b69d9" target="_blank" title="View IBM Badge" class="cert-link-icon"><i class="fa-solid fa-up-right-from-square"></i></a>
+              </div>
+              <h3 class="cert-title">Web Development Fundamentals</h3>
+              <p class="cert-issuer">IBM Credentials</p>
+              <p class="cert-details">
+                Covers frontend structure using semantic HTML, CSS layout systems, responsive web design principles, JavaScript syntax, and DOM manipulation dynamics.
+              </p>
+            </div>
+            <div class="cert-footer">
+              <span class="cert-date"><i class="fa-regular fa-calendar-days"></i> Completed 2026</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Cloud Storage & Data Protection -->
+          <div class="certificate-card">
+            <div class="cert-card-top">
+              <div class="cert-icons">
+                <i class="fa-solid fa-cloud-arrow-up cert-icon"></i>
+                <a href="https://www.credly.com/users/shreyas-m.b78b69d9" target="_blank" title="View Google Cloud Badge" class="cert-link-icon"><i class="fa-solid fa-up-right-from-square"></i></a>
+              </div>
+              <h3 class="cert-title">Implement Cloud Storage and Data Protection Solutions</h3>
+              <p class="cert-issuer">Google Cloud</p>
+              <p class="cert-details">
+                Demonstrates competence in deploying Google Cloud storage buckets, managing object lifecycles, configuring access controls, and implementing robust data backup and recovery solutions.
+              </p>
+            </div>
+            <div class="cert-footer">
+              <span class="cert-date"><i class="fa-regular fa-calendar-days"></i> Completed 2026</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: Portfolio / Work -->
+    <section id="portfolio-section" class="section">
+      <div class="section-wrapper">
+        <h1 class="section-heading"><span>04.</span> Some of My Work</h1>
+        <span class="divider"></span>
+        
+        <div class="portfolio-item-wrapper">
+          
+          <!-- Row 1: Drone Simulator -->
+          <div class="portfolio-row">
+            <div class="screenshots">
+              <div class="screenshot-wrapper">
+                <img class="img-lg" src="https://api.microlink.io/?url=https%3A%2F%2Fdrone-aero-engineering-lab.vercel.app&screenshot=true&embed=screenshot.url" alt="Drone Lab Desktop">
+                <img class="img-md" src="https://api.microlink.io/?url=https%3A%2F%2Fdrone-aero-engineering-lab.vercel.app&screenshot=true&embed=screenshot.url&device=iPad" alt="Drone Lab Tablet">
+                <img class="img-sm" src="https://api.microlink.io/?url=https%3A%2F%2Fdrone-aero-engineering-lab.vercel.app&screenshot=true&embed=screenshot.url&device=iPhone+13" alt="Drone Lab Mobile">
+              </div>
+            </div>
+            <div class="portfolio-details-block">
+              <div class="details-left">
+                <h2 class="portfolio-title">Drone Aero Lab</h2>
+                <p class="portfolio-description">
+                  A 3D flight assembler sandbox city featuring DJI drone configurations. Models lifting physics, payload weight adjustments, motor thrust, and drag factors.
+                </p>
+                <div class="used">
+                  <ul class="used-list">
+                    <li class="used-tag">Three.js</li>
+                    <li class="used-tag">Aerodynamics</li>
+                    <li class="used-tag">JavaScript</li>
                   </ul>
                 </div>
               </div>
-              
-              <div class="flip-card-back profile-back">
-                <i class="fa-solid fa-arrows-rotate card-flip-hint"></i>
-                <div class="card-content-top">
-                  <h4 class="card-back-title"><i class="fa-solid fa-user-tag text-highlight"></i> About Me</h4>
-                  <div class="profile-about-summary" style="border-bottom: none; padding-bottom: 0; font-size: 0.825rem; margin-top: 12px; text-align: left;">
-                    <p>AIML undergraduate at BMSCE. Passionate about developing intelligent software and scalable machine learning workflows. Experienced in writing efficient code in Python and C, implementing core algorithms, and building software projects from concept to deployment. Constantly exploring emerging AI paradigms, predictive modeling techniques, and clean software architecture.</p>
-                  </div>
+              <div class="details-right">
+                <div class="portfolio-links">
+                  <a href="https://drone-aero-engineering-lab.vercel.app" target="_blank">Demo</a>
+                  <a href="https://github.com/Shreyas-M007/Drone-Aero-Engineering-Lab" target="_blank">Code</a>
                 </div>
               </div>
-              
             </div>
           </div>
-
-          <!-- Card 2: GPA & Timeline -->
-          <div class="flip-card-container" onclick="toggleFlip(this, event)">
-            <div class="flip-card-inner">
-              
-              <div class="flip-card-front gpa-front">
-                <i class="fa-solid fa-arrows-rotate card-flip-hint"></i>
-                <div class="card-content-top" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
-                  <h4>Academic Performance</h4>
-                  
-                  <div class="cgpa-card-better">
-                    <div class="cgpa-main-display">
-                      <span class="cgpa-label">Cumulative GPA</span>
-                      <span class="cgpa-value-large">9.825</span>
-                      <span class="cgpa-scale-label">Scale: 10.00 Max</span>
-                    </div>
-                    
-                    <div class="sgpa-breakdown">
-                      <div class="sgpa-tile">
-                        <span class="sgpa-sem">1st Sem SGPA</span>
-                        <span class="sgpa-score-val text-cyan">9.95</span>
-                        <div class="sgpa-bar"><div class="sgpa-fill fill-cyan" style="width: 99.5%;"></div></div>
-                      </div>
-                      <div class="sgpa-tile">
-                        <span class="sgpa-sem">2nd Sem SGPA</span>
-                        <span class="sgpa-score-val text-lime">9.70</span>
-                        <div class="sgpa-bar"><div class="sgpa-fill fill-lime" style="width: 97.0%;"></div></div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div style="height: 10px;"></div>
+          
+          <!-- Row 2: Library Management -->
+          <div class="portfolio-row">
+            <div class="screenshots">
+              <div class="screenshot-wrapper">
+                <img class="img-lg" src="https://api.microlink.io/?url=https%3A%2F%2Flib-management-system.streamlit.app&screenshot=true&embed=screenshot.url&waitForTimeout=5000" alt="Library System Desktop">
+                <img class="img-md" src="https://api.microlink.io/?url=https%3A%2F%2Flib-management-system.streamlit.app&screenshot=true&embed=screenshot.url&device=iPad&waitForTimeout=5000" alt="Library System Tablet">
+                <img class="img-sm" src="https://api.microlink.io/?url=https%3A%2F%2Flib-management-system.streamlit.app&screenshot=true&embed=screenshot.url&device=iPhone+13&waitForTimeout=5000" alt="Library System Mobile">
+              </div>
+            </div>
+            <div class="portfolio-details-block">
+              <div class="details-left">
+                <h2 class="portfolio-title">Library System</h2>
+                <p class="portfolio-description">
+                  An automated borrower and book inventory tracker with penalty/fine calculators. Created for freshman engineering programming labs using files operations.
+                </p>
+                <div class="used">
+                  <ul class="used-list">
+                    <li class="used-tag">Python</li>
+                    <li class="used-tag">OOP</li>
+                    <li class="used-tag">Streamlit</li>
+                  </ul>
                 </div>
               </div>
-              
-              <div class="flip-card-back gpa-back">
-                <i class="fa-solid fa-arrows-rotate card-flip-hint"></i>
-                <div class="card-content-top">
-                  <h4 class="card-back-title"><i class="fa-solid fa-route text-lime"></i> Study Timeline</h4>
-                  
-                  <div class="academic-timeline" style="margin-top: 15px; text-align: left;">
-                    <div class="timeline-step finished">
-                      <div class="timeline-dot"></div>
-                      <div class="timeline-content">
-                        <h5>1st Semester (SGPA: 9.95)</h5>
-                        <p>C Language, Mathematics, Physics, Introduction to Electronics</p>
-                      </div>
-                    </div>
-                    <div class="timeline-step finished">
-                      <div class="timeline-dot"></div>
-                      <div class="timeline-content">
-                        <h5>2nd Semester (SGPA: 9.70)</h5>
-                        <p>Python, Mathematics, Introduction to Electrical, Chemistry</p>
-                      </div>
-                    </div>
-                    <div class="timeline-step current">
-                      <div class="timeline-dot"></div>
-                      <div class="timeline-content">
-                        <h5>3rd Semester (Sophomore - Active)</h5>
-                        <p>Data Structures (DSA), AIML subjects, Software Projects</p>
-                      </div>
-                    </div>
-                  </div>
+              <div class="details-right">
+                <div class="portfolio-links">
+                  <a href="https://lib-management-system.streamlit.app" target="_blank">Demo</a>
+                  <a href="https://github.com/Shreyas-M007/library-management-system" target="_blank">Code</a>
                 </div>
               </div>
-              
             </div>
           </div>
-
-          <!-- Card 3: Skills & Certificates -->
-          <div class="flip-card-container" onclick="toggleFlip(this, event)">
-            <div class="flip-card-inner">
-              
-              <div class="flip-card-front skills-front">
-                <i class="fa-solid fa-arrows-rotate card-flip-hint"></i>
-                <div class="card-content-top">
-                  <h4>Technical Toolkit</h4>
-                  <div class="toolkit-group" style="margin-bottom: 12px;">
-                    <span class="toolkit-tag"><i class="fa-brands fa-python text-highlight"></i> Python</span>
-                    <span class="toolkit-tag"><i class="fa-solid fa-code text-violet"></i> C Language</span>
-                    <span class="toolkit-tag"><i class="fa-solid fa-gears text-lime"></i> DSA</span>
-                    <span class="toolkit-tag"><i class="fa-solid fa-brain text-highlight"></i> ML Basics</span>
-                    <span class="toolkit-tag"><i class="fa-solid fa-globe text-violet"></i> Web Tech</span>
-                    <span class="toolkit-tag"><i class="fa-solid fa-code text-highlight"></i> TypeScript</span>
-                    <span class="toolkit-tag"><i class="fa-brands fa-html5 text-highlight"></i> HTML</span>
-                    <span class="toolkit-tag"><i class="fa-brands fa-css3-alt text-lime"></i> CSS</span>
-                    <span class="toolkit-tag"><i class="fa-solid fa-chart-line text-violet"></i> Streamlit</span>
-                    <span class="toolkit-tag"><i class="fa-brands fa-git-alt text-highlight"></i> Git / GitHub</span>
-                    <span class="toolkit-tag"><i class="fa-solid fa-cubes text-lime"></i> OOP Concepts</span>
-                  </div>
-                  
-                  <h4 class="mt-3">Focus Interests</h4>
-                  <div class="toolkit-group">
-                    <span class="interest-tag"><i class="fa-solid fa-microchip"></i> Applied AI</span>
-                    <span class="interest-tag"><i class="fa-solid fa-lightbulb text-highlight"></i> Tech Innovation</span>
-                    <span class="interest-tag"><i class="fa-solid fa-layer-group"></i> Full-Stack Dev</span>
-                  </div>
+          
+          <!-- Row 3: Jan-Sathi -->
+          <div class="portfolio-row">
+            <div class="screenshots">
+              <div class="screenshot-wrapper">
+                <img class="img-lg" src="https://api.microlink.io/?url=https%3A%2F%2Fcode-rouge-kappa.vercel.app&screenshot=true&embed=screenshot.url" alt="Jan-Sathi Desktop">
+                <img class="img-md" src="https://api.microlink.io/?url=https%3A%2F%2Fcode-rouge-kappa.vercel.app&screenshot=true&embed=screenshot.url&device=iPad" alt="Jan-Sathi Tablet">
+                <img class="img-sm" src="https://api.microlink.io/?url=https%3A%2F%2Fcode-rouge-kappa.vercel.app&screenshot=true&embed=screenshot.url&device=iPhone+13" alt="Jan-Sathi Mobile">
+              </div>
+            </div>
+            <div class="portfolio-details-block">
+              <div class="details-left">
+                <h2 class="portfolio-title">Jan-Sathi</h2>
+                <p class="portfolio-description">
+                  Citizen helper eligibility portal matching government support options with profiles. Employs strong typed data validation fields for public schemes query.
+                </p>
+                <div class="used">
+                  <ul class="used-list">
+                    <li class="used-tag">TypeScript</li>
+                    <li class="used-tag">API Integration</li>
+                    <li class="used-tag">CSS Grid</li>
+                  </ul>
                 </div>
               </div>
-              
-              <div class="flip-card-back skills-back">
-                <i class="fa-solid fa-arrows-rotate card-flip-hint"></i>
-                <div class="card-content-top">
-                  <h4 class="card-back-title"><i class="fa-solid fa-award text-highlight"></i> Specialised Course Certificates</h4>
-                  
-                  <div class="badges-list" style="margin-top: 15px; text-align: left;">
-                    <a href="https://www.credly.com/users/shreyas-m.b78b69d9" target="_blank" class="badge-item">
-                      <div class="badge-icon"><i class="fa-solid fa-award"></i></div>
-                      <div class="badge-info">
-                        <h5>AI Fundamentals</h5>
-                        <p>IBM Certificate</p>
-                      </div>
-                    </a>
-                    <a href="https://www.credly.com/users/shreyas-m.b78b69d9" target="_blank" class="badge-item">
-                      <div class="badge-icon"><i class="fa-solid fa-award"></i></div>
-                      <div class="badge-info">
-                        <h5>Web Development Fundamentals</h5>
-                        <p>IBM Certificate</p>
-                      </div>
-                    </a>
-                  </div>
+              <div class="details-right">
+                <div class="portfolio-links">
+                  <a href="https://code-rouge-kappa.vercel.app" target="_blank">Demo</a>
+                  <a href="https://github.com/Shreyas-M007/Jan-Sathi" target="_blank">Code</a>
                 </div>
               </div>
-              
             </div>
           </div>
-
+          
         </div>
       </div>
     </section>
 
-    <!-- Projects Section -->
-    <section class="projects-section" id="projects">
-      <div class="container">
-        <h2 class="section-title"><i class="fa-solid fa-code-branch"></i> Things I've Built</h2>
-        <p class="section-subtitle">A collection of academic and side projects from my first year. Click any card to visit the live website!</p>
+    <!-- Section 8: Contact -->
+    <section id="contact-section" class="section">
+      <div class="overlay-wrapper">
+        <div class="center">
+          <h1 class="section-heading"><span>05.</span> Get In Touch</h1>
+          <span class="divider center"></span>
+          <p class="contact-description">
+            Have a project in mind, want to collaborate, or just want to chat? Drop me an email or send a message right here!
+          </p>
+        </div>
         
-        <div class="projects-grid">
-          
-          <!-- Project 1: Drone Simulator -->
-          <a href="https://drone-aero-engineering-lab.vercel.app" target="_blank" class="project-card-link">
-            <div class="project-card">
-              <div class="project-card-header">
-                <span class="proj-badge">JS / Three.js</span>
-                <i class="fa-solid fa-paper-plane project-type-icon icon-cyan"></i>
-              </div>
-              <h3 class="project-title">Drone-Aero-Engineering-Lab</h3>
-              <p class="project-summary">A 3D drone assembler and aerodynamic flight simulator sandbox.</p>
-              <div class="project-details">
-                <p>This is a web project featuring DJI-referenced component parameters. It includes a 3D component assembling system, custom physics modeling for thrust, lift, drag, and pitch/yaw controls, and a rendered sandbox city layout to fly in.</p>
-              </div>
-              <div class="project-skills">
-                <span class="skill-tag">Three.js</span>
-                <span class="skill-tag">Aerodynamics Physics</span>
-                <span class="skill-tag">JavaScript (ES6)</span>
-              </div>
-              <div class="project-card-footer">
-                <span>Visit Live Site <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-              </div>
+        <div class="contact-wrapper">
+          <form class="form-wrapper" autocomplete="off" id="contact-form">
+            <div class="input-wrapper">
+              <label class="input-label" for="name">Name</label>
+              <input type="text" id="name" class="contact-input" required>
             </div>
-          </a>
-
-          <!-- Project 2: Library Management -->
-          <a href="https://lib-management-system.streamlit.app" target="_blank" class="project-card-link">
-            <div class="project-card">
-              <div class="project-card-header">
-                <span class="proj-badge">Python</span>
-                <i class="fa-solid fa-book project-type-icon icon-violet"></i>
-              </div>
-              <h3 class="project-title">library-management-system</h3>
-              <p class="project-summary">Automated borrower records, log tracker, and fine calculator portal.</p>
-              <div class="project-details">
-                <p>Built as my 2nd semester Applied Academic Tag (AAT) project for our Programming Language Course (PLC). It handles book details, user search, checkout/return logs, inventory status, and auto-calculates borrow fines.</p>
-              </div>
-              <div class="project-skills">
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">OOP Concepts</span>
-                <span class="skill-tag">File Operations</span>
-              </div>
-              <div class="project-card-footer">
-                <span>Visit Live Site <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-              </div>
+            <div class="input-wrapper">
+              <label class="input-label" for="email">Email</label>
+              <input type="email" id="email" class="contact-input" required>
             </div>
-          </a>
-
-          <!-- Project 3: Jan-Sathi -->
-          <a href="https://code-rouge-kappa.vercel.app" target="_blank" class="project-card-link">
-            <div class="project-card">
-              <div class="project-card-header">
-                <span class="proj-badge">TypeScript</span>
-                <i class="fa-solid fa-users-rectangle project-type-icon icon-lime"></i>
-              </div>
-              <h3 class="project-title">Jan-Sathi</h3>
-              <p class="project-summary">A citizen service portal tracker for verifying public welfare schemes.</p>
-              <div class="project-details">
-                <p>Designed this web platform to help check social services eligibility. Written with strict types in TypeScript to structure API requests, track application submissions, and manage scheme logs smoothly.</p>
-              </div>
-              <div class="project-skills">
-                <span class="skill-tag">TypeScript</span>
-                <span class="skill-tag">API Integration</span>
-                <span class="skill-tag">CSS Flex/Grid</span>
-              </div>
-              <div class="project-card-footer">
-                <span>Visit Live Site <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-              </div>
+            <div class="input-wrapper">
+              <label class="input-label" for="subject">Subject</label>
+              <input type="text" id="subject" class="contact-input" required>
             </div>
-          </a>
-
+            <div class="input-wrapper">
+              <label class="input-label" for="message">Message</label>
+              <textarea id="message" class="contact-input" required></textarea>
+            </div>
+            
+            <button type="submit" class="message-btn">
+              <span>Send Message</span>
+            </button>
+          </form>
         </div>
       </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact-section" id="contact">
-      <div class="container">
-        <h2 class="section-title"><i class="fa-solid fa-envelope"></i> Contact Me</h2>
-        <p class="section-subtitle">Have a project in mind, want to collaborate, or just want to chat? Drop me an email!</p>
+    <!-- Footer -->
+    <footer id="footer">
+      <div class="footer-content">
+        <ul class="soc">
+          <li class="soc-item"><a href="mailto:shreyasm1200@gmail.com" target="_blank" title="Email"><i class="fa-regular fa-envelope"></i></a></li>
+          <li class="soc-item"><a href="https://github.com/Shreyas-M007" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a></li>
+          <li class="soc-item"><a href="https://www.linkedin.com/in/shreyas-m007/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a></li>
+          <li class="soc-item"><a href="https://www.instagram.com/shreyas._._.007/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+        </ul>
         
-        <div class="contact-emails-container">
-          
-          <div class="email-tile">
-            <div class="email-tile-header">
-              <i class="fa-solid fa-user-tag text-highlight"></i>
-              <div>
-                <h5>Personal Email</h5>
-                <p>For side projects, chats, and general inquiries</p>
-              </div>
-            </div>
-            <div class="email-address-row">
-              <a href="mailto:shreyasm1200@gmail.com" class="email-link">shreyasm1200@gmail.com</a>
-              <button class="btn-copy-mail" onclick="copyEmailAddress('shreyasm1200@gmail.com', this)" title="Copy to clipboard">
-                <i class="fa-regular fa-copy"></i>
-              </button>
-            </div>
-          </div>
-          
-          <div class="email-tile">
-            <div class="email-tile-header">
-              <i class="fa-solid fa-graduation-cap text-lime"></i>
-              <div>
-                <h5>College Email</h5>
-                <p>For academic discussions and BMSCE activities</p>
-              </div>
-            </div>
-            <div class="email-address-row">
-              <a href="mailto:shreyasm.ai25@bmsce.ac.in" class="email-link">shreyasm.ai25@bmsce.ac.in</a>
-              <button class="btn-copy-mail" onclick="copyEmailAddress('shreyasm.ai25@bmsce.ac.in', this)" title="Copy to clipboard">
-                <i class="fa-regular fa-copy"></i>
-              </button>
-            </div>
-          </div>
-          
+        <div class="copyright-wrapper center">
+          <p>Designed &amp; Handcrafted by Shreyas M Chanabasannavar &copy; 2026</p>
         </div>
       </div>
-    </section>
+    </footer>
 
-  </main>
-
-  <footer class="main-footer">
-    <div class="container footer-container">
-      <p>Designed &amp; Handcrafted by Shreyas M Chanabasannavar &copy; 2026 • Coded with passion &amp; pixels</p>
-      <div class="footer-socials">
-        <a href="https://github.com/Shreyas-M007" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/shreyas-m007/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-        <a href="https://www.instagram.com/shreyas._._.007/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-      </div>
-    </div>
-  </footer>
+  </div>
 
   <script src="app.js"></script>
 </body>
