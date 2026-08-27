@@ -148,6 +148,9 @@ if (contactForm) {
 
 // GSAP Interactive & Magnetic Button Effects
 if (typeof gsap !== 'undefined') {
+  // Detect if device supports touch/pointer coarse
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || window.matchMedia('(pointer: coarse)').matches;
+
   // Query all buttons, action links, badges, icons, and hero actions
   const interactives = document.querySelectorAll(
     '.portfolio-links a, .message-btn, .cert-verify-btn, .soc-item a, .btn.main-action'
@@ -164,134 +167,178 @@ if (typeof gsap !== 'undefined') {
       inner.style.transition = 'none';
     }
 
-    // 1. Magnetic Pull on mousemove
-    btn.addEventListener('mousemove', (e) => {
-      const rect = btn.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
+    if (!isTouchDevice) {
+      // --- DESKTOP ANIMATIONS (Magnetic Attraction + Scale Hover) ---
+      
+      // 1. Magnetic Pull on mousemove
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
 
-      // Container moves slightly (pull factor 0.3)
-      gsap.to(btn, {
-        x: x * 0.3,
-        y: y * 0.3,
-        scale: 1.05,
-        duration: 0.3,
-        ease: "power2.out",
-        overwrite: "auto"
-      });
-
-      // Inner element moves more for 3D parallax effect (pull factor 0.25 offset)
-      if (inner && inner !== btn) {
-        gsap.to(inner, {
-          x: x * 0.25,
-          y: y * 0.25,
+        gsap.to(btn, {
+          x: x * 0.3,
+          y: y * 0.3,
+          scale: 1.05,
           duration: 0.3,
           ease: "power2.out",
           overwrite: "auto"
         });
-      }
-    });
 
-    // 2. Snap Back on mouseleave
-    btn.addEventListener('mouseleave', () => {
-      gsap.to(btn, {
-        x: 0,
-        y: 0,
-        scale: 1,
-        duration: 0.7,
-        ease: "elastic.out(1, 0.3)",
-        overwrite: "auto"
+        if (inner && inner !== btn) {
+          gsap.to(inner, {
+            x: x * 0.25,
+            y: y * 0.25,
+            duration: 0.3,
+            ease: "power2.out",
+            overwrite: "auto"
+          });
+        }
       });
 
-      if (inner && inner !== btn) {
-        gsap.to(inner, {
+      // 2. Snap Back on mouseleave
+      btn.addEventListener('mouseleave', () => {
+        gsap.to(btn, {
           x: 0,
           y: 0,
+          scale: 1,
           duration: 0.7,
           ease: "elastic.out(1, 0.3)",
           overwrite: "auto"
         });
-      }
-    });
 
-    // 3. Elastic Scale-Down and Click FX (Water Waves vs Fire Sparks)
-    btn.addEventListener('mousedown', (e) => {
-      gsap.to(btn, {
-        scale: 0.92,
-        duration: 0.1,
-        ease: "power2.out",
-        overwrite: "auto"
-      });
-
-      // Click location relative to button bounding rect
-      const rect = btn.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      if (btn.classList.contains('message-btn')) {
-        // Fiery Ember particle explosion (Fire Effect)
-        const colors = ['#ff3300', '#ff6600', '#ffcc00', '#ff9900'];
-        for (let i = 0; i < 12; i++) {
-          const ember = document.createElement('span');
-          ember.className = 'fire-ember';
-          ember.style.left = `${x}px`;
-          ember.style.top = `${y}px`;
-          ember.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-          btn.appendChild(ember);
-
-          const angle = Math.random() * Math.PI * 2;
-          const distance = 25 + Math.random() * 55;
-
-          gsap.to(ember, {
-            x: Math.cos(angle) * distance,
-            y: Math.sin(angle) * distance,
-            scale: 0.1,
-            opacity: 0,
-            duration: 0.5 + Math.random() * 0.4,
-            ease: "power2.out",
-            onComplete: () => ember.remove()
+        if (inner && inner !== btn) {
+          gsap.to(inner, {
+            x: 0,
+            y: 0,
+            duration: 0.7,
+            ease: "elastic.out(1, 0.3)",
+            overwrite: "auto"
           });
         }
-      } else {
-        // Concentric staggered expanding waves (Water Wave Effect)
-        const container = document.createElement('div');
-        container.className = 'ripple-container';
-        container.style.left = `${x}px`;
-        container.style.top = `${y}px`;
-        btn.appendChild(container);
-
-        for (let i = 0; i < 3; i++) {
-          const wave = document.createElement('span');
-          wave.className = `wave-ring wave-${i}`;
-          container.appendChild(wave);
-
-          gsap.fromTo(wave,
-            { scale: 0, opacity: 0.65 - (i * 0.2) },
-            {
-              scale: 2 + (i * 0.8),
-              opacity: 0,
-              delay: i * 0.08,
-              duration: 0.55 + (i * 0.12),
-              ease: "power2.out"
-            }
-          );
-        }
-
-        // Clean container from DOM
-        setTimeout(() => container.remove(), 1200);
-      }
-    });
-
-    // 4. Elastic Scale-Up on release
-    btn.addEventListener('mouseup', () => {
-      gsap.to(btn, {
-        scale: 1.05,
-        duration: 0.4,
-        ease: "elastic.out(1, 0.3)",
-        overwrite: "auto"
       });
-    });
+
+      // 3. Elastic Scale-Down and Click FX (Water Waves vs Fire Sparks)
+      btn.addEventListener('mousedown', (e) => {
+        gsap.to(btn, {
+          scale: 0.92,
+          duration: 0.1,
+          ease: "power2.out",
+          overwrite: "auto"
+        });
+        triggerClickParticles(btn, e);
+      });
+
+      // 4. Elastic Scale-Up on release
+      btn.addEventListener('mouseup', () => {
+        gsap.to(btn, {
+          scale: 1.05,
+          duration: 0.4,
+          ease: "elastic.out(1, 0.3)",
+          overwrite: "auto"
+        });
+      });
+      
+    } else {
+      // --- MOBILE TOUCH ANIMATIONS (No sticky hover locks, optimized performance) ---
+      
+      btn.addEventListener('touchstart', (e) => {
+        gsap.to(btn, {
+          scale: 0.94,
+          duration: 0.1,
+          ease: "power2.out",
+          overwrite: "auto"
+        });
+        
+        // Pass first touch coordinates for particles
+        if (e.touches && e.touches[0]) {
+          triggerClickParticles(btn, e.touches[0]);
+        }
+      }, { passive: true });
+
+      btn.addEventListener('touchend', () => {
+        gsap.to(btn, {
+          scale: 1,
+          duration: 0.3,
+          ease: "power2.out",
+          overwrite: "auto"
+        });
+      }, { passive: true });
+
+      btn.addEventListener('touchcancel', () => {
+        gsap.to(btn, {
+          scale: 1,
+          duration: 0.3,
+          ease: "power2.out",
+          overwrite: "auto"
+        });
+      }, { passive: true });
+    }
   });
+}
+
+// Spawns ripple/ember elements (supports desktop mouse coordinates + mobile touch coordinates)
+function triggerClickParticles(btn, event) {
+  const rect = btn.getBoundingClientRect();
+  const x = event.clientX - rect.left;
+  const y = event.clientY - rect.top;
+
+  const isTouch = window.matchMedia('(pointer: coarse)').matches || ('ontouchstart' in window);
+
+  if (btn.classList.contains('message-btn')) {
+    // Fire Ember sparks (optimized particles for mobile touch devices)
+    const particleCount = isTouch ? 6 : 12;
+    const colors = ['#ff3300', '#ff6600', '#ffcc00', '#ff9900'];
+    
+    for (let i = 0; i < particleCount; i++) {
+      const ember = document.createElement('span');
+      ember.className = 'fire-ember';
+      ember.style.left = `${x}px`;
+      ember.style.top = `${y}px`;
+      ember.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      btn.appendChild(ember);
+
+      const angle = Math.random() * Math.PI * 2;
+      const distance = isTouch ? (15 + Math.random() * 30) : (25 + Math.random() * 55);
+
+      gsap.to(ember, {
+        x: Math.cos(angle) * distance,
+        y: Math.sin(angle) * distance,
+        scale: 0.1,
+        opacity: 0,
+        duration: isTouch ? (0.35 + Math.random() * 0.2) : (0.5 + Math.random() * 0.4),
+        ease: "power2.out",
+        onComplete: () => ember.remove()
+      });
+    }
+  } else {
+    // Water wave concentric rings (optimized delay & scale for mobile touch devices)
+    const container = document.createElement('div');
+    container.className = 'ripple-container';
+    container.style.left = `${x}px`;
+    container.style.top = `${y}px`;
+    btn.appendChild(container);
+
+    const waveCount = isTouch ? 2 : 3;
+    for (let i = 0; i < waveCount; i++) {
+      const wave = document.createElement('span');
+      wave.className = `wave-ring wave-${i}`;
+      container.appendChild(wave);
+
+      gsap.fromTo(wave,
+        { scale: 0, opacity: 0.65 - (i * 0.2) },
+        {
+          scale: 1.8 + (i * 0.6),
+          opacity: 0,
+          delay: i * 0.06,
+          duration: isTouch ? 0.45 : (0.55 + (i * 0.12)),
+          ease: "power2.out"
+        }
+      );
+    }
+
+    setTimeout(() => container.remove(), 1000);
+  }
 }
 
 // Global dynamic certificate switcher function (bind to window)
