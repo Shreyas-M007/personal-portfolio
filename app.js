@@ -146,150 +146,188 @@ if (contactForm) {
   });
 }
 
-// GSAP Interactive & Magnetic Button Effects
+// GSAP Interactive Button Effects: Real Sea Waves & Fire Flames
 if (typeof gsap !== 'undefined') {
-  // Query all buttons, action links, badges, icons, and hero actions
-  const interactives = document.querySelectorAll(
-    '.portfolio-links a, .message-btn, .cert-verify-btn, .soc-item a, .btn.main-action'
+  
+  // 1. Water Wave Buttons (Demo/Code links, Badge verification links, Social links, Hero CTA)
+  const waveButtons = document.querySelectorAll(
+    '.portfolio-links a, .cert-verify-btn, .soc-item a, .btn.main-action'
   );
 
-  interactives.forEach(btn => {
-    // Disable CSS transitions that conflict with GSAP transforms
+  waveButtons.forEach(btn => {
+    // Override conflicting CSS transitions
     btn.style.transition = 'background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease';
 
-    // Find internal icon or text span for parallax magnetic offset
-    const inner = btn.querySelector('i, span') || btn;
-    if (inner && inner !== btn) {
-      inner.style.display = 'inline-block';
-      inner.style.transition = 'none';
+    let waveWrap = null;
+    let waveTimeline = null;
+
+    btn.addEventListener('mouseenter', () => {
+      // Create SVG wave overlays
+      waveWrap = document.createElement('div');
+      waveWrap.className = 'liquid-wave-wrap';
+      waveWrap.innerHTML = `
+        <svg class="liquid-wave" viewBox="0 0 120 28" preserveAspectRatio="none">
+          <path d="M0 15 Q 30 0, 60 15 T 120 15 L 120 28 L 0 28 Z"></path>
+        </svg>
+        <svg class="liquid-wave liquid-wave-2" viewBox="0 0 120 28" preserveAspectRatio="none">
+          <path d="M0 18 Q 25 5, 55 18 T 120 18 L 120 28 L 0 28 Z"></path>
+        </svg>
+      `;
+      btn.appendChild(waveWrap);
+
+      // Animate wave rising
+      gsap.to(waveWrap, { bottom: '0%', duration: 0.5, ease: "power2.out" });
+
+      // Animate sloshing wave movement
+      const wave1 = waveWrap.querySelector('.liquid-wave');
+      const wave2 = waveWrap.querySelector('.liquid-wave-2');
+      
+      waveTimeline = gsap.timeline({ repeat: -1 });
+      waveTimeline.to(wave1, { x: '-50%', duration: 1.5, ease: "none" }, 0);
+      waveTimeline.to(wave2, { x: '0%', duration: 2.2, ease: "none" }, 0);
+      
+      // Scale button slightly on hover
+      gsap.to(btn, { scale: 1.05, duration: 0.3 });
+    });
+
+    btn.addEventListener('mouseleave', () => {
+      if (waveWrap) {
+        const currentWrap = waveWrap;
+        gsap.to(currentWrap, {
+          bottom: '-110%',
+          duration: 0.4,
+          ease: "power2.in",
+          onComplete: () => currentWrap.remove()
+        });
+        waveWrap = null;
+      }
+      if (waveTimeline) {
+        waveTimeline.kill();
+      }
+      gsap.to(btn, { scale: 1, duration: 0.4, ease: "power2.out" });
+    });
+
+    btn.addEventListener('mousedown', () => {
+      if (waveWrap) {
+        // Splashing wave surge on click!
+        gsap.to(waveWrap, {
+          bottom: '20%',
+          backgroundColor: 'rgba(100, 255, 218, 0.45)',
+          duration: 0.15,
+          ease: "power1.out",
+          yoyo: true,
+          repeat: 1
+        });
+      }
+      gsap.to(btn, { scale: 0.92, duration: 0.1 });
+    });
+
+    btn.addEventListener('mouseup', () => {
+      gsap.to(btn, { scale: 1.05, duration: 0.3 });
+    });
+  });
+
+  // 2. Fire Button (Send Message submit button)
+  const fireButtons = document.querySelectorAll('.message-btn');
+
+  fireButtons.forEach(btn => {
+    btn.style.transition = 'background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease';
+
+    let fireWrap = null;
+    let flameInterval = null;
+
+    function spawnFlame() {
+      if (!fireWrap) return;
+      
+      const particle = document.createElement('div');
+      particle.className = 'fire-flame-particle';
+      
+      // Random bottom position
+      const x = Math.random() * btn.offsetWidth;
+      particle.style.left = `${x}px`;
+      
+      // Random size
+      const size = 6 + Math.random() * 12;
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+
+      // Flame color transition
+      const colors = ['#ff3c00', '#ff6a00', '#ffb300', '#ffea00'];
+      particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      
+      fireWrap.appendChild(particle);
+
+      // Animate flame rising and flickering
+      gsap.to(particle, {
+        y: -btn.offsetHeight - 10,
+        x: `+=${-15 + Math.random() * 30}`,
+        scale: 0.1,
+        opacity: 0,
+        rotation: -45 + (-30 + Math.random() * 60),
+        duration: 0.6 + Math.random() * 0.4,
+        ease: "power1.out",
+        onComplete: () => particle.remove()
+      });
     }
 
-    // 1. Magnetic Pull on mousemove
-    btn.addEventListener('mousemove', (e) => {
-      const rect = btn.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
+    btn.addEventListener('mouseenter', () => {
+      fireWrap = document.createElement('div');
+      fireWrap.className = 'fire-flame-wrap';
+      btn.appendChild(fireWrap);
 
-      // Container moves slightly (pull factor 0.3)
+      // Spawn flames continuously
+      flameInterval = setInterval(spawnFlame, 60);
+      
+      // Glow and expand button
       gsap.to(btn, {
-        x: x * 0.3,
-        y: y * 0.3,
         scale: 1.05,
-        duration: 0.3,
-        ease: "power2.out",
-        overwrite: "auto"
+        boxShadow: "0 0 15px rgba(255, 68, 0, 0.4)",
+        borderColor: "#ff3c00",
+        color: "#ffaa00",
+        duration: 0.3
       });
-
-      // Inner element moves more for 3D parallax effect (pull factor 0.25 offset)
-      if (inner && inner !== btn) {
-        gsap.to(inner, {
-          x: x * 0.25,
-          y: y * 0.25,
-          duration: 0.3,
-          ease: "power2.out",
-          overwrite: "auto"
-        });
-      }
     });
 
-    // 2. Snap Back on mouseleave
     btn.addEventListener('mouseleave', () => {
-      gsap.to(btn, {
-        x: 0,
-        y: 0,
-        scale: 1,
-        duration: 0.7,
-        ease: "elastic.out(1, 0.3)",
-        overwrite: "auto"
-      });
-
-      if (inner && inner !== btn) {
-        gsap.to(inner, {
-          x: 0,
-          y: 0,
-          duration: 0.7,
-          ease: "elastic.out(1, 0.3)",
-          overwrite: "auto"
-        });
+      if (flameInterval) {
+        clearInterval(flameInterval);
       }
+      if (fireWrap) {
+        const currentWrap = fireWrap;
+        gsap.to(currentWrap, {
+          opacity: 0,
+          duration: 0.4,
+          onComplete: () => currentWrap.remove()
+        });
+        fireWrap = null;
+      }
+      gsap.to(btn, {
+        scale: 1,
+        boxShadow: "none",
+        borderColor: "var(--cyan)",
+        color: "var(--cyan)",
+        duration: 0.3
+      });
     });
 
-    // 3. Elastic Scale-Down and Click FX (Water Waves vs Fire Sparks)
-    btn.addEventListener('mousedown', (e) => {
+    btn.addEventListener('mousedown', () => {
+      // Big fire flare on click!
+      if (fireWrap) {
+        for (let i = 0; i < 20; i++) {
+          setTimeout(spawnFlame, i * 15);
+        }
+      }
       gsap.to(btn, {
         scale: 0.92,
+        boxShadow: "0 0 25px rgba(255, 68, 0, 0.8)",
         duration: 0.1,
-        ease: "power2.out",
-        overwrite: "auto"
+        yoyo: true,
+        repeat: 1
       });
-
-      // Click location relative to button bounding rect
-      const rect = btn.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      if (btn.classList.contains('message-btn')) {
-        // Fiery Ember particle explosion (Fire Effect)
-        const colors = ['#ff3300', '#ff6600', '#ffcc00', '#ff9900'];
-        for (let i = 0; i < 12; i++) {
-          const ember = document.createElement('span');
-          ember.className = 'fire-ember';
-          ember.style.left = `${x}px`;
-          ember.style.top = `${y}px`;
-          ember.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-          btn.appendChild(ember);
-
-          const angle = Math.random() * Math.PI * 2;
-          const distance = 25 + Math.random() * 55;
-
-          gsap.to(ember, {
-            x: Math.cos(angle) * distance,
-            y: Math.sin(angle) * distance,
-            scale: 0.1,
-            opacity: 0,
-            duration: 0.5 + Math.random() * 0.4,
-            ease: "power2.out",
-            onComplete: () => ember.remove()
-          });
-        }
-      } else {
-        // Concentric staggered expanding waves (Water Wave Effect)
-        const container = document.createElement('div');
-        container.className = 'ripple-container';
-        container.style.left = `${x}px`;
-        container.style.top = `${y}px`;
-        btn.appendChild(container);
-
-        for (let i = 0; i < 3; i++) {
-          const wave = document.createElement('span');
-          wave.className = `wave-ring wave-${i}`;
-          container.appendChild(wave);
-
-          gsap.fromTo(wave,
-            { scale: 0, opacity: 0.65 - (i * 0.2) },
-            {
-              scale: 2 + (i * 0.8),
-              opacity: 0,
-              delay: i * 0.08,
-              duration: 0.55 + (i * 0.12),
-              ease: "power2.out"
-            }
-          );
-        }
-
-        // Clean container from DOM
-        setTimeout(() => container.remove(), 1200);
-      }
     });
 
-    // 4. Elastic Scale-Up on release
     btn.addEventListener('mouseup', () => {
-      gsap.to(btn, {
-        scale: 1.05,
-        duration: 0.4,
-        ease: "elastic.out(1, 0.3)",
-        overwrite: "auto"
-      });
+      gsap.to(btn, { scale: 1.05, duration: 0.3 });
     });
   });
 }
