@@ -150,7 +150,7 @@ if (contactForm) {
 if (typeof gsap !== 'undefined') {
   // Query all buttons, action links, badges, icons, and hero actions
   const interactives = document.querySelectorAll(
-    '.portfolio-links a, .message-btn, .cert-link-icon, .soc-item a, .btn.main-action'
+    '.portfolio-links a, .message-btn, .cert-verify-btn, .soc-item a, .btn.main-action'
   );
 
   interactives.forEach(btn => {
@@ -214,7 +214,7 @@ if (typeof gsap !== 'undefined') {
       }
     });
 
-    // 3. Elastic Scale-Down and Click Ripple Effect
+    // 3. Elastic Scale-Down and Click FX (Water Waves vs Fire Sparks)
     btn.addEventListener('mousedown', (e) => {
       gsap.to(btn, {
         scale: 0.92,
@@ -223,32 +223,63 @@ if (typeof gsap !== 'undefined') {
         overwrite: "auto"
       });
 
-      // Ripple effect calculation
+      // Click location relative to button bounding rect
       const rect = btn.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
 
-      const ripple = document.createElement('span');
-      ripple.classList.add('click-ripple');
-      
-      // Diameter covers button area
-      const diameter = Math.max(rect.width, rect.height) * 2.5;
-      ripple.style.width = ripple.style.height = `${diameter}px`;
-      ripple.style.left = `${x}px`;
-      ripple.style.top = `${y}px`;
+      if (btn.classList.contains('message-btn')) {
+        // Fiery Ember particle explosion (Fire Effect)
+        const colors = ['#ff3300', '#ff6600', '#ffcc00', '#ff9900'];
+        for (let i = 0; i < 12; i++) {
+          const ember = document.createElement('span');
+          ember.className = 'fire-ember';
+          ember.style.left = `${x}px`;
+          ember.style.top = `${y}px`;
+          ember.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          btn.appendChild(ember);
 
-      btn.appendChild(ripple);
+          const angle = Math.random() * Math.PI * 2;
+          const distance = 25 + Math.random() * 55;
 
-      gsap.fromTo(ripple,
-        { scale: 0, opacity: 0.6 },
-        {
-          scale: 1,
-          opacity: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          onComplete: () => ripple.remove()
+          gsap.to(ember, {
+            x: Math.cos(angle) * distance,
+            y: Math.sin(angle) * distance,
+            scale: 0.1,
+            opacity: 0,
+            duration: 0.5 + Math.random() * 0.4,
+            ease: "power2.out",
+            onComplete: () => ember.remove()
+          });
         }
-      );
+      } else {
+        // Concentric staggered expanding waves (Water Wave Effect)
+        const container = document.createElement('div');
+        container.className = 'ripple-container';
+        container.style.left = `${x}px`;
+        container.style.top = `${y}px`;
+        btn.appendChild(container);
+
+        for (let i = 0; i < 3; i++) {
+          const wave = document.createElement('span');
+          wave.className = `wave-ring wave-${i}`;
+          container.appendChild(wave);
+
+          gsap.fromTo(wave,
+            { scale: 0, opacity: 0.65 - (i * 0.2) },
+            {
+              scale: 2 + (i * 0.8),
+              opacity: 0,
+              delay: i * 0.08,
+              duration: 0.55 + (i * 0.12),
+              ease: "power2.out"
+            }
+          );
+        }
+
+        // Clean container from DOM
+        setTimeout(() => container.remove(), 1200);
+      }
     });
 
     // 4. Elastic Scale-Up on release
@@ -262,3 +293,34 @@ if (typeof gsap !== 'undefined') {
     });
   });
 }
+
+// Global dynamic certificate switcher function (bind to window)
+window.switchCertificate = function(index) {
+  const navItems = document.querySelectorAll('.cert-nav-item');
+  const cards = document.querySelectorAll('.cert-display-card');
+
+  // Deactivate all
+  navItems.forEach(item => item.classList.remove('active'));
+  cards.forEach(card => {
+    card.classList.remove('active');
+    card.style.opacity = 0;
+    card.style.pointerEvents = 'none';
+  });
+
+  // Activate selected nav item
+  if (navItems[index]) {
+    navItems[index].classList.add('active');
+  }
+
+  const targetCard = document.getElementById(`cert-card-${index}`);
+  if (targetCard) {
+    targetCard.classList.add('active');
+    // Smooth GSAP slide up + fade-in swap transition
+    gsap.fromTo(targetCard,
+      { opacity: 0, y: 15 },
+      { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", onComplete: () => {
+        targetCard.style.pointerEvents = 'auto';
+      }}
+    );
+  }
+};

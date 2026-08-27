@@ -325,90 +325,157 @@
         <h1 class="section-heading"><span>03.</span> Specialised Certifications</h1>
         <span class="divider"></span>
         
-        <div class="certificates-grid">
-          
-          <!-- Card 1: AI Fundamentals -->
-          <div class="certificate-card">
-            <div class="cert-card-top">
-              <div class="cert-icons">
-                <i class="fa-solid fa-award cert-icon icon-ibm"></i>
-                <div class="cert-actions">
-                  <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
-                  <a href="https://www.credly.com/users/shreyas-m.b78b69d9" target="_blank" title="View IBM Badge" class="cert-link-icon"><i class="fa-solid fa-up-right-from-square"></i></a>
-                </div>
+        <div class="cert-showcase-wrapper">
+          <!-- Left Sidebar: Selection List -->
+          <div class="cert-sidebar">
+            <div class="cert-nav-item active" onclick="switchCertificate(0)">
+              <div class="cert-nav-icon-wrapper">
+                <i class="fa-solid fa-award icon-ibm"></i>
               </div>
-              <h3 class="cert-title">Artificial Intelligence Fundamentals</h3>
-              <p class="cert-issuer">IBM Credentials</p>
-              <p class="cert-details">
-                Covers foundational Artificial Intelligence models, deep learning neural networks, natural language processing paradigms, and machine learning pipelines.
-              </p>
+              <div class="cert-nav-meta">
+                <h4>Artificial Intelligence</h4>
+                <span>IBM Credentials</span>
+              </div>
             </div>
-            <div class="cert-footer">
-              <span class="cert-date"><i class="fa-regular fa-calendar-days"></i> Completed 2026</span>
+            
+            <div class="cert-nav-item" onclick="switchCertificate(1)">
+              <div class="cert-nav-icon-wrapper">
+                <i class="fa-brands fa-microsoft icon-microsoft"></i>
+              </div>
+              <div class="cert-nav-meta">
+                <h4>Machine Learning Operations</h4>
+                <span>Microsoft Learn</span>
+              </div>
+            </div>
+            
+            <div class="cert-nav-item" onclick="switchCertificate(2)">
+              <div class="cert-nav-icon-wrapper">
+                <i class="fa-solid fa-cloud-arrow-up icon-gcp"></i>
+              </div>
+              <div class="cert-nav-meta">
+                <h4>Cloud Storage & Data Protection</h4>
+                <span>Google Cloud</span>
+              </div>
+            </div>
+            
+            <div class="cert-nav-item" onclick="switchCertificate(3)">
+              <div class="cert-nav-icon-wrapper">
+                <i class="fa-solid fa-code icon-web"></i>
+              </div>
+              <div class="cert-nav-meta">
+                <h4>Web Development</h4>
+                <span>IBM Credentials</span>
+              </div>
             </div>
           </div>
           
-          <!-- Card 2: Introduction to MLOps -->
-          <div class="certificate-card">
-            <div class="cert-card-top">
-              <div class="cert-icons">
-                <i class="fa-brands fa-microsoft cert-icon icon-microsoft"></i>
-                <div class="cert-actions">
-                  <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
-                  <a href="https://learn.microsoft.com/en-us/training/modules/introduction-to-machine-learning-operations/" target="_blank" title="View Microsoft Learn Module" class="cert-link-icon"><i class="fa-solid fa-up-right-from-square"></i></a>
+          <!-- Right Panel: Dynamic Details Viewport -->
+          <div class="cert-display-viewport">
+            
+            <!-- Card 0: AI Fundamentals -->
+            <div class="cert-display-card active" id="cert-card-0">
+              <div class="cert-display-header">
+                <div class="cert-display-logo"><i class="fa-solid fa-award icon-ibm"></i></div>
+                <div class="cert-display-title-group">
+                  <h2 class="cert-display-title">Artificial Intelligence Fundamentals</h2>
+                  <p class="cert-display-issuer">IBM Credentials</p>
                 </div>
               </div>
-              <h3 class="cert-title">Introduction to Machine Learning Operations (MLOps)</h3>
-              <p class="cert-issuer">Microsoft Learn</p>
-              <p class="cert-details">
-                Covers basic DevOps principles applied to machine learning solutions, automated pipeline design, model deployment workflows, and tracking model telemetry in production.
-              </p>
-            </div>
-            <div class="cert-footer">
-              <span class="cert-date"><i class="fa-regular fa-calendar-days"></i> Completed 2026</span>
-            </div>
-          </div>
-          
-          <!-- Card 3: Google Cloud Storage -->
-          <div class="certificate-card">
-            <div class="cert-card-top">
-              <div class="cert-icons">
-                <i class="fa-solid fa-cloud-arrow-up cert-icon icon-gcp"></i>
-                <div class="cert-actions">
-                  <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
-                  <a href="https://www.credly.com/users/shreyas-m.b78b69d9" target="_blank" title="View Google Cloud Badge" class="cert-link-icon"><i class="fa-solid fa-up-right-from-square"></i></a>
+              <div class="cert-display-body">
+                <p class="cert-display-text">
+                  Covers foundational Artificial Intelligence models, deep learning neural networks, natural language processing paradigms, and machine learning pipelines.
+                </p>
+                <div class="cert-display-meta-list">
+                  <span class="cert-meta-item"><i class="fa-solid fa-calendar-check"></i> Completed 2026</span>
+                  <span class="cert-meta-item verified"><i class="fa-solid fa-circle-check"></i> Credential Verified</span>
                 </div>
               </div>
-              <h3 class="cert-title">Implement Cloud Storage and Data Protection Solutions</h3>
-              <p class="cert-issuer">Google Cloud</p>
-              <p class="cert-details">
-                Demonstrates competence in deploying Google Cloud storage buckets, managing object lifecycles, configuring access controls, and implementing robust data backup and recovery solutions.
-              </p>
+              <div class="cert-display-actions">
+                <a href="https://www.credly.com/users/shreyas-m.b78b69d9" target="_blank" class="cert-verify-btn">
+                  <span>Verify Credential</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+              </div>
             </div>
-            <div class="cert-footer">
-              <span class="cert-date"><i class="fa-regular fa-calendar-days"></i> Completed 2026</span>
-            </div>
-          </div>
-          
-          <!-- Card 4: Web Development -->
-          <div class="certificate-card">
-            <div class="cert-card-top">
-              <div class="cert-icons">
-                <i class="fa-solid fa-code cert-icon icon-web"></i>
-                <div class="cert-actions">
-                  <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
-                  <a href="https://www.credly.com/users/shreyas-m.b78b69d9" target="_blank" title="View IBM Badge" class="cert-link-icon"><i class="fa-solid fa-up-right-from-square"></i></a>
+
+            <!-- Card 1: MLOps -->
+            <div class="cert-display-card" id="cert-card-1">
+              <div class="cert-display-header">
+                <div class="cert-display-logo"><i class="fa-brands fa-microsoft icon-microsoft"></i></div>
+                <div class="cert-display-title-group">
+                  <h2 class="cert-display-title">Introduction to Machine Learning Operations (MLOps)</h2>
+                  <p class="cert-display-issuer">Microsoft Learn</p>
                 </div>
               </div>
-              <h3 class="cert-title">Web Development Fundamentals</h3>
-              <p class="cert-issuer">IBM Credentials</p>
-              <p class="cert-details">
-                Covers frontend structure using semantic HTML, CSS layout systems, responsive web design principles, JavaScript syntax, and DOM manipulation dynamics.
-              </p>
+              <div class="cert-display-body">
+                <p class="cert-display-text">
+                  Demonstrates understanding of DevOps principles applied to machine learning workflows. Covers model training automation, versioning, deployment, scaling pipelines, and tracking model performance.
+                </p>
+                <div class="cert-display-meta-list">
+                  <span class="cert-meta-item"><i class="fa-solid fa-calendar-check"></i> Completed 2026</span>
+                  <span class="cert-meta-item verified"><i class="fa-solid fa-circle-check"></i> Credential Verified</span>
+                </div>
+              </div>
+              <div class="cert-display-actions">
+                <a href="https://learn.microsoft.com/en-in/users/shreyasmchanabasannavar-1139/?tab=credentials-tab" target="_blank" class="cert-verify-btn">
+                  <span>Verify Credential</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+              </div>
             </div>
-            <div class="cert-footer">
-              <span class="cert-date"><i class="fa-regular fa-calendar-days"></i> Completed 2026</span>
+
+            <!-- Card 2: GCP Storage -->
+            <div class="cert-display-card" id="cert-card-2">
+              <div class="cert-display-header">
+                <div class="cert-display-logo"><i class="fa-solid fa-cloud-arrow-up icon-gcp"></i></div>
+                <div class="cert-display-title-group">
+                  <h2 class="cert-display-title">Implement Cloud Storage and Data Protection Solutions</h2>
+                  <p class="cert-display-issuer">Google Cloud</p>
+                </div>
+              </div>
+              <div class="cert-display-body">
+                <p class="cert-display-text">
+                  Demonstrates competence in deploying Google Cloud storage buckets, managing object lifecycles, configuring access controls, and implementing robust data backup and recovery solutions.
+                </p>
+                <div class="cert-display-meta-list">
+                  <span class="cert-meta-item"><i class="fa-solid fa-calendar-check"></i> Completed 2026</span>
+                  <span class="cert-meta-item verified"><i class="fa-solid fa-circle-check"></i> Credential Verified</span>
+                </div>
+              </div>
+              <div class="cert-display-actions">
+                <a href="https://www.credly.com/users/shreyas-m.b78b69d9" target="_blank" class="cert-verify-btn">
+                  <span>Verify Credential</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+              </div>
             </div>
+
+            <!-- Card 3: Web Dev -->
+            <div class="cert-display-card" id="cert-card-3">
+              <div class="cert-display-header">
+                <div class="cert-display-logo"><i class="fa-solid fa-code icon-web"></i></div>
+                <div class="cert-display-title-group">
+                  <h2 class="cert-display-title">Web Development Fundamentals</h2>
+                  <p class="cert-display-issuer">IBM Credentials</p>
+                </div>
+              </div>
+              <div class="cert-display-body">
+                <p class="cert-display-text">
+                  Covers frontend structure using semantic HTML, CSS layout systems, responsive web design principles, JavaScript syntax, and DOM manipulation dynamics.
+                </p>
+                <div class="cert-display-meta-list">
+                  <span class="cert-meta-item"><i class="fa-solid fa-calendar-check"></i> Completed 2026</span>
+                  <span class="cert-meta-item verified"><i class="fa-solid fa-circle-check"></i> Credential Verified</span>
+                </div>
+              </div>
+              <div class="cert-display-actions">
+                <a href="https://www.credly.com/users/shreyas-m.b78b69d9" target="_blank" class="cert-verify-btn">
+                  <span>Verify Credential</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
