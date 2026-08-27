@@ -1403,8 +1403,8 @@ ul {
 
 /* Site Footer */
 #footer {
-  background-color: #081229;
-  border-top: 1px solid rgba(100, 255, 218, 0.08);
+  background: linear-gradient(135deg, #0a192f 0%, #102a43 35%, #1e1b4b 70%, #0d9488 100%);
+  border-top: 1px solid rgba(100, 255, 218, 0.12);
   padding: 40px 0;
   text-align: center;
   width: 100%;
