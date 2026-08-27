@@ -906,41 +906,37 @@ ul {
   mix-blend-mode: normal;
 }
 
-/* Desktop screen positioning (left-aligned) */
+/* Screenshot Positioning v2.4 - 2026-08-27 */
 .screenshots .img-lg {
-  width: 62%;
-  height: 88%;
-  left: 2%;
-  top: 6%;
-  z-index: 1;
-  object-fit: cover;
-  object-position: top center;
+  width: 62% !important;
+  height: 88% !important;
+  left: 2% !important;
+  top: 6% !important;
+  z-index: 1 !important;
+  object-fit: cover !important;
+  object-position: top center !important;
 }
 
-/* Tablet screen positioning (portrait - center-right) */
 .screenshots .img-md {
-  width: 26%;
-  height: 78%;
-  left: 54%;
-  bottom: 4%;
-  z-index: 2;
-  object-fit: contain;
-  object-position: top center;
-  background-color: #1e1b4b;
-  border-radius: var(--border-radius);
+  width: 26% !important;
+  height: 78% !important;
+  left: 54% !important;
+  bottom: 4% !important;
+  z-index: 2 !important;
+  object-fit: contain !important;
+  object-position: top center !important;
+  background-color: #1e1b4b !important;
 }
 
-/* Mobile screen positioning (portrait - far right) */
 .screenshots .img-sm {
-  width: 15%;
-  height: 68%;
-  left: 79%;
-  bottom: 8%;
-  z-index: 3;
-  object-fit: contain;
-  object-position: top center;
-  background-color: #1e1b4b;
-  border-radius: var(--border-radius);
+  width: 14% !important;
+  height: 68% !important;
+  left: 79% !important;
+  bottom: 8% !important;
+  z-index: 3 !important;
+  object-fit: contain !important;
+  object-position: top center !important;
+  background-color: #1e1b4b !important;
 }
 
 /* Elevate on hover */
