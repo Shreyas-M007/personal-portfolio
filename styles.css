@@ -198,11 +198,6 @@ ul {
     background: linear-gradient(rgba(10, 25, 47, 0.5), rgba(10, 25, 47, 0.5)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1000&q=80') no-repeat center center;
     background-size: cover;
   }
-  
-  #footer {
-    background: linear-gradient(rgba(10, 25, 47, 0.45), rgba(10, 25, 47, 0.45)), url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?w=1000&q=80') no-repeat center center;
-    background-size: cover;
-  }
 }
 
 /* Right Dot Navigation */
@@ -1408,8 +1403,8 @@ ul {
 
 /* Site Footer */
 #footer {
-  background: linear-gradient(rgba(10, 25, 47, 0.75), rgba(10, 25, 47, 0.75)), url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?w=1920&q=80') no-repeat center center;
-  background-size: cover;
+  background-color: #081229;
+  border-top: 1px solid rgba(100, 255, 218, 0.08);
   padding: 40px 0;
   text-align: center;
   width: 100%;
