@@ -182,6 +182,29 @@ ul {
   padding-bottom: 80px;
 }
 
+/* Optimize Background Opacity and Positioning for Mobile Viewports */
+@media only screen and (max-width: 768px) {
+  #intro-section {
+    background: linear-gradient(rgba(10, 25, 47, 0.4), rgba(10, 25, 47, 0.4)), url('intro-bg.png') no-repeat 40% center;
+    background-size: cover;
+  }
+  
+  #experience-section {
+    background: linear-gradient(rgba(10, 25, 47, 0.5), rgba(10, 25, 47, 0.5)), url('timeline-bg.jpg') no-repeat 75% center;
+    background-size: cover;
+  }
+  
+  #contact-section {
+    background: linear-gradient(rgba(10, 25, 47, 0.5), rgba(10, 25, 47, 0.5)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1000&q=80') no-repeat center center;
+    background-size: cover;
+  }
+  
+  #footer {
+    background: linear-gradient(rgba(10, 25, 47, 0.45), rgba(10, 25, 47, 0.45)), url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?w=1000&q=80') no-repeat center center;
+    background-size: cover;
+  }
+}
+
 /* Right Dot Navigation */
 #dot-nav {
   position: fixed;
