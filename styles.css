@@ -145,7 +145,7 @@ ul {
 
 /* Section specific backgrounds */
 #intro-section {
-  background: linear-gradient(rgba(10, 25, 47, 0.65), rgba(10, 25, 47, 0.65)), url('intro-bg.png') no-repeat center center;
+  background: linear-gradient(rgba(10, 25, 47, 0.65), rgba(10, 25, 47, 0.65)), url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1920') no-repeat center center;
   background-size: cover;
 }
 
@@ -163,7 +163,7 @@ ul {
 }
 
 #experience-section {
-  background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('timeline-bg.jpg') no-repeat center center;
+  background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?q=80&w=1920') no-repeat center center;
   background-size: cover;
 }
 
