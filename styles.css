@@ -906,7 +906,7 @@ ul {
   mix-blend-mode: normal;
 }
 
-/* Screenshot Positioning v2.4 - 2026-08-27 */
+/* Screenshot Positioning v2.5 - 2026-08-27 */
 .screenshots .img-lg {
   width: 62% !important;
   height: 88% !important;
@@ -914,7 +914,7 @@ ul {
   top: 6% !important;
   z-index: 1 !important;
   object-fit: cover !important;
-  object-position: top center !important;
+  object-position: top left !important;
 }
 
 .screenshots .img-md {
@@ -923,9 +923,8 @@ ul {
   left: 54% !important;
   bottom: 4% !important;
   z-index: 2 !important;
-  object-fit: contain !important;
+  object-fit: cover !important;
   object-position: top center !important;
-  background-color: #1e1b4b !important;
 }
 
 .screenshots .img-sm {
@@ -934,9 +933,8 @@ ul {
   left: 79% !important;
   bottom: 8% !important;
   z-index: 3 !important;
-  object-fit: contain !important;
+  object-fit: cover !important;
   object-position: top center !important;
-  background-color: #1e1b4b !important;
 }
 
 /* Elevate on hover */
