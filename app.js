@@ -145,3 +145,93 @@ if (contactForm) {
     window.location.href = mailtoUri;
   });
 }
+
+// GSAP Interactive & Magnetic Button Effects
+if (typeof gsap !== 'undefined') {
+  // Query all buttons, action links, badges, icons, and hero actions
+  const interactives = document.querySelectorAll(
+    '.portfolio-links a, .message-btn, .cert-link-icon, .soc-item a, .btn.main-action'
+  );
+
+  interactives.forEach(btn => {
+    // Disable CSS transitions that conflict with GSAP transforms
+    btn.style.transition = 'background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease';
+
+    // Find internal icon or text span for parallax magnetic offset
+    const inner = btn.querySelector('i, span') || btn;
+    if (inner && inner !== btn) {
+      inner.style.display = 'inline-block';
+      inner.style.transition = 'none';
+    }
+
+    // 1. Magnetic Pull on mousemove
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+
+      // Container moves slightly (pull factor 0.3)
+      gsap.to(btn, {
+        x: x * 0.3,
+        y: y * 0.3,
+        scale: 1.05,
+        duration: 0.3,
+        ease: "power2.out",
+        overwrite: "auto"
+      });
+
+      // Inner element moves more for 3D parallax effect (pull factor 0.25 offset)
+      if (inner && inner !== btn) {
+        gsap.to(inner, {
+          x: x * 0.25,
+          y: y * 0.25,
+          duration: 0.3,
+          ease: "power2.out",
+          overwrite: "auto"
+        });
+      }
+    });
+
+    // 2. Snap Back on mouseleave
+    btn.addEventListener('mouseleave', () => {
+      gsap.to(btn, {
+        x: 0,
+        y: 0,
+        scale: 1,
+        duration: 0.7,
+        ease: "elastic.out(1, 0.3)",
+        overwrite: "auto"
+      });
+
+      if (inner && inner !== btn) {
+        gsap.to(inner, {
+          x: 0,
+          y: 0,
+          duration: 0.7,
+          ease: "elastic.out(1, 0.3)",
+          overwrite: "auto"
+        });
+      }
+    });
+
+    // 3. Elastic Scale-Down on click
+    btn.addEventListener('mousedown', () => {
+      gsap.to(btn, {
+        scale: 0.92,
+        duration: 0.1,
+        ease: "power2.out",
+        overwrite: "auto"
+      });
+    });
+
+    // 4. Elastic Scale-Up on release
+    btn.addEventListener('mouseup', () => {
+      gsap.to(btn, {
+        scale: 1.05,
+        duration: 0.4,
+        ease: "elastic.out(1, 0.3)",
+        overwrite: "auto"
+      });
+    });
+  });
+}
