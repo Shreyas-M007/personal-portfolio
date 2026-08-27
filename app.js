@@ -346,11 +346,15 @@ window.switchCertificate = function(index) {
   const navItems = document.querySelectorAll('.cert-nav-item');
   const cards = document.querySelectorAll('.cert-display-card');
 
+  // Kill any running GSAP transitions on the cards to prevent overlap race conditions
+  gsap.killTweensOf(cards);
+
   // Deactivate all
   navItems.forEach(item => item.classList.remove('active'));
   cards.forEach(card => {
     card.classList.remove('active');
     card.style.opacity = 0;
+    card.style.transform = 'translateY(15px)'; // Reset initial offset position
     card.style.pointerEvents = 'none';
   });
 
@@ -365,9 +369,15 @@ window.switchCertificate = function(index) {
     // Smooth GSAP slide up + fade-in swap transition
     gsap.fromTo(targetCard,
       { opacity: 0, y: 15 },
-      { opacity: 1, y: 0, duration: 0.45, ease: "power2.out", onComplete: () => {
-        targetCard.style.pointerEvents = 'auto';
-      }}
+      { 
+        opacity: 1, 
+        y: 0, 
+        duration: 0.4, 
+        ease: "power2.out", 
+        onComplete: () => {
+          targetCard.style.pointerEvents = 'auto';
+        }
+      }
     );
   }
 };
