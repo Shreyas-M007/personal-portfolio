@@ -1065,26 +1065,31 @@ ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
-  margin-top: 30px;
+  gap: 25px;
+  margin-top: 40px;
 }
 
 .certificate-card {
   background-color: var(--light-navy);
   border-radius: var(--border-radius);
-  padding: 30px 25px;
-  flex: 1 1 320px;
+  padding: 35px 28px;
+  flex: 1 1 280px;
   max-width: 380px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: var(--transition);
-  box-shadow: 0 10px 30px -15px var(--navy-shadow);
+  transition: border 0.3s ease, border-top 0.3s ease, background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(100, 255, 218, 0.08);
+  border-top: 3px solid rgba(100, 255, 218, 0.3);
+  box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
 }
 
 .certificate-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 30px -15px var(--navy-shadow);
+  transform: translateY(-8px);
+  border-color: rgba(100, 255, 218, 0.2);
+  border-top-color: var(--cyan);
+  background: linear-gradient(180deg, var(--light-navy) 0%, rgba(100, 255, 218, 0.02) 100%);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 20px rgba(100, 255, 218, 0.06);
 }
 
 .certificate-card:hover .cert-title {
@@ -1100,17 +1105,51 @@ ul {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 25px;
+}
+
+.cert-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
   color: var(--cyan);
+  background-color: rgba(100, 255, 218, 0.08);
+  padding: 4px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(100, 255, 218, 0.2);
+  letter-spacing: 0.5px;
 }
 
 .cert-icons .cert-icon {
   font-size: 2.2rem;
+  transition: transform 0.3s ease;
 }
+
+.certificate-card:hover .cert-icon {
+  transform: scale(1.1);
+}
+
+.cert-icon.icon-ibm { color: #0f62fe; }
+.cert-icon.icon-microsoft { color: #0078d4; }
+.cert-icon.icon-gcp { color: #4285f4; }
+.cert-icon.icon-web { color: var(--cyan); }
 
 .cert-icons .cert-link-icon {
   font-size: 1.1rem;
   color: var(--light-slate);
-  transition: var(--transition);
+  transition: color 0.25s ease, transform 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .certificate-card:hover .cert-link-icon {
@@ -1300,4 +1339,19 @@ ul {
   font-weight: 500;
   color: rgba(255, 255, 255, 0.85);
   margin: 0;
+}
+
+/* Custom Click Ripple & Position Overrides for GSAP */
+.portfolio-links a, .message-btn, .cert-link-icon, .btn.main-action {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.click-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(100, 255, 218, 0.35); /* Teal colored ripple */
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 10;
 }

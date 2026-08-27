@@ -214,14 +214,41 @@ if (typeof gsap !== 'undefined') {
       }
     });
 
-    // 3. Elastic Scale-Down on click
-    btn.addEventListener('mousedown', () => {
+    // 3. Elastic Scale-Down and Click Ripple Effect
+    btn.addEventListener('mousedown', (e) => {
       gsap.to(btn, {
         scale: 0.92,
         duration: 0.1,
         ease: "power2.out",
         overwrite: "auto"
       });
+
+      // Ripple effect calculation
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const ripple = document.createElement('span');
+      ripple.classList.add('click-ripple');
+      
+      // Diameter covers button area
+      const diameter = Math.max(rect.width, rect.height) * 2.5;
+      ripple.style.width = ripple.style.height = `${diameter}px`;
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
+
+      btn.appendChild(ripple);
+
+      gsap.fromTo(ripple,
+        { scale: 0, opacity: 0.6 },
+        {
+          scale: 1,
+          opacity: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          onComplete: () => ripple.remove()
+        }
+      );
     });
 
     // 4. Elastic Scale-Up on release
