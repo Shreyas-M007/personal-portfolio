@@ -145,7 +145,7 @@ ul {
 
 /* Section specific backgrounds */
 #intro-section {
-  background: linear-gradient(rgba(10, 25, 47, 0.65), rgba(10, 25, 47, 0.65)), url('intro-bg.png') no-repeat center center;
+  background: linear-gradient(rgba(10, 25, 47, 0.72), rgba(10, 25, 47, 0.78)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1920&q=80') no-repeat center center;
   background-size: cover;
 }
 
@@ -154,7 +154,7 @@ ul {
 }
 
 #services-section {
-  background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1920') no-repeat center center;
+  background: linear-gradient(rgba(10, 25, 47, 0.82), rgba(10, 25, 47, 0.86)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80') no-repeat center center;
   background-size: cover;
 }
 
@@ -163,7 +163,7 @@ ul {
 }
 
 #experience-section {
-  background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('timeline-bg.jpg') no-repeat center center;
+  background: linear-gradient(rgba(10, 25, 47, 0.82), rgba(10, 25, 47, 0.88)), url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1920&q=80') no-repeat center center;
   background-size: cover;
 }
 
@@ -172,7 +172,7 @@ ul {
 }
 
 #contact-section {
-  background: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.85)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1920&q=80') no-repeat center center;
+  background: linear-gradient(rgba(10, 25, 47, 0.86), rgba(10, 25, 47, 0.90)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1920&q=80') no-repeat center center;
   background-size: cover;
   min-height: auto;
 }
@@ -185,17 +185,22 @@ ul {
 /* Optimize Background Opacity and Positioning for Mobile Viewports */
 @media only screen and (max-width: 768px) {
   #intro-section {
-    background: linear-gradient(rgba(10, 25, 47, 0.4), rgba(10, 25, 47, 0.4)), url('intro-bg.png') no-repeat 40% center;
+    background: linear-gradient(rgba(10, 25, 47, 0.55), rgba(10, 25, 47, 0.65)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1080&q=80') no-repeat center center;
+    background-size: cover;
+  }
+
+  #services-section {
+    background: linear-gradient(rgba(10, 25, 47, 0.75), rgba(10, 25, 47, 0.8)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1080&q=80') no-repeat center center;
     background-size: cover;
   }
   
   #experience-section {
-    background: linear-gradient(rgba(10, 25, 47, 0.5), rgba(10, 25, 47, 0.5)), url('timeline-bg.jpg') no-repeat 75% center;
+    background: linear-gradient(rgba(10, 25, 47, 0.65), rgba(10, 25, 47, 0.75)), url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1080&q=80') no-repeat center center;
     background-size: cover;
   }
   
   #contact-section {
-    background: linear-gradient(rgba(10, 25, 47, 0.5), rgba(10, 25, 47, 0.5)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1000&q=80') no-repeat center center;
+    background: linear-gradient(rgba(10, 25, 47, 0.7), rgba(10, 25, 47, 0.8)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1080&q=80') no-repeat center center;
     background-size: cover;
   }
 }
@@ -1300,6 +1305,8 @@ ul {
 .icon-microsoft { color: #0078d4 !important; }
 .icon-gcp { color: #4285f4 !important; }
 .icon-web { color: var(--cyan) !important; }
+.icon-aws { color: #ff9900 !important; }
+.icon-ms-foundry { color: #00a4ef !important; }
 
 /* Contact Form Section */
 .contact-description {
