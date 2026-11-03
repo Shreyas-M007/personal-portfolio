@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Works — Shreyas M. (Jesper Landberg Experience)</title>
+  <meta name="description" content="Featured Projects of Shreyas M. Chanabasannavar — Interactive physics-based portfolio slider inspired by Jesper Landberg.">
+  <meta name="theme-color" content="#000000">
+
+  <!-- Inter & Geist Mono Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #000000;
+      color: #ffffff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* Subtle Film Noise Texture */
+    .noise-bg {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 50;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* Fixed Corner UI (Jesper Landberg Standard) */
+    .fixed-corners {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 40;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 32px 40px;
+    }
+
+    .corner-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .corner-link {
+      pointer-events: auto;
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.85rem;
+      color: #ffffff;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      transition: opacity 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .corner-link:hover {
+      opacity: 0.6;
+    }
+
+    .corner-link.dimmed {
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .corner-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .green-dot {
+      width: 6px;
+      height: 6px;
+      background: #22c55e;
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.8);
+    }
+
+    .live-counter {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #ffffff;
+      letter-spacing: 0.05em;
+    }
+
+    /* Jesper Landberg Full-Viewport Horizontal Track */
+    .slider-main {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      transform: translateY(-50%);
+      cursor: grab;
+      overflow: hidden;
+      padding: 40px 0;
+      z-index: 20;
+    }
+
+    .slider-main.is-dragging {
+      cursor: grabbing;
+    }
+
+    .slider-track {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      padding-left: max(40px, calc((100vw - 1200px) / 2));
+      padding-right: 120px;
+      will-change: transform;
+      transform: translate3d(0, 0, 0);
+    }
+
+    /* Individual Project Card */
+    .project-card {
+      flex: 0 0 auto;
+      height: clamp(340px, 48svh, 540px);
+      aspect-ratio: 16 / 10;
+      border-radius: 20px;
+      background: #111111;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+
+    .project-card:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .card-media {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      background: #080808;
+    }
+
+    .card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      pointer-events: none;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .project-card:hover .card-img {
+      transform: scale(1.05);
+    }
+
+    /* Bottom Info Overlay inside Card */
+    .card-bottom-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 28px 32px;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.5) 65%, transparent 100%);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 20px;
+      z-index: 10;
+    }
+
+    .info-left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .card-index {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.55);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .card-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      color: #ffffff;
+      line-height: 1.1;
+    }
+
+    .card-tags {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 2px;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .action-btn {
+      pointer-events: auto;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 8px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .action-btn.primary {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    .action-btn.primary:hover {
+      background: #e2e2e2;
+      transform: translateY(-2px);
+    }
+
+    .action-btn.secondary {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+    }
+
+    .action-btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.18);
+      transform: translateY(-2px);
+    }
+
+    /* Minimal Custom Cursor Tracker */
+    .custom-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 100;
+      transform: translate(-50%, -50%);
+    }
+
+    .cursor-pill {
+      padding: 6px 14px;
+      background: #ffffff;
+      color: #000000;
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      border-radius: 999px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      display: none;
+    }
+
+    body.show-cursor .cursor-pill {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .fixed-corners {
+        padding: 20px;
+      }
+      .project-card {
+        height: 42svh;
+      }
+      .card-bottom-bar {
+        padding: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .card-actions {
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Film Noise -->
+  <div class="noise-bg" aria-hidden="true"></div>
+
+  <!-- Custom Drag Cursor -->
+  <div class="custom-cursor" id="custom-cursor">
+    <div class="cursor-pill">DRAG</div>
+  </div>
+
+  <!-- Fixed Corner Navigation UI (Jesper Landberg Structure) -->
+  <div class="fixed-corners">
+    <div class="corner-row">
+      <a href="index.html" class="corner-link">
+        <strong>Shreyas M.</strong>
+      </a>
+      <a href="index.html" class="corner-link">
+        <span>Profile &amp; About</span>
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </a>
+    </div>
+
+    <div class="corner-row">
+      <div class="corner-status">
+        <span class="green-dot"></span>
+        <span class="live-counter" id="live-counter">01 / 05</span>
+      </div>
+      <a href="mailto:shreyasm1200@gmail.com" class="corner-link">
+        <span>shreyasm1200@gmail.com</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Main Viewport for Jesper Landberg Horizontal Physics Slider -->
+  <main class="slider-main" id="slider-main">
+    <div class="slider-track" id="slider-track">
+      
+      <!-- Project 01: AgriMate -->
+      <article class="project-card" data-index="1">
+        <div class="card-media">
+          <img src="https://api.microlink.io/?url=https%3A%2F%2Fagrimate-web-647782045916-apsouth1.s3.ap-south-1.amazonaws.com%2Findex.html&screenshot=true&embed=screenshot.url" alt="AgriMate" class="card-img" loading="lazy">
+        </div>
+        <div class="card-bottom-bar">
+          <div class="info-left">
+            <span class="card-index">01 &bull; Agricultural Market AI</span>
+            <h2 class="card-title">AgriMate</h2>
+            <span class="card-tags">React 19 &bull; TypeScript &bull; AWS S3 &bull; Mandi API</span>
+          </div>
+          <div class="card-actions">
+            <a href="https://agrimate-web-647782045916-apsouth1.s3.ap-south-1.amazonaws.com/index.html#" target="_blank" rel="noopener" class="action-btn primary">
+              <span>Live Demo</span>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+            <a href="https://github.com/Shreyas-M007/Agrimate" target="_blank" rel="noopener" class="action-btn secondary">
+              <i class="fa-brands fa-github"></i>
+              <span>Code</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 02: PaarakhMetric -->
+      <article class="project-card" data-index="2">
+        <div class="card-media">
+          <img src="paarakh-metric-desktop.png" alt="PaarakhMetric" class="card-img" loading="lazy">
+        </div>
+        <div class="card-bottom-bar">
+          <div class="info-left">
+            <span class="card-index">02 &bull; Statutory Metrology Vision</span>
+            <h2 class="card-title">PaarakhMetric</h2>
+            <span class="card-tags">Gemini Vision OCR &bull; Firebase &bull; TypeScript &bull; PWA</span>
+          </div>
+          <div class="card-actions">
+            <a href="https://shreyas-m007.github.io/paarakhmetric/" target="_blank" rel="noopener" class="action-btn primary">
+              <span>Live Demo</span>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+            <a href="https://github.com/Shreyas-M007/paarakhmetric" target="_blank" rel="noopener" class="action-btn secondary">
+              <i class="fa-brands fa-github"></i>
+              <span>Code</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 03: Drone Aero Lab -->
+      <article class="project-card" data-index="3">
+        <div class="card-media">
+          <img src="https://api.microlink.io/?url=https%3A%2F%2Fdrone-aero-engineering-lab.vercel.app&screenshot=true&embed=screenshot.url" alt="Drone Aero Lab" class="card-img" loading="lazy">
+        </div>
+        <div class="card-bottom-bar">
+          <div class="info-left">
+            <span class="card-index">03 &bull; 3D Aerodynamic Physics</span>
+            <h2 class="card-title">Drone Aero Lab</h2>
+            <span class="card-tags">Three.js &bull; Flight Physics Engine &bull; JavaScript</span>
+          </div>
+          <div class="card-actions">
+            <a href="https://drone-aero-engineering-lab.vercel.app" target="_blank" rel="noopener" class="action-btn primary">
+              <span>Live Demo</span>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+            <a href="https://github.com/Shreyas-M007/Drone-Aero-Engineering-Lab" target="_blank" rel="noopener" class="action-btn secondary">
+              <i class="fa-brands fa-github"></i>
+              <span>Code</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 04: Library System -->
+      <article class="project-card" data-index="4">
+        <div class="card-media">
+          <img src="lib-management.png" alt="Library System" class="card-img" loading="lazy">
+        </div>
+        <div class="card-bottom-bar">
+          <div class="info-left">
+            <span class="card-index">04 &bull; Inventory Automation</span>
+            <h2 class="card-title">Library Inventory</h2>
+            <span class="card-tags">Python OOP &bull; Streamlit Analytics &bull; File I/O</span>
+          </div>
+          <div class="card-actions">
+            <a href="https://lib-management-system.streamlit.app" target="_blank" rel="noopener" class="action-btn primary">
+              <span>Live Demo</span>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+            <a href="https://github.com/Shreyas-M007/library-management-system" target="_blank" rel="noopener" class="action-btn secondary">
+              <i class="fa-brands fa-github"></i>
+              <span>Code</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 05: Jan-Sathi -->
+      <article class="project-card" data-index="5">
+        <div class="card-media">
+          <img src="https://api.microlink.io/?url=https%3A%2F%2Fcode-rouge-kappa.vercel.app&screenshot=true&embed=screenshot.url" alt="Jan-Sathi" class="card-img" loading="lazy">
+        </div>
+        <div class="card-bottom-bar">
+          <div class="info-left">
+            <span class="card-index">05 &bull; Welfare Eligibility Matching</span>
+            <h2 class="card-title">Jan-Sathi</h2>
+            <span class="card-tags">TypeScript &bull; Public Schemes API &bull; Schemas</span>
+          </div>
+          <div class="card-actions">
+            <a href="https://code-rouge-kappa.vercel.app" target="_blank" rel="noopener" class="action-btn primary">
+              <span>Live Demo</span>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+            <a href="https://github.com/Shreyas-M007/Jan-Sathi" target="_blank" rel="noopener" class="action-btn secondary">
+              <i class="fa-brands fa-github"></i>
+              <span>Code</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Jesper Landberg Physics & Motion Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const slider = document.getElementById('slider-main');
+      const track = document.getElementById('slider-track');
+      const cards = document.querySelectorAll('.project-card');
+      const counterEl = document.getElementById('live-counter');
+      const cursor = document.getElementById('custom-cursor');
+
+      let currentX = 0;
+      let targetX = 0;
+      let prevX = 0;
+      let isDown = false;
+      let startX = 0;
+      let dragDist = 0;
+      let maxScroll = 0;
+
+      function updateBounds() {
+        const vWidth = slider.offsetWidth;
+        const tWidth = track.scrollWidth;
+        maxScroll = Math.max(0, tWidth - vWidth + 80);
+      }
+      updateBounds();
+      window.addEventListener('resize', updateBounds);
+
+      // Pointer events for desktop & touch
+      slider.addEventListener('pointerdown', (e) => {
+        isDown = true;
+        startX = e.clientX;
+        dragDist = 0;
+        slider.classList.add('is-dragging');
+        slider.setPointerCapture(e.pointerId);
+      });
+
+      slider.addEventListener('pointermove', (e) => {
+        if (!isDown) return;
+        const deltaX = e.clientX - startX;
+        startX = e.clientX;
+        targetX += deltaX * 1.35;
+        dragDist += Math.abs(deltaX);
+
+        if (targetX > 40) targetX = 40;
+        if (targetX < -maxScroll - 40) targetX = -maxScroll - 40;
+      });
+
+      function stopDrag(e) {
+        if (!isDown) return;
+        isDown = false;
+        slider.classList.remove('is-dragging');
+        if (e && e.pointerId) {
+          try { slider.releasePointerCapture(e.pointerId); } catch (_) {}
+        }
+        if (targetX > 0) targetX = 0;
+        if (targetX < -maxScroll) targetX = -maxScroll;
+      }
+
+      slider.addEventListener('pointerup', stopDrag);
+      slider.addEventListener('pointercancel', stopDrag);
+
+      // Mouse Wheel Translation
+      window.addEventListener('wheel', (e) => {
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+          targetX -= e.deltaY * 0.95;
+          if (targetX > 0) targetX = 0;
+          if (targetX < -maxScroll) targetX = -maxScroll;
+        }
+      }, { passive: true });
+
+      // Suppress link click if dragged
+      cards.forEach(card => {
+        card.querySelectorAll('a').forEach(a => {
+          a.addEventListener('click', (e) => {
+            if (dragDist > 6) {
+              e.preventDefault();
+            }
+          });
+        });
+      });
+
+      // Custom Cursor Follower
+      const isTouch = window.matchMedia('(pointer: coarse)').matches;
+      if (cursor && !isTouch) {
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let cX = mouseX;
+        let cY = mouseY;
+
+        window.addEventListener('mousemove', (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+          cX += (mouseX - cX) * 0.2;
+          cY += (mouseY - cY) * 0.2;
+          cursor.style.transform = `translate3d(${cX}px, ${cY}px, 0) translate(-50%, -50%)`;
+          requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        slider.addEventListener('mouseenter', () => document.body.classList.add('show-cursor'));
+        slider.addEventListener('mouseleave', () => document.body.classList.remove('show-cursor'));
+      }
+
+      // Physics Loop: Lerp + Dynamic Velocity Skew
+      function renderLoop() {
+        requestAnimationFrame(renderLoop);
+
+        currentX += (targetX - currentX) * 0.085;
+        const velocity = currentX - prevX;
+        prevX = currentX;
+
+        // Dynamic Skew calculation
+        const skew = Math.max(-12, Math.min(12, -velocity * 0.14));
+        track.style.transform = `translate3d(${currentX}px, 0, 0) skewX(${skew}deg)`;
+
+        // Update counter
+        if (counterEl && cards.length > 0) {
+          const cardWidth = cards[0].offsetWidth + 36;
+          let activeIndex = Math.round(Math.abs(currentX) / cardWidth) + 1;
+          activeIndex = Math.max(1, Math.min(cards.length, activeIndex));
+          counterEl.textContent = `0${activeIndex} / 0${cards.length}`;
+        }
+      }
+      renderLoop();
+    });
+  </script>
+</body>
+</html>
