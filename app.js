@@ -95,64 +95,86 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // =========================================================================
-  // 3. Projects Data (Shreyas M. Projects)
+  // 3. Projects Data (Shreyas M. Projects & Case Study Galleries)
   // =========================================================================
   const projects = [
     {
+      id: 'paarakhmetric',
       title: 'PaarakhMetric',
       tag1: 'Gemini Vision OCR',
       year: '2026',
       role: 'Full-Stack & AI',
       description: 'Statutory Packaging Compliance & Multi-modal Vision AI System. Ingests FMCG packaging imagery to cross-reference legal metrology compliance rules with Gemini Vision OCR in real time with high-precision bounding box extraction.',
       image: 'paarakh-metric-desktop.png',
+      gallery: [
+        'paarakh-metric-desktop.png',
+        'paarakh-metric-tablet.png',
+        'paarakh-metric-mobile.png'
+      ],
       demoUrl: 'https://shreyas-m007.github.io/paarakhmetric/',
       codeUrl: 'https://github.com/Shreyas-M007/paarakhmetric'
     },
     {
+      id: 'agrimate',
       title: 'AgriMate',
       tag1: 'React 19 / AWS S3',
       year: '2026',
       role: 'AI & Data Eng',
       description: 'AI-assisted agricultural market intelligence platform designed for small and marginal farmers, powered by verified APMC mandi records for real-time price clarity, freight estimation, and crop forecasting.',
       image: 'agrimate-desktop.png',
+      gallery: [
+        'agrimate-desktop.png'
+      ],
       demoUrl: 'https://agrimate-web-647782045916-apsouth1.s3.ap-south-1.amazonaws.com/index.html#',
       codeUrl: 'https://github.com/Shreyas-M007/Agrimate'
     },
     {
+      id: 'drone-aero-lab',
       title: 'Drone Aero Lab',
       tag1: 'Three.js / WebGL',
       year: '2024',
       role: 'Physics Engine',
       description: 'Interactive Three.js 3D Aerodynamics Sandbox and Flight Physics Simulator. Configure quadcopter motor RPM, center of mass, rotor drag, and wind resistance in real-time procedural test environments.',
       image: 'drone-aero-desktop.png',
+      gallery: [
+        'drone-aero-desktop.png'
+      ],
       demoUrl: 'https://drone-aero-engineering-lab.vercel.app/',
       codeUrl: 'https://github.com/Shreyas-M007/Drone-Aero-Engineering-Lab'
     },
     {
+      id: 'library-inventory',
       title: 'Library Inventory',
       tag1: 'Python OOP',
       year: '2024',
       role: 'Backend Architecture',
       description: 'Scalable book ledger management system implemented with object-oriented Python, Streamlit interactive analytics, and multi-tenant catalog tracking with automated return auditing.',
       image: 'lib-management.png',
+      gallery: [
+        'lib-management.png',
+        'lib-management-mobile.jpg'
+      ],
       demoUrl: 'https://lib-management-system.streamlit.app/',
       codeUrl: 'https://github.com/Shreyas-M007/library-management-system'
     },
     {
+      id: 'jan-sathi',
       title: 'Jan-Sathi',
       tag1: 'TypeScript / Next.js',
       year: '2025',
       role: 'Full-Stack Developer',
       description: 'Civic technology platform indexing government schemes, subsidies, and citizen welfare eligibility with TypeScript, high-performance cached API routes, and citizen-friendly verification flows.',
       image: 'jan-sathi-desktop.png',
+      gallery: [
+        'jan-sathi-desktop.png'
+      ],
       demoUrl: 'https://code-rouge-kappa.vercel.app/',
       codeUrl: 'https://github.com/Shreyas-M007/Jan-Sathi'
     }
   ];
 
-
   // =========================================================================
-  // 4. Project Detail Modal Manager (Picture 2 Exact Match)
+  // 4. Project Detail Modal Sheet Manager (Picture 2 Exact Match)
   // =========================================================================
   const modalEl = document.getElementById('jesper-project-modal');
   const modalCloseBtn = document.getElementById('jesper-modal-close');
@@ -163,10 +185,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalRole = document.getElementById('modal-pill-role');
   const modalDemoBtn = document.getElementById('modal-project-demo-btn');
   const modalCodeBtn = document.getElementById('modal-project-code-btn');
+  const modalGallery = document.getElementById('modal-project-gallery');
   const modalImg = document.getElementById('modal-project-img');
 
   function openProjectModal(proj) {
-    if (!modalEl) return;
+    if (!modalEl || !proj) return;
     if (modalTitle) modalTitle.textContent = proj.title;
     if (modalDesc) modalDesc.textContent = proj.description;
     if (modalTag1) modalTag1.textContent = proj.tag1;
@@ -174,16 +197,29 @@ document.addEventListener('DOMContentLoaded', () => {
     if (modalRole) modalRole.textContent = proj.role;
     if (modalDemoBtn) modalDemoBtn.href = proj.demoUrl;
     if (modalCodeBtn) modalCodeBtn.href = proj.codeUrl;
-    if (modalImg) {
+
+    if (modalGallery) {
+      modalGallery.innerHTML = '';
+      const imgs = (proj.gallery && proj.gallery.length > 0) ? proj.gallery : [proj.image];
+      imgs.forEach((src) => {
+        const wrap = document.createElement('div');
+        wrap.style.cssText = 'width: 100%; border-radius: 16px; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 10px 30px rgba(0,0,0,0.06); background: #f8f8f8;';
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = proj.title;
+        img.style.cssText = 'width: 100%; height: auto; display: block; object-fit: cover;';
+        wrap.appendChild(img);
+        modalGallery.appendChild(wrap);
+      });
+    } else if (modalImg) {
       modalImg.src = proj.image;
       modalImg.alt = proj.title;
     }
 
     modalEl.style.display = 'flex';
-    document.body.style.overflow = 'hidden'; // Lock background scroll
+    document.body.style.overflow = 'hidden';
     if (lenis) lenis.stop();
 
-    // Trigger smooth fade in & scale in
     requestAnimationFrame(() => {
       modalEl.style.opacity = '1';
       const panel = modalEl.querySelector('.jesper_modal_panel');
@@ -217,7 +253,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (modalEl) {
     modalEl.addEventListener('click', (e) => {
-      // Close on clicking backdrop
       if (e.target === modalEl) {
         closeProjectModal();
       }
@@ -232,8 +267,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // =========================================================================
-  // 5. Jesper Landberg Exact 3D Curved WebGL Cylinder Carousel (Picture 1)
-  //    "IT SHOULD NOT MOVE UNTILL I DRAG IT" — Drag Only Physics
+  // 5. Jesper Landberg Signature 3D Curved WebGL Cylinder Carousel & Grid Floor
+  //    "IT SHOULD NOT MOVE UNTILL I DRAG IT" — Drag-Only Physics & Direct Click Open
   // =========================================================================
   const container = document.getElementById('jesper-webgl-container');
   const canvas = document.getElementById('jesper-3d-canvas');
@@ -242,11 +277,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x000000);
 
-    const width = container.clientWidth || window.innerWidth;
-    const height = container.clientHeight || (window.innerHeight * 0.9);
+    let width = container.clientWidth || window.innerWidth;
+    let height = container.clientHeight || (window.innerHeight * 0.92);
 
-    const camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 1000);
-    camera.position.set(0, 0.2, 14.8);
+    // Jesper Landberg Exact Camera Configuration (53.4 deg FOV, Z = 41.18)
+    const camera = new THREE.PerspectiveCamera(53.4, width / height, 0.1, 2000);
+    camera.position.set(0, 0, 41.18);
 
     const renderer = new THREE.WebGLRenderer({
       canvas: canvas,
@@ -256,41 +292,50 @@ document.addEventListener('DOMContentLoaded', () => {
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    // Perspective Grid Floor (Exact match to Picture 1)
-    const grid = new THREE.GridHelper(70, 52, 0x383838, 0x161616);
-    grid.position.y = -3.2;
-    scene.add(grid);
+    // Dynamic Frustum & Card Sizing (Jesper: s:h-[43.5svh], aspect 2048/1172)
+    const fovRad = camera.fov * Math.PI / 180;
+    const halfH = Math.tan(fovRad / 2) * camera.position.z;
+    const frustumH = halfH * 2;
+    const cardHeight = frustumH * 0.58; // Cards fill ~60-65% height
+    const cardWidth = cardHeight * 1.74; // Aspect ratio ~1.74
+    const cylinderRadius = 38.0;
 
-    // Card Dimensions & Cylinder Geometry
-    const cardWidth = 7.6;
-    const cardHeight = 4.6;
-    const cylinderRadius = 14.5;
+    // Card Center & Floor Alignment (zero gap: floor meets bottom rim of cards)
+    const cardCenterY = 1.0;
+    const floorY = cardCenterY - (cardHeight / 2);
 
-    const cardGeometry = new THREE.PlaneGeometry(cardWidth, cardHeight, 32, 1);
+    // Perspective Grid Floor (Exact match to Jesper Picture 1)
+    const gridFloor = new THREE.GridHelper(160, 64, 0x484848, 0x181818);
+    gridFloor.position.set(0, floorY, 0);
+    scene.add(gridFloor);
+
+    // Curved Segmented Card Plane Geometry (Bent inward like cinema screen)
+    const cardGeometry = new THREE.PlaneGeometry(cardWidth, cardHeight, 32, 12);
     const posAttr = cardGeometry.attributes.position;
     for (let i = 0; i < posAttr.count; i++) {
       const x = posAttr.getX(i);
-      // Parabolic cylindrical curvature along Z axis (Exact curvature from Picture 1)
+      // Cylindrical parabolic curvature
       posAttr.setZ(i, -(x * x) / (2 * cylinderRadius));
     }
     cardGeometry.computeVertexNormals();
+    cardGeometry.computeBoundingBox();
+    cardGeometry.computeBoundingSphere();
 
-    // Helper to create card textures with project screenshot + bottom title & circular button (Picture 1)
+    // Helper to generate high-res card canvas textures (Jesper Picture 1 replica)
     function createCardTexture(proj) {
       const cvs = document.createElement('canvas');
-      cvs.width = 1024;
-      cvs.height = 640;
+      cvs.width = 1600;
+      cvs.height = 960;
       const ctx = cvs.getContext('2d');
 
-      // Default dark fill
-      ctx.fillStyle = '#111111';
+      ctx.fillStyle = '#101010';
       ctx.fillRect(0, 0, cvs.width, cvs.height);
 
       const texture = new THREE.CanvasTexture(cvs);
       texture.minFilter = THREE.LinearFilter;
       texture.magFilter = THREE.LinearFilter;
 
-      function renderCanvas(img) {
+      function drawCard(img) {
         if (img) {
           ctx.drawImage(img, 0, 0, cvs.width, cvs.height);
         } else {
@@ -298,34 +343,33 @@ document.addEventListener('DOMContentLoaded', () => {
           ctx.fillRect(0, 0, cvs.width, cvs.height);
         }
 
-        // Bottom dark vignette overlay (matches Picture 1)
-        const grad = ctx.createLinearGradient(0, cvs.height - 180, 0, cvs.height);
+        // Bottom dark gradient vignette (matches Jesper Picture 1)
+        const grad = ctx.createLinearGradient(0, cvs.height - 240, 0, cvs.height);
         grad.addColorStop(0, 'rgba(0,0,0,0)');
-        grad.addColorStop(0.5, 'rgba(0,0,0,0.65)');
-        grad.addColorStop(1, 'rgba(0,0,0,0.95)');
+        grad.addColorStop(0.45, 'rgba(0,0,0,0.6)');
+        grad.addColorStop(1, 'rgba(0,0,0,0.92)');
         ctx.fillStyle = grad;
-        ctx.fillRect(0, cvs.height - 180, cvs.width, 180);
+        ctx.fillRect(0, cvs.height - 240, cvs.width, 240);
 
-        // Project Title in lower left (matches Picture 1)
-        ctx.font = '600 38px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif';
+        // Project Title in lower left
+        ctx.font = '600 52px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(proj.title, 40, cvs.height - 44);
+        ctx.fillText(proj.title, 52, cvs.height - 56);
 
-        // Circular Arrow Button in lower right (Picture 1 exact circle arrow)
-        const btnX = cvs.width - 58;
-        const btnY = cvs.height - 52;
-        const btnRadius = 22;
+        // Circular Arrow Button in lower right (Jesper Picture 1 circle arrow)
+        const btnX = cvs.width - 80;
+        const btnY = cvs.height - 72;
+        const btnR = 30;
 
         ctx.beginPath();
-        ctx.arc(btnX, btnY, btnRadius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.75)';
+        ctx.arc(btnX, btnY, btnR, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.85)';
         ctx.fill();
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
-        ctx.lineWidth = 2;
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.45)';
+        ctx.lineWidth = 2.5;
         ctx.stroke();
 
-        // White arrow inside button
-        ctx.font = '22px sans-serif';
+        ctx.font = '30px sans-serif';
         ctx.fillStyle = '#ffffff';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
@@ -337,21 +381,25 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const img = new Image();
-      img.onload = () => renderCanvas(img);
-      img.onerror = () => renderCanvas(null);
+      img.onload = () => drawCard(img);
+      img.onerror = () => drawCard(null);
       img.src = proj.image;
 
       if (img.complete && img.naturalWidth > 0) {
-        renderCanvas(img);
+        drawCard(img);
       }
 
       return texture;
     }
 
-    // Build the 3D Cards
+    // Build the 3D Cards and Mirror Reflections
     const cardMeshes = [];
+    const reflMeshes = [];
+
     projects.forEach((proj) => {
       const texture = createCardTexture(proj);
+
+      // Primary Card Mesh
       const material = new THREE.MeshBasicMaterial({
         map: texture,
         side: THREE.DoubleSide
@@ -360,138 +408,151 @@ document.addEventListener('DOMContentLoaded', () => {
       mesh.userData = proj;
       scene.add(mesh);
       cardMeshes.push(mesh);
+
+      // Floor Reflection Mesh (Mirrored upside down under grid floor)
+      const reflMat = new THREE.MeshBasicMaterial({
+        map: texture,
+        side: THREE.DoubleSide,
+        transparent: true,
+        opacity: 0.16
+      });
+      const reflMesh = new THREE.Mesh(cardGeometry, reflMat);
+      reflMesh.scale.y = -1;
+      scene.add(reflMesh);
+      reflMeshes.push(reflMesh);
     });
 
-    // Positioning along cylindrical carousel
-    const spacingAngle = 0.58; // Angular gap between cards
+    // Carousel Geometry & Angular Spacing
+    const spacingAngle = 1.18; // Angular gap between cards
     let currentAngle = 0;
-    let targetAngle = 0;
     let velocity = 0;
     let isDragging = false;
-    let dragStartX = 0;
-    let dragLastX = 0;
-    let dragDistance = 0;
+    let startPointerX = 0;
+    let startPointerY = 0;
+    let lastPointerX = 0;
+    let startTime = 0;
+    let dragTravel = 0;
+
+    // Raycaster for clicking
+    const raycaster = new THREE.Raycaster();
+    const mouseCoord = new THREE.Vector2();
 
     // =========================================================================
-    // DRAG ONLY INTERACTION — ZERO PASSIVE MOUSEMOVE ROTATION
+    // STRICT DRAG-ONLY PHYSICS — ZERO PASSIVE MOUSEMOVE ROTATION
     // "IT SHOULD NOT MOVE UNTILL I DRAG IT"
     // =========================================================================
     container.addEventListener('pointerdown', (e) => {
       isDragging = true;
-      dragStartX = e.clientX;
-      dragLastX = e.clientX;
-      dragDistance = 0;
+      startPointerX = e.clientX;
+      startPointerY = e.clientY;
+      lastPointerX = e.clientX;
+      startTime = Date.now();
+      dragTravel = 0;
       velocity = 0;
       container.style.cursor = 'grabbing';
-      try {
-        container.setPointerCapture(e.pointerId);
-      } catch (_) {}
     });
 
-    container.addEventListener('pointermove', (e) => {
-      if (!isDragging) return; // STRICT GUARD: Only moves when dragging!
-      const deltaX = e.clientX - dragLastX;
-      dragLastX = e.clientX;
-      dragDistance += Math.abs(deltaX);
+    window.addEventListener('pointermove', (e) => {
+      if (!isDragging) return; // STRICT GUARD: No movement unless mouse is held down & dragged!
+      const deltaX = e.clientX - lastPointerX;
+      lastPointerX = e.clientX;
+      const dist = Math.hypot(e.clientX - startPointerX, e.clientY - startPointerY);
+      if (dist > dragTravel) dragTravel = dist;
 
-      // Direct drag rotation
-      const moveStep = deltaX * 0.0035;
-      targetAngle += moveStep;
-      currentAngle += moveStep;
-      velocity = moveStep; // Momentum carry-over
+      // Smooth horizontal drag
+      const step = deltaX * 0.0016;
+      currentAngle += step;
+      velocity = step;
     });
 
-    function stopDrag(e) {
+    function endPointerInteraction(e) {
       if (!isDragging) return;
       isDragging = false;
       container.style.cursor = 'grab';
-      if (e && e.pointerId) {
-        try {
-          container.releasePointerCapture(e.pointerId);
-        } catch (_) {}
+
+      const duration = Date.now() - startTime;
+      const totalMoved = Math.hypot(e.clientX - startPointerX, e.clientY - startPointerY);
+
+      // If user tapped or clicked without dragging (< 14px movement within 400ms)
+      if (totalMoved < 14 && duration < 400) {
+        const rect = canvas.getBoundingClientRect();
+        mouseCoord.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        mouseCoord.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+        raycaster.setFromCamera(mouseCoord, camera);
+        const hits = raycaster.intersectObjects(cardMeshes);
+        if (hits.length > 0) {
+          const topHit = hits[0].object;
+          if (topHit && topHit.userData) {
+            openProjectModal(topHit.userData);
+          }
+        }
       }
     }
 
-    container.addEventListener('pointerup', stopDrag);
-    container.addEventListener('pointercancel', stopDrag);
+    window.addEventListener('pointerup', endPointerInteraction);
+    window.addEventListener('pointercancel', endPointerInteraction);
 
     // =========================================================================
-    // CLICK RAYCASTER — OPENS PICTURE 2 PROJECT DETAIL MODAL
-    // =========================================================================
-    const raycaster = new THREE.Raycaster();
-    const mousePos = new THREE.Vector2();
-
-    container.addEventListener('click', (e) => {
-      // If user was dragging, do not open modal
-      if (dragDistance > 6) return;
-
-      const rect = container.getBoundingClientRect();
-      mousePos.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-      mousePos.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
-
-      raycaster.setFromCamera(mousePos, camera);
-      const intersects = raycaster.intersectObjects(cardMeshes);
-
-      if (intersects.length > 0) {
-        const clickedCard = intersects[0].object;
-        if (clickedCard.userData) {
-          // Open Picture 2 Project Detail Modal
-          openProjectModal(clickedCard.userData);
-        }
-      }
-    });
-
-    // =========================================================================
-    // RENDER LOOP — Momentum friction & Cylindrical projection
+    // RENDER LOOP — Momentum inertia & Cylindrical placement
     // =========================================================================
     function renderJesper3D() {
       requestAnimationFrame(renderJesper3D);
 
-      // Natural drag inertia when released
+      // Natural drag inertia carry-over
       if (!isDragging) {
-        if (Math.abs(velocity) > 0.0001) {
+        if (Math.abs(velocity) > 0.00008) {
           currentAngle += velocity;
-          velocity *= 0.94; // Smooth friction
+          velocity *= 0.94; // Smooth friction damping
         } else {
           velocity = 0;
         }
       }
 
-      // Constrain rotation to keep projects within visible bounds
-      const minAngle = -(projects.length - 1) * spacingAngle + 0.4;
-      const maxAngle = 0.4;
+      // Constrain angle bounds so user cannot spin endlessly past projects
+      const minAngle = -(projects.length - 1) * spacingAngle + 0.35;
+      const maxAngle = 0.35;
       if (currentAngle < minAngle) {
-        currentAngle += (minAngle - currentAngle) * 0.1;
+        currentAngle += (minAngle - currentAngle) * 0.12;
         velocity = 0;
       } else if (currentAngle > maxAngle) {
-        currentAngle += (maxAngle - currentAngle) * 0.1;
+        currentAngle += (maxAngle - currentAngle) * 0.12;
         velocity = 0;
       }
 
-      // Position each card along the cylinder curve
+      // Position each card and its floor reflection
       cardMeshes.forEach((mesh, i) => {
         const angle = i * spacingAngle + currentAngle;
         mesh.position.x = Math.sin(angle) * cylinderRadius;
+        mesh.position.y = cardCenterY;
         mesh.position.z = Math.cos(angle) * cylinderRadius - cylinderRadius;
         mesh.rotation.y = angle;
+
+        // Reflection plane directly under grid floor
+        const rMesh = reflMeshes[i];
+        if (rMesh) {
+          rMesh.position.x = mesh.position.x;
+          rMesh.position.y = floorY - (cardHeight / 2);
+          rMesh.position.z = mesh.position.z;
+          rMesh.rotation.y = mesh.rotation.y;
+        }
       });
 
       renderer.render(scene, camera);
     }
     renderJesper3D();
 
-    // Resize handler
+    // Responsive Resize Handler
     window.addEventListener('resize', () => {
       const w = container.clientWidth || window.innerWidth;
-      const h = container.clientHeight || (window.innerHeight * 0.9);
+      const h = container.clientHeight || (window.innerHeight * 0.92);
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
     });
   }
 
-
-  // =========================================================================
+    // =========================================================================
   // 5. 3D Rotating Metallic Chrome S Emblem in Footer (Replacing Eliot Besson MP4)
   // =========================================================================
   function initFooter3DLogo() {
