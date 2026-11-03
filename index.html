@@ -3,787 +3,723 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Shreyas M Chanabasannavar | AIML Student</title>
+  <title>Shreyas M Chanabasannavar | AIML Engineer & Creative Developer</title>
   
-  <!-- Font Styles -->
+  <!-- SEO & Social Meta -->
+  <meta name="description" content="Portfolio of Shreyas M Chanabasannavar — AIML Engineering Student at BMSCE Bengaluru (9.825 CGPA). Building high-performance AI, computer vision, and modern web applications.">
+  <meta name="theme-color" content="#07080c">
+
+  <!-- Google Fonts: Space Grotesk, Syne, Fira Code & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- FontAwesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- GSAP & Three.js Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=3.1">
+  <link rel="stylesheet" href="styles.css?v=4.0">
 </head>
-<body>
+<body class="dark-theme">
 
-  <!-- Floating Right Dot Nav Menu -->
-  <nav id="dot-nav">
-    <ul>
-      <li class="dot-container">
-        <a href="#intro-section" class="is-selected">
-          <span class="dot-label">Intro</span>
-          <span class="dot"></span>
-        </a>
-      </li>
-      <li class="dot-container">
-        <a href="#about-section">
-          <span class="dot-label">About</span>
-          <span class="dot"></span>
-        </a>
-      </li>
-      <li class="dot-container">
-        <a href="#services-section">
-          <span class="dot-label">What I Do</span>
-          <span class="dot"></span>
-        </a>
-      </li>
-      <li class="dot-container">
-        <a href="#skills-section">
-          <span class="dot-label">Skills</span>
-          <span class="dot"></span>
-        </a>
-      </li>
-      <li class="dot-container">
-        <a href="#experience-section">
-          <span class="dot-label">Academic Timeline</span>
-          <span class="dot"></span>
-        </a>
-      </li>
-      <li class="dot-container">
-        <a href="#certificates-section">
-          <span class="dot-label">Certificates</span>
-          <span class="dot"></span>
-        </a>
-      </li>
-      <li class="dot-container">
-        <a href="#portfolio-section">
-          <span class="dot-label">Projects</span>
-          <span class="dot"></span>
-        </a>
-      </li>
-      <li class="dot-container">
-        <a href="#contact-section">
-          <span class="dot-label">Contact</span>
-          <span class="dot"></span>
-        </a>
-      </li>
-    </ul>
-  </nav>
-
-  <!-- Mobile Hamburger Menu Button -->
-  <div id="toggle">
-    <span class="line top"></span>
-    <span class="line middle"></span>
-    <span class="line bottom"></span>
+  <!-- Custom Magnetic Cursor (Eliot Besson / Jesper Landberg style) -->
+  <div id="custom-cursor" class="custom-cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring">
+      <span class="cursor-label"></span>
+    </div>
   </div>
 
-  <!-- Mobile Overlay Full Screen Menu -->
-  <div id="overlay" class="overlay">
-    <div class="logo">Shreyas M.</div>
-    <nav class="overlay-menu">
-      <ul class="menu-container">
-        <li class="menu-item"><a href="#intro-section">Intro</a></li>
-        <li class="menu-item"><a href="#about-section">About</a></li>
-        <li class="menu-item"><a href="#services-section">What I Do</a></li>
-        <li class="menu-item"><a href="#skills-section">Skills</a></li>
-        <li class="menu-item"><a href="#experience-section">Academic Timeline</a></li>
-        <li class="menu-item"><a href="#certificates-section">Certificates</a></li>
-        <li class="menu-item"><a href="#portfolio-section">Projects</a></li>
-        <li class="menu-item"><a href="#contact-section">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
+  <!-- Real-Time Interactive 3D Cosmic Canvas (Three.js) -->
+  <canvas id="space-canvas" aria-hidden="true"></canvas>
 
-  <div id="skrollr-body">
+  <!-- Top Glass Status Bar -->
+  <header class="top-status-bar">
+    <div class="status-left">
+      <span class="location-pulse"></span>
+      <span class="status-text">Bengaluru, IN</span>
+      <span class="status-separator">/</span>
+      <span id="live-ist-clock" class="mono-tag">--:--:-- IST</span>
+    </div>
     
-    <!-- Section 1: Intro -->
-    <section id="intro-section" class="section">
-      <div class="intro-wrapper">
-        <div class="intro-content">
-          <h1 class="heading">Shreyas M Chanabasannavar</h1>
-          <div class="action-wrapper">
-            <p class="subtext">
-              <a class="btn main-action">AIML Student &amp; Developer</a>
-            </p>
-          </div>
-        </div>
-        
-        <div class="scroll-down-wrapper">
-          <a href="#about-section" class="scroll-down">
-            <span>Learn More</span>
-            <i class="fa-solid fa-chevron-down"></i>
-          </a>
-        </div>
+    <div class="status-center">
+      <div class="availability-pill">
+        <span class="dot-online"></span>
+        <span>Open for Opportunities &amp; AI Research</span>
       </div>
-    </section>
+    </div>
 
-    <!-- Section 2: About Me -->
-    <section id="about-section" class="section">
-      <div class="section-wrapper">
-        <h1 class="section-heading">Hey, I'm Shreyas.</h1>
-        <h3 class="section-subheading">I am currently pursuing my B.E. in Artificial Intelligence &amp; Machine Learning at B.M.S. College of Engineering in Basavanagudi, Bengaluru.</h3>
-        <span class="divider"></span>
+    <div class="status-right">
+      <a href="mailto:shreyasm1200@gmail.com" class="direct-mail-chip" data-cursor="pointer">
+        <i class="fa-regular fa-envelope"></i>
+        <span>shreyasm1200@gmail.com</span>
+      </a>
+      <a href="https://github.com/Shreyas-M007" target="_blank" rel="noopener" class="icon-chip" data-cursor="pointer" aria-label="GitHub Profile">
+        <i class="fa-brands fa-github"></i>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Scrollable Experience -->
+  <main id="main-content">
+
+    <!-- Section 1: Hero Section (Eliot Besson Editorial + Cosmic 3D Core) -->
+    <section id="hero-section" class="hero-section">
+      <div class="hero-container">
         
-        <div class="about-wrapper">
-          <div class="about-text-wrapper">
-            <p class="about-text">
-              <strong>I am a sophomore AIML student</strong> with a strong academic foundation, maintaining a <strong>9.825 CGPA</strong> from my freshman year. I am passionate about writing clean, optimized software code, implementing complex data structures, and building projects from concept to deployment.
-            </p>
-            <p class="about-text">
-              I enjoy finding creative solutions to technical challenges and exploring predictive models, AI paradigms, and frontend system layouts. I approach software development as a continuous learning process and look forward to collaborating with others who love sharing their knowledge.
-            </p>
-            <p class="about-text">
-              <strong>When I'm away from my computer screen,</strong> you'll likely find me exploring mountain trails, riding my bike through scenic routes or stargazing under the night sky.
-            </p>
-          </div>
+        <div class="hero-badge-wrap">
+          <span class="hero-badge">
+            <i class="fa-solid fa-atom"></i> B.E. AI &amp; Machine Learning &bull; BMSCE
+          </span>
+          <span class="gpa-tag">9.825 CGPA</span>
         </div>
-      </div>
-    </section>
 
-    <!-- Section 3: What I Do -->
-    <section id="services-section" class="section gap">
-      <div class="overlay-wrapper">
-        <h1 class="section-heading">What I Do</h1>
-        <span class="divider"></span>
-        
-        <div class="services-wrapper">
-          <!-- Row 1 -->
-          <div class="service-row">
-            <div class="service-column">
-              <div class="service-header-row">
-                <div class="service-icon-box"><i class="fa-brands fa-html5"></i></div>
-                <h2 class="service-heading">Web Development</h2>
-              </div>
-              <p class="service-text">
-                Developing responsive interfaces using HTML, CSS, JavaScript, and TypeScript. I have a passion for creating clean layouts while maintaining a modular and readable codebase.
-              </p>
-            </div>
-            
-            <div class="service-column">
-              <div class="service-header-row">
-                <div class="service-icon-box"><i class="fa-solid fa-brain"></i></div>
-                <h2 class="service-heading">Machine Learning</h2>
-              </div>
-              <p class="service-text">
-                Studying core machine learning models, statistical datasets, and predictive modeling workflows to turn raw data into intelligent software applications.
-              </p>
-            </div>
-          </div>
-          
-          <!-- Row 2 -->
-          <div class="service-row">
-            <div class="service-column">
-              <div class="service-header-row">
-                <div class="service-icon-box"><i class="fa-solid fa-gears"></i></div>
-                <h2 class="service-heading">Data Structures &amp; Algorithms</h2>
-              </div>
-              <p class="service-text">
-                Designing algorithms and optimizing operations using Python and C. Focusing on solving technical challenges with clean, robust logic.
-              </p>
-            </div>
-            
-            <div class="service-column">
-              <div class="service-header-row">
-                <div class="service-icon-box"><i class="fa-solid fa-users"></i></div>
-                <h2 class="service-heading">Academic Projects</h2>
-              </div>
-              <p class="service-text">
-                Collaborating in student project contexts to build real applications. Applying best practices in git version control, architecture, and deployment schedules.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 4: Skills -->
-    <section id="skills-section" class="section">
-      <div class="section-wrapper">
-        <h1 class="section-heading">Skills</h1>
-        <span class="divider"></span>
-        
-        <div class="skills-flex-wrapper">
-          <!-- Column 1: Technical Toolkit -->
-          <div class="flex-item dev-wrapper">
-            <h2 class="skills-heading">
-              <i class="fa-solid fa-laptop-code"></i>
-              <span>Technical Toolkit</span>
-            </h2>
-            <div class="dev-list">
-              <div class="dev-item">Python</div>
-              <div class="dev-item">C Language</div>
-              <div class="dev-item">TypeScript</div>
-              <div class="dev-item">HTML / CSS</div>
-              <div class="dev-item">ML Basics</div>
-              <div class="dev-item">Web Tech</div>
-            </div>
-          </div>
-          
-          <!-- Column 2: Focus Interests -->
-          <div class="flex-item interests-wrapper">
-            <h2 class="skills-heading">
-              <i class="fa-solid fa-star"></i>
-              <span>Focus Interests</span>
-            </h2>
-            <ul class="interests-list">
-              <li class="interests-item"><i class="fa-solid fa-microchip"></i> Applied AI</li>
-              <li class="interests-item"><i class="fa-solid fa-lightbulb"></i> Tech Innovation</li>
-              <li class="interests-item"><i class="fa-solid fa-layer-group"></i> Full-Stack Dev</li>
-            </ul>
-          </div>
-          
-          <!-- Column 3: Tools & Knowledge -->
-          <div class="flex-item check-wrapper">
-            <h2 class="skills-heading">
-              <i class="fa-solid fa-check-double"></i>
-              <span>Tools &amp; Knowledge</span>
-            </h2>
-            <ul class="check-list-col">
-              <li class="check-list-item"><i class="fa-solid fa-circle-check"></i> Git &amp; GitHub</li>
-              <li class="check-list-item"><i class="fa-solid fa-circle-check"></i> Chrome DevTools</li>
-              <li class="check-list-item"><i class="fa-solid fa-circle-check"></i> OOP Concepts</li>
-              <li class="check-list-item"><i class="fa-solid fa-circle-check"></i> DSA Basics</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 5: Experience (Timeline Tree) -->
-    <section id="experience-section" class="section gap">
-      <div class="overlay-wrapper">
-        <div class="center">
-          <h1 class="section-heading">Academic Timeline</h1>
-          <span class="divider center"></span>
-          <p class="experience-description">
-            Here is a timeline tracking my academic progression, SGPA scores, and core course topics since starting my undergraduate studies at BMS College of Engineering.
+        <div class="hero-title-wrap">
+          <h1 class="hero-headline">
+            <span class="line line-1">SHREYAS M.</span>
+            <span class="line line-2 gradient-text">CHANABASANNAVAR</span>
+          </h1>
+          <p class="hero-subheading">
+            AI / Machine Learning Engineer &amp; Creative Developer architecting intelligent systems, predictive models, and high-performance interactive interfaces.
           </p>
         </div>
+
+        <!-- 3D Celestial Core Interactive Sphere Container -->
+        <div class="celestial-orb-container" id="hero-orb-viewport" title="Interactive 3D Celestial Core — Drag or move cursor to rotate">
+          <div class="orb-hint"><i class="fa-solid fa-compass"></i> Interactive Celestial Core</div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#projects-section" class="btn-primary" data-cursor="explore">
+            <span>Explore Selected Works</span>
+            <i class="fa-solid fa-arrow-down-long"></i>
+          </a>
+          <a href="#about-section" class="btn-secondary" data-cursor="pointer">
+            <span>About &amp; Capabilities</span>
+          </a>
+          <button id="quick-copy-email-hero" class="btn-secondary copy-btn" data-cursor="pointer" title="Copy email address">
+            <i class="fa-regular fa-copy"></i>
+            <span class="btn-copy-text">Copy Email</span>
+          </button>
+        </div>
+
+      </div>
+
+      <div class="scroll-indicator">
+        <div class="mouse-icon">
+          <div class="mouse-wheel"></div>
+        </div>
+        <span>Scroll to Travel</span>
+      </div>
+    </section>
+
+    <!-- Section 2: Bento Grid (Eliot Besson Inspired Modular Layout) -->
+    <section id="about-section" class="bento-section">
+      <div class="section-header">
+        <span class="section-tag">[ 01 / PROFILE &amp; IDENTITY ]</span>
+        <h2 class="section-title">ENGINEERING INTELLIGENCE.<br><span class="muted-text">DRIVEN BY CURIOSITY.</span></h2>
+      </div>
+
+      <div class="bento-grid">
         
-        <div class="experience-wrapper">
-          <div id="timeline" class="timeline-tree">
-            
-            <!-- Sem 1 block -->
-            <div class="timeline-block">
-              <div class="timeline-content">
-                <h2 class="position">Semester 1</h2>
-                <h3 class="company">Freshman Year (BMSCE)</h3>
-                <p class="job-desc">
-                  Completed introductory engineering courses with an SGPA of <strong>9.95</strong>. Mastered logical constructs, flow control, and memory structures using the C Programming Language. Covered syllabus on Mathematics, Electronics, and Physics.
-                </p>
-                <span class="date">Nov 2025 - Mar 2026</span>
+        <!-- Bento Card 1: Core Bio -->
+        <div class="bento-card card-large">
+          <div class="card-glow"></div>
+          <div class="card-content">
+            <div class="card-header">
+              <span class="card-icon"><i class="fa-solid fa-brain"></i></span>
+              <span class="card-label">ACADEMIC FOUNDATION</span>
+            </div>
+            <h3 class="card-title">Sophomore AIML Student at B.M.S. College of Engineering</h3>
+            <p class="card-body-text">
+              Maintaining an exceptional <strong>9.825 CGPA</strong>, I bridge algorithmic rigor with practical software engineering. My focus centers on deep learning architectures, computer vision, generative intelligence, and clean, scalable code implementations.
+            </p>
+            <div class="metrics-row">
+              <div class="metric-block">
+                <span class="metric-num">9.825</span>
+                <span class="metric-desc">Freshman CGPA</span>
               </div>
-              <div class="timeline-img">
-                <i class="fa-solid fa-graduation-cap"></i>
+              <div class="metric-block">
+                <span class="metric-num">5+</span>
+                <span class="metric-desc">Deployed Systems</span>
+              </div>
+              <div class="metric-block">
+                <span class="metric-num">2028</span>
+                <span class="metric-desc">Graduation Year</span>
               </div>
             </div>
-            
-            <!-- Sem 2 block -->
-            <div class="timeline-block">
-              <div class="timeline-content">
-                <h2 class="position">Semester 2</h2>
-                <h3 class="company">Freshman Year (BMSCE)</h3>
-                <p class="job-desc">
-                  Built software applications in Python, implementing object-oriented programming (OOP) paradigms. Completed chemistry, math, and electrical modules. Designed and launched a Library Management System using Streamlit for our Programming Language course. SGPA: <strong>9.70</strong>.
-                </p>
-                <span class="date">Apr 2026 - Aug 2026</span>
-              </div>
-              <div class="timeline-img">
-                <i class="fa-solid fa-book"></i>
-              </div>
-            </div>
-            
-            <!-- Sem 3 block -->
-            <div class="timeline-block">
-              <div class="timeline-content">
-                <h2 class="position">Semester 3</h2>
-                <h3 class="company">Sophomore Year (Active Track)</h3>
-                <p class="job-desc">
-                  Eagerly diving into core sophomore disciplines. Focusing on implementing optimal Data Structures and Algorithms (DSA) in Python/C. Exploring machine learning models, database integration, and UI frameworks.
-                </p>
-                <span class="date">Sep 2026 - Present</span>
-              </div>
-              <div class="timeline-img">
-                <i class="fa-solid fa-laptop-code"></i>
-              </div>
-            </div>
-            
           </div>
-          
-          <div class="timeline-tree-footer">
-            <div class="timeline-tree-arrow"></div>
+        </div>
+
+        <!-- Bento Card 2: Passions & Stargazing (From User Bio) -->
+        <div class="bento-card card-medium">
+          <div class="card-glow"></div>
+          <div class="card-content">
+            <div class="card-header">
+              <span class="card-icon"><i class="fa-solid fa-moon"></i></span>
+              <span class="card-label">BEYOND THE TERMINAL</span>
+            </div>
+            <h3 class="card-title">Stargazer, Explorer &amp; Cyclist</h3>
+            <p class="card-body-text">
+              When I'm away from the screen, you'll find me exploring mountain trails, riding scenic road routes, or stargazing under clear night skies—where the infinite patterns of the universe spark new ideas for algorithmic thinking.
+            </p>
+            <div class="tag-cloud">
+              <span class="cloud-tag"><i class="fa-solid fa-telescope"></i> Astronomy</span>
+              <span class="cloud-tag"><i class="fa-solid fa-person-biking"></i> Cycling</span>
+              <span class="cloud-tag"><i class="fa-solid fa-mountain"></i> Trekking</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Card 3: What I Do / Technical Pillars -->
+        <div class="bento-card card-tall">
+          <div class="card-glow"></div>
+          <div class="card-content">
+            <div class="card-header">
+              <span class="card-icon"><i class="fa-solid fa-microchip"></i></span>
+              <span class="card-label">CORE CAPABILITIES</span>
+            </div>
+            <div class="capability-list">
+              <div class="capability-item">
+                <span class="cap-num">01</span>
+                <div class="cap-info">
+                  <h4>AI &amp; Machine Learning</h4>
+                  <p>Neural architectures, LLM orchestration, prompt engineering, predictive modeling, and Gemini Vision pipelines.</p>
+                </div>
+              </div>
+              <div class="capability-item">
+                <span class="cap-num">02</span>
+                <div class="cap-info">
+                  <h4>Modern Web Architecture</h4>
+                  <p>Full-stack development using TypeScript, React 19, Node/Express, and RESTful cloud services.</p>
+                </div>
+              </div>
+              <div class="capability-item">
+                <span class="cap-num">03</span>
+                <div class="cap-info">
+                  <h4>Interactive 3D &amp; Motion</h4>
+                  <p>WebGL, Three.js spatial simulations, physics-based simulations, and GSAP micro-interactions.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 3: Technical Skills Matrix -->
+    <section id="skills-section" class="skills-section">
+      <div class="section-header">
+        <span class="section-tag">[ 02 / TECH STACK &amp; TOOLKIT ]</span>
+        <h2 class="section-title">ARSENAL &amp; TECHNOLOGIES</h2>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-group-card">
+          <div class="group-header">
+            <i class="fa-solid fa-robot"></i>
+            <h3>AI, ML &amp; Data</h3>
+          </div>
+          <div class="skill-pills">
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">PyTorch / TensorFlow</span>
+            <span class="skill-pill">Gemini Vision API</span>
+            <span class="skill-pill">Scikit-Learn</span>
+            <span class="skill-pill">OpenCV</span>
+            <span class="skill-pill">Streamlit</span>
+            <span class="skill-pill">Pandas &amp; NumPy</span>
+          </div>
+        </div>
+
+        <div class="skill-group-card">
+          <div class="group-header">
+            <i class="fa-solid fa-code"></i>
+            <h3>Languages &amp; Core</h3>
+          </div>
+          <div class="skill-pills">
+            <span class="skill-pill">C / C++</span>
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">TypeScript</span>
+            <span class="skill-pill">JavaScript (ESNext)</span>
+            <span class="skill-pill">SQL</span>
+            <span class="skill-pill">Data Structures &amp; OOP</span>
+          </div>
+        </div>
+
+        <div class="skill-group-card">
+          <div class="group-header">
+            <i class="fa-solid fa-layer-group"></i>
+            <h3>Frontend &amp; Creative</h3>
+          </div>
+          <div class="skill-pills">
+            <span class="skill-pill">React 19</span>
+            <span class="skill-pill">Three.js / WebGL</span>
+            <span class="skill-pill">GSAP Animations</span>
+            <span class="skill-pill">HTML5 &amp; Modern CSS3</span>
+            <span class="skill-pill">PWA</span>
+            <span class="skill-pill">Responsive Design</span>
+          </div>
+        </div>
+
+        <div class="skill-group-card">
+          <div class="group-header">
+            <i class="fa-solid fa-cloud"></i>
+            <h3>Cloud &amp; DevOps</h3>
+          </div>
+          <div class="skill-pills">
+            <span class="skill-pill">AWS (S3, Educate)</span>
+            <span class="skill-pill">Google Firebase / Firestore</span>
+            <span class="skill-pill">Git &amp; GitHub</span>
+            <span class="skill-pill">Vercel &amp; Deployment</span>
+            <span class="skill-pill">RESTful APIs</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Section 6: Specialised Certifications -->
-    <section id="certificates-section" class="section">
-      <div class="section-wrapper">
-        <h1 class="section-heading"><span>03.</span> Specialised Certifications</h1>
-        <span class="divider"></span>
+    <!-- Section 4: Projects Showcase (JESPER LANDBERG SIGNATURE HORIZONTAL SLIDER) -->
+    <section id="projects-section" class="projects-slider-section">
+      <div class="slider-top-bar">
+        <div class="slider-title-group">
+          <span class="section-tag">[ 03 / SELECTED WORKS ]</span>
+          <h2 class="section-title">ENGINEERED CREATIONS</h2>
+        </div>
         
-        <div class="cert-showcase-wrapper">
-          <!-- Left Sidebar: Selection List -->
-          <div class="cert-sidebar">
-            <div class="cert-nav-item active" onclick="switchCertificate(0)">
-              <div class="cert-nav-icon-wrapper">
-                <i class="fa-solid fa-award icon-ibm"></i>
-              </div>
-              <div class="cert-nav-meta">
-                <h4>Artificial Intelligence</h4>
-                <span>IBM Credentials</span>
-              </div>
-            </div>
-            
-            <div class="cert-nav-item" onclick="switchCertificate(1)">
-              <div class="cert-nav-icon-wrapper">
-                <i class="fa-brands fa-microsoft icon-microsoft"></i>
-              </div>
-              <div class="cert-nav-meta">
-                <h4>Machine Learning Operations</h4>
-                <span>Microsoft Learn</span>
-              </div>
-            </div>
-            
-            <div class="cert-nav-item" onclick="switchCertificate(2)">
-              <div class="cert-nav-icon-wrapper">
-                <i class="fa-solid fa-cloud-arrow-up icon-gcp"></i>
-              </div>
-              <div class="cert-nav-meta">
-                <h4>Cloud Storage & Data Protection</h4>
-                <span>Google Cloud</span>
-              </div>
-            </div>
-            
-            <div class="cert-nav-item" onclick="switchCertificate(3)">
-              <div class="cert-nav-icon-wrapper">
-                <i class="fa-solid fa-code icon-web"></i>
-              </div>
-              <div class="cert-nav-meta">
-                <h4>Web Development</h4>
-                <span>IBM Credentials</span>
-              </div>
-            </div>
-            
-            <div class="cert-nav-item" onclick="switchCertificate(4)">
-              <div class="cert-nav-icon-wrapper">
-                <i class="fa-brands fa-aws icon-aws"></i>
-              </div>
-              <div class="cert-nav-meta">
-                <h4>Generative AI Introduction</h4>
-                <span>AWS Educate</span>
-              </div>
-            </div>
-            
-            <div class="cert-nav-item" onclick="switchCertificate(5)">
-              <div class="cert-nav-icon-wrapper">
-                <i class="fa-brands fa-microsoft icon-ms-foundry"></i>
-              </div>
-              <div class="cert-nav-meta">
-                <h4>AI Agents in Foundry</h4>
-                <span>Microsoft Applied Skills</span>
-              </div>
-            </div>
+        <div class="slider-controls">
+          <div class="drag-hint">
+            <i class="fa-solid fa-arrows-left-right"></i>
+            <span>Drag or Scroll Track</span>
           </div>
-          
-          <!-- Right Panel: Dynamic Details Viewport -->
-          <div class="cert-display-viewport">
-            
-            <!-- Card 0: AI Fundamentals -->
-            <div class="cert-display-card active" id="cert-card-0">
-              <div class="cert-display-header">
-                <div class="cert-display-logo"><i class="fa-solid fa-award icon-ibm"></i></div>
-                <div class="cert-display-title-group">
-                  <h2 class="cert-display-title">Artificial Intelligence Fundamentals</h2>
-                  <p class="cert-display-issuer">IBM Credentials</p>
-                </div>
-              </div>
-              <div class="cert-display-body">
-                <p class="cert-display-text">
-                  Covers foundational Artificial Intelligence models, deep learning neural networks, natural language processing paradigms, and machine learning pipelines.
-                </p>
-                <div class="cert-display-meta-list">
-                  <span class="cert-meta-item"><i class="fa-solid fa-calendar-check"></i> Completed 2026</span>
-                  <span class="cert-meta-item verified"><i class="fa-solid fa-circle-check"></i> Credential Verified</span>
-                </div>
-              </div>
-              <div class="cert-display-actions">
-                <a href="https://www.credly.com/badges/85b27e9e-5e90-4e62-aad6-b798f914b084" target="_blank" class="cert-verify-btn">
-                  <span>Verify Credential</span>
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
-              </div>
-            </div>
-
-            <!-- Card 1: MLOps -->
-            <div class="cert-display-card" id="cert-card-1">
-              <div class="cert-display-header">
-                <div class="cert-display-logo"><i class="fa-brands fa-microsoft icon-microsoft"></i></div>
-                <div class="cert-display-title-group">
-                  <h2 class="cert-display-title">Introduction to Machine Learning Operations (MLOps)</h2>
-                  <p class="cert-display-issuer">Microsoft Learn</p>
-                </div>
-              </div>
-              <div class="cert-display-body">
-                <p class="cert-display-text">
-                  Demonstrates understanding of DevOps principles applied to machine learning workflows. Covers model training automation, versioning, deployment, scaling pipelines, and tracking model performance.
-                </p>
-                <div class="cert-display-meta-list">
-                  <span class="cert-meta-item"><i class="fa-solid fa-calendar-check"></i> Completed 2026</span>
-                  <span class="cert-meta-item verified"><i class="fa-solid fa-circle-check"></i> Credential Verified</span>
-                </div>
-              </div>
-              <div class="cert-display-actions">
-                <a href="https://learn.microsoft.com/en-in/users/shreyasmchanabasannavar-1139/?tab=credentials-tab" target="_blank" class="cert-verify-btn">
-                  <span>Verify Credential</span>
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
-              </div>
-            </div>
-
-            <!-- Card 2: GCP Storage -->
-            <div class="cert-display-card" id="cert-card-2">
-              <div class="cert-display-header">
-                <div class="cert-display-logo"><i class="fa-solid fa-cloud-arrow-up icon-gcp"></i></div>
-                <div class="cert-display-title-group">
-                  <h2 class="cert-display-title">Implement Cloud Storage and Data Protection Solutions</h2>
-                  <p class="cert-display-issuer">Google Cloud</p>
-                </div>
-              </div>
-              <div class="cert-display-body">
-                <p class="cert-display-text">
-                  Demonstrates competence in deploying Google Cloud storage buckets, managing object lifecycles, configuring access controls, and implementing robust data backup and recovery solutions.
-                </p>
-                <div class="cert-display-meta-list">
-                  <span class="cert-meta-item"><i class="fa-solid fa-calendar-check"></i> Completed 2026</span>
-                  <span class="cert-meta-item verified"><i class="fa-solid fa-circle-check"></i> Credential Verified</span>
-                </div>
-              </div>
-              <div class="cert-display-actions">
-                <a href="https://www.credly.com/badges/08d0ddd1-bb11-4f6c-af92-b6019af8af3b" target="_blank" class="cert-verify-btn">
-                  <span>Verify Credential</span>
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
-              </div>
-            </div>
-
-            <!-- Card 3: Web Dev -->
-            <div class="cert-display-card" id="cert-card-3">
-              <div class="cert-display-header">
-                <div class="cert-display-logo"><i class="fa-solid fa-code icon-web"></i></div>
-                <div class="cert-display-title-group">
-                  <h2 class="cert-display-title">Web Development Fundamentals</h2>
-                  <p class="cert-display-issuer">IBM Credentials</p>
-                </div>
-              </div>
-              <div class="cert-display-body">
-                <p class="cert-display-text">
-                  Covers frontend structure using semantic HTML, CSS layout systems, responsive web design principles, JavaScript syntax, and DOM manipulation dynamics.
-                </p>
-                <div class="cert-display-meta-list">
-                  <span class="cert-meta-item"><i class="fa-solid fa-calendar-check"></i> Completed 2026</span>
-                  <span class="cert-meta-item verified"><i class="fa-solid fa-circle-check"></i> Credential Verified</span>
-                </div>
-              </div>
-              <div class="cert-display-actions">
-                <a href="https://www.credly.com/badges/cfd123c0-c122-43c9-ab11-97f17436ab32" target="_blank" class="cert-verify-btn">
-                  <span>Verify Credential</span>
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
-              </div>
-            </div>
-
-            <!-- Card 4: AWS Generative AI -->
-            <div class="cert-display-card" id="cert-card-4">
-              <div class="cert-display-header">
-                <div class="cert-display-logo"><i class="fa-brands fa-aws icon-aws"></i></div>
-                <div class="cert-display-title-group">
-                  <h2 class="cert-display-title">Introduction to Generative AI</h2>
-                  <p class="cert-display-issuer">AWS Educate - Training Badge</p>
-                </div>
-              </div>
-              <div class="cert-display-body">
-                <p class="cert-display-text">
-                  Demonstrates fundamental understanding of generative AI concepts, definition and architecture of foundation models, practical generative AI use cases, prompt fundamentals, and AWS GenAI ecosystem offerings.
-                </p>
-                <div class="cert-display-meta-list">
-                  <span class="cert-meta-item"><i class="fa-solid fa-calendar-check"></i> Completed 2026</span>
-                  <span class="cert-meta-item verified"><i class="fa-solid fa-circle-check"></i> Credential Verified</span>
-                </div>
-              </div>
-              <div class="cert-display-actions">
-                <a href="https://www.credly.com/badges/6d24b297-f07c-405f-a7fd-e8edadc92822/public_url" target="_blank" class="cert-verify-btn">
-                  <span>Verify Credential</span>
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
-              </div>
-            </div>
-
-            <!-- Card 5: Developing Agents in Microsoft Foundry -->
-            <div class="cert-display-card" id="cert-card-5">
-              <div class="cert-display-header">
-                <div class="cert-display-logo"><i class="fa-brands fa-microsoft icon-ms-foundry"></i></div>
-                <div class="cert-display-title-group">
-                  <h2 class="cert-display-title">Get Started Developing Agents in Microsoft Foundry</h2>
-                  <p class="cert-display-issuer">Microsoft Applied Skills</p>
-                </div>
-              </div>
-              <div class="cert-display-body">
-                <p class="cert-display-text">
-                  Validates core skills in building, testing, evaluating, and deploying autonomous AI agents and workflows using the Microsoft Foundry suite, leveraging cognitive search, tools orchestration, and tailored prompt architectures.
-                </p>
-                <div class="cert-display-meta-list">
-                  <span class="cert-meta-item"><i class="fa-solid fa-calendar-check"></i> Completed 2026</span>
-                  <span class="cert-meta-item verified"><i class="fa-solid fa-circle-check"></i> Credential Verified</span>
-                </div>
-              </div>
-              <div class="cert-display-actions">
-                <a href="https://learn.microsoft.com/api/credentials/share/en-in/ShreyasMChanabasannavar-1139/C067896C469AA3CD?sharingId=827D09758FB984BC" target="_blank" class="cert-verify-btn">
-                  <span>Verify Credential</span>
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
-              </div>
-            </div>
-
+          <div class="slider-counter">
+            <span id="slider-current-num">01</span>
+            <span class="slash">/</span>
+            <span class="total">05</span>
+          </div>
+          <div class="slider-nav-arrows">
+            <button id="slider-prev-btn" class="slider-nav-btn" aria-label="Previous Project" data-cursor="pointer">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button id="slider-next-btn" class="slider-nav-btn" aria-label="Next Project" data-cursor="pointer">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- Section 7: Portfolio / Work -->
-    <section id="portfolio-section" class="section">
-      <div class="section-wrapper">
-        <h1 class="section-heading"><span>04.</span> Some of My Work</h1>
-        <span class="divider"></span>
-        
-        <div class="portfolio-item-wrapper">
+      <!-- Scrub progress line -->
+      <div class="slider-progress-track">
+        <div id="slider-progress-bar" class="slider-progress-fill"></div>
+      </div>
+
+      <!-- The Draggable Track Wrapper -->
+      <div class="projects-drag-container" id="projects-drag-container" data-cursor="drag">
+        <div class="projects-track" id="projects-track">
           
-          <!-- Row 1: AgriMate -->
-          <div class="portfolio-row">
-            <div class="screenshots">
-              <div class="screenshot-wrapper">
-                <img class="img-lg" src="https://api.microlink.io/?url=https%3A%2F%2Fagrimate-web-647782045916-apsouth1.s3.ap-south-1.amazonaws.com%2Findex.html&screenshot=true&embed=screenshot.url" alt="AgriMate Desktop">
-                <img class="img-md" src="https://api.microlink.io/?url=https%3A%2F%2Fagrimate-web-647782045916-apsouth1.s3.ap-south-1.amazonaws.com%2Findex.html&screenshot=true&embed=screenshot.url&device=iPad" alt="AgriMate Tablet">
-                <img class="img-sm" src="https://api.microlink.io/?url=https%3A%2F%2Fagrimate-web-647782045916-apsouth1.s3.ap-south-1.amazonaws.com%2Findex.html&screenshot=true&embed=screenshot.url&device=iPhone+13" alt="AgriMate Mobile">
+          <!-- Project 01: AgriMate -->
+          <article class="project-slide" data-index="0">
+            <div class="slide-card">
+              <div class="slide-index">01</div>
+              <div class="slide-media-wrapper">
+                <img src="https://api.microlink.io/?url=https%3A%2F%2Fagrimate-web-647782045916-apsouth1.s3.ap-south-1.amazonaws.com%2Findex.html&screenshot=true&embed=screenshot.url" alt="AgriMate Screenshot" loading="lazy" class="slide-image">
+                <div class="slide-media-overlay">
+                  <span class="view-tag"><i class="fa-solid fa-eye"></i> View Live Demo</span>
+                </div>
               </div>
-            </div>
-            <div class="portfolio-details-block">
-              <div class="details-left">
-                <h2 class="portfolio-title">AgriMate</h2>
-                <p class="portfolio-description">
+              <div class="slide-info">
+                <div class="slide-tags">
+                  <span class="tag">React 19</span>
+                  <span class="tag">TypeScript</span>
+                  <span class="tag">AWS S3</span>
+                  <span class="tag">Node.js</span>
+                </div>
+                <h3 class="slide-title">AgriMate</h3>
+                <p class="slide-desc">
                   AI-assisted agricultural market intelligence platform designed for small and marginal farmers, powered by verified APMC mandi records for price clarity and crop forecasting.
                 </p>
-                <div class="used">
-                  <ul class="used-list">
-                    <li class="used-tag">React 19</li>
-                    <li class="used-tag">TypeScript</li>
-                    <li class="used-tag">Node / Express</li>
-                    <li class="used-tag">AWS S3</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="details-right">
-                <div class="portfolio-links">
-                  <a href="https://agrimate-web-647782045916-apsouth1.s3.ap-south-1.amazonaws.com/index.html#" target="_blank">Demo</a>
-                  <a href="https://github.com/Shreyas-M007/Agrimate" target="_blank">Code</a>
+                <div class="slide-actions">
+                  <a href="https://agrimate-web-647782045916-apsouth1.s3.ap-south-1.amazonaws.com/index.html#" target="_blank" rel="noopener" class="slide-btn primary" data-cursor="pointer">
+                    <span>Live Demo</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  </a>
+                  <a href="https://github.com/Shreyas-M007/Agrimate" target="_blank" rel="noopener" class="slide-btn secondary" data-cursor="pointer">
+                    <i class="fa-brands fa-github"></i>
+                    <span>Code</span>
+                  </a>
                 </div>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- Row 2: PaarakhMetric -->
-          <div class="portfolio-row">
-            <div class="screenshots">
-              <div class="screenshot-wrapper">
-                <img class="img-lg" src="paarakh-metric-desktop.png" alt="PaarakhMetric Desktop Dashboard">
-                <img class="img-md" src="paarakh-metric-tablet.png" alt="PaarakhMetric Tablet Dashboard">
-                <img class="img-sm" src="paarakh-metric-mobile.png" alt="PaarakhMetric Mobile Dashboard">
+          <!-- Project 02: PaarakhMetric -->
+          <article class="project-slide" data-index="1">
+            <div class="slide-card">
+              <div class="slide-index">02</div>
+              <div class="slide-media-wrapper">
+                <img src="paarakh-metric-desktop.png" alt="PaarakhMetric Dashboard Screenshot" loading="lazy" class="slide-image">
+                <div class="slide-media-overlay">
+                  <span class="view-tag"><i class="fa-solid fa-eye"></i> View Live Demo</span>
+                </div>
               </div>
-            </div>
-            <div class="portfolio-details-block">
-              <div class="details-left">
-                <h2 class="portfolio-title">PaarakhMetric</h2>
-                <p class="portfolio-description">
+              <div class="slide-info">
+                <div class="slide-tags">
+                  <span class="tag">Gemini Vision</span>
+                  <span class="tag">Firebase</span>
+                  <span class="tag">TypeScript</span>
+                  <span class="tag">PWA</span>
+                </div>
+                <h3 class="slide-title">PaarakhMetric</h3>
+                <p class="slide-desc">
                   Mobile-first legal metrology and statutory compliance audit system for field inspectors. Features multimodal computer vision OCR, real-time Firebase sync, and automated digital seizure memos.
                 </p>
-                <div class="used">
-                  <ul class="used-list">
-                    <li class="used-tag">Gemini Vision</li>
-                    <li class="used-tag">Firebase Firestore</li>
-                    <li class="used-tag">TypeScript</li>
-                    <li class="used-tag">PWA</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="details-right">
-                <div class="portfolio-links">
-                  <a href="https://shreyas-m007.github.io/paarakhmetric/" target="_blank">Demo</a>
-                  <a href="https://github.com/Shreyas-M007/paarakhmetric" target="_blank">Code</a>
+                <div class="slide-actions">
+                  <a href="https://shreyas-m007.github.io/paarakhmetric/" target="_blank" rel="noopener" class="slide-btn primary" data-cursor="pointer">
+                    <span>Live Demo</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  </a>
+                  <a href="https://github.com/Shreyas-M007/paarakhmetric" target="_blank" rel="noopener" class="slide-btn secondary" data-cursor="pointer">
+                    <i class="fa-brands fa-github"></i>
+                    <span>Code</span>
+                  </a>
                 </div>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- Row 3: Drone Simulator -->
-          <div class="portfolio-row">
-            <div class="screenshots">
-              <div class="screenshot-wrapper">
-                <img class="img-lg" src="https://api.microlink.io/?url=https%3A%2F%2Fdrone-aero-engineering-lab.vercel.app&screenshot=true&embed=screenshot.url" alt="Drone Lab Desktop">
-                <img class="img-md" src="https://api.microlink.io/?url=https%3A%2F%2Fdrone-aero-engineering-lab.vercel.app&screenshot=true&embed=screenshot.url&device=iPad" alt="Drone Lab Tablet">
-                <img class="img-sm" src="https://api.microlink.io/?url=https%3A%2F%2Fdrone-aero-engineering-lab.vercel.app&screenshot=true&embed=screenshot.url&device=iPhone+13" alt="Drone Lab Mobile">
+          <!-- Project 03: Drone Aero Lab -->
+          <article class="project-slide" data-index="2">
+            <div class="slide-card">
+              <div class="slide-index">03</div>
+              <div class="slide-media-wrapper">
+                <img src="https://api.microlink.io/?url=https%3A%2F%2Fdrone-aero-engineering-lab.vercel.app&screenshot=true&embed=screenshot.url" alt="Drone Aero Lab Simulation" loading="lazy" class="slide-image">
+                <div class="slide-media-overlay">
+                  <span class="view-tag"><i class="fa-solid fa-eye"></i> View Live Demo</span>
+                </div>
               </div>
-            </div>
-            <div class="portfolio-details-block">
-              <div class="details-left">
-                <h2 class="portfolio-title">Drone Aero Lab</h2>
-                <p class="portfolio-description">
-                  A 3D flight assembler sandbox city featuring DJI drone configurations. Models lifting physics, payload weight adjustments, motor thrust, and drag factors.
+              <div class="slide-info">
+                <div class="slide-tags">
+                  <span class="tag">Three.js</span>
+                  <span class="tag">Physics Simulation</span>
+                  <span class="tag">JavaScript</span>
+                </div>
+                <h3 class="slide-title">Drone Aero Lab</h3>
+                <p class="slide-desc">
+                  A 3D flight assembler sandbox city featuring DJI drone configurations. Models aerodynamic lifting physics, payload weight adjustments, motor thrust, and drag factors.
                 </p>
-                <div class="used">
-                  <ul class="used-list">
-                    <li class="used-tag">Three.js</li>
-                    <li class="used-tag">Aerodynamics</li>
-                    <li class="used-tag">JavaScript</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="details-right">
-                <div class="portfolio-links">
-                  <a href="https://drone-aero-engineering-lab.vercel.app" target="_blank">Demo</a>
-                  <a href="https://github.com/Shreyas-M007/Drone-Aero-Engineering-Lab" target="_blank">Code</a>
+                <div class="slide-actions">
+                  <a href="https://drone-aero-engineering-lab.vercel.app" target="_blank" rel="noopener" class="slide-btn primary" data-cursor="pointer">
+                    <span>Live Demo</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  </a>
+                  <a href="https://github.com/Shreyas-M007/Drone-Aero-Engineering-Lab" target="_blank" rel="noopener" class="slide-btn secondary" data-cursor="pointer">
+                    <i class="fa-brands fa-github"></i>
+                    <span>Code</span>
+                  </a>
                 </div>
               </div>
             </div>
-          </div>
-          
-          <!-- Row 4: Library Management -->
-          <div class="portfolio-row">
-            <div class="screenshots">
-              <div class="screenshot-wrapper">
-                <img class="img-lg" src="lib-management.png" alt="Library System Desktop">
-                <img class="img-md" src="lib-management.png" alt="Library System Tablet">
-                <img class="img-sm" src="lib-management-mobile.jpg" alt="Library System Mobile">
+          </article>
+
+          <!-- Project 04: Library System -->
+          <article class="project-slide" data-index="3">
+            <div class="slide-card">
+              <div class="slide-index">04</div>
+              <div class="slide-media-wrapper">
+                <img src="lib-management.png" alt="Library Management Interface" loading="lazy" class="slide-image">
+                <div class="slide-media-overlay">
+                  <span class="view-tag"><i class="fa-solid fa-eye"></i> View Live Demo</span>
+                </div>
               </div>
-            </div>
-            <div class="portfolio-details-block">
-              <div class="details-left">
-                <h2 class="portfolio-title">Library System</h2>
-                <p class="portfolio-description">
-                  An automated borrower and book inventory tracker with penalty/fine calculators. Created for freshman engineering programming labs using files operations.
+              <div class="slide-info">
+                <div class="slide-tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">Streamlit</span>
+                  <span class="tag">OOP Design</span>
+                </div>
+                <h3 class="slide-title">Library Inventory System</h3>
+                <p class="slide-desc">
+                  An automated borrower and book inventory tracker with real-time fine calculation algorithms. Built with robust object-oriented patterns and interactive analytics dashboards.
                 </p>
-                <div class="used">
-                  <ul class="used-list">
-                    <li class="used-tag">Python</li>
-                    <li class="used-tag">OOP</li>
-                    <li class="used-tag">Streamlit</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="details-right">
-                <div class="portfolio-links">
-                  <a href="https://lib-management-system.streamlit.app" target="_blank">Demo</a>
-                  <a href="https://github.com/Shreyas-M007/library-management-system" target="_blank">Code</a>
+                <div class="slide-actions">
+                  <a href="https://lib-management-system.streamlit.app" target="_blank" rel="noopener" class="slide-btn primary" data-cursor="pointer">
+                    <span>Live Demo</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  </a>
+                  <a href="https://github.com/Shreyas-M007/library-management-system" target="_blank" rel="noopener" class="slide-btn secondary" data-cursor="pointer">
+                    <i class="fa-brands fa-github"></i>
+                    <span>Code</span>
+                  </a>
                 </div>
               </div>
             </div>
-          </div>
-          
-          <!-- Row 5: Jan-Sathi -->
-          <div class="portfolio-row">
-            <div class="screenshots">
-              <div class="screenshot-wrapper">
-                <img class="img-lg" src="https://api.microlink.io/?url=https%3A%2F%2Fcode-rouge-kappa.vercel.app&screenshot=true&embed=screenshot.url" alt="Jan-Sathi Desktop">
-                <img class="img-md" src="https://api.microlink.io/?url=https%3A%2F%2Fcode-rouge-kappa.vercel.app&screenshot=true&embed=screenshot.url&device=iPad" alt="Jan-Sathi Tablet">
-                <img class="img-sm" src="https://api.microlink.io/?url=https%3A%2F%2Fcode-rouge-kappa.vercel.app&screenshot=true&embed=screenshot.url&device=iPhone+13" alt="Jan-Sathi Mobile">
+          </article>
+
+          <!-- Project 05: Jan-Sathi -->
+          <article class="project-slide" data-index="4">
+            <div class="slide-card">
+              <div class="slide-index">05</div>
+              <div class="slide-media-wrapper">
+                <img src="https://api.microlink.io/?url=https%3A%2F%2Fcode-rouge-kappa.vercel.app&screenshot=true&embed=screenshot.url" alt="Jan-Sathi Portal" loading="lazy" class="slide-image">
+                <div class="slide-media-overlay">
+                  <span class="view-tag"><i class="fa-solid fa-eye"></i> View Live Demo</span>
+                </div>
               </div>
-            </div>
-            <div class="portfolio-details-block">
-              <div class="details-left">
-                <h2 class="portfolio-title">Jan-Sathi</h2>
-                <p class="portfolio-description">
-                  Citizen helper eligibility portal matching government support options with profiles. Employs strong typed data validation fields for public schemes query.
+              <div class="slide-info">
+                <div class="slide-tags">
+                  <span class="tag">TypeScript</span>
+                  <span class="tag">Govt Schemes API</span>
+                  <span class="tag">CSS Grid</span>
+                </div>
+                <h3 class="slide-title">Jan-Sathi</h3>
+                <p class="slide-desc">
+                  Citizen welfare matching portal routing government schemes to eligible applicants based on demographic, income, and regional criteria with strongly-typed field schemas.
                 </p>
-                <div class="used">
-                  <ul class="used-list">
-                    <li class="used-tag">TypeScript</li>
-                    <li class="used-tag">API Integration</li>
-                    <li class="used-tag">CSS Grid</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="details-right">
-                <div class="portfolio-links">
-                  <a href="https://code-rouge-kappa.vercel.app" target="_blank">Demo</a>
-                  <a href="https://github.com/Shreyas-M007/Jan-Sathi" target="_blank">Code</a>
+                <div class="slide-actions">
+                  <a href="https://code-rouge-kappa.vercel.app" target="_blank" rel="noopener" class="slide-btn primary" data-cursor="pointer">
+                    <span>Live Demo</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  </a>
+                  <a href="https://github.com/Shreyas-M007/Jan-Sathi" target="_blank" rel="noopener" class="slide-btn secondary" data-cursor="pointer">
+                    <i class="fa-brands fa-github"></i>
+                    <span>Code</span>
+                  </a>
                 </div>
               </div>
             </div>
-          </div>
-          
+          </article>
+
         </div>
       </div>
     </section>
 
-    <!-- Section 8: Contact -->
-    <section id="contact-section" class="section">
-      <div class="overlay-wrapper">
-        <div class="center">
-          <h1 class="section-heading"><span>05.</span> Get In Touch</h1>
-          <span class="divider center"></span>
-          <p class="contact-description">
-            Have a project in mind, want to collaborate, or just want to chat? Drop me an email or send a message right here!
+    <!-- Section 5: Academic Timeline (Eliot Besson Styled Glass Cards) -->
+    <section id="timeline-section" class="timeline-section">
+      <div class="section-header">
+        <span class="section-tag">[ 04 / JOURNEY &amp; EDUCATION ]</span>
+        <h2 class="section-title">ACADEMIC MILESTONES</h2>
+      </div>
+
+      <div class="timeline-cards-wrap">
+        
+        <!-- Milestone 1: BMSCE -->
+        <div class="timeline-card current">
+          <div class="timeline-badge-pill">
+            <span class="pulse-dot"></span>
+            <span>Current Stage</span>
+          </div>
+          <div class="timeline-period">2024 &mdash; 2028 (Expected)</div>
+          <h3 class="timeline-institution">B.M.S. College of Engineering</h3>
+          <h4 class="timeline-degree">Bachelor of Engineering in Artificial Intelligence &amp; Machine Learning</h4>
+          <p class="timeline-location"><i class="fa-solid fa-location-dot"></i> Basavanagudi, Bengaluru, Karnataka</p>
+          <div class="timeline-achievement">
+            <span class="achieve-title"><i class="fa-solid fa-star"></i> Academic Standing:</span>
+            <span class="achieve-highlight">9.825 CGPA (Freshman Year)</span>
+          </div>
+          <p class="timeline-description">
+            Focusing on Deep Learning architectures, Advanced Data Structures, Algorithmic Analysis, Discrete Mathematics, and Computer Vision pipelines.
           </p>
         </div>
+
+        <!-- Milestone 2: Pre-University -->
+        <div class="timeline-card">
+          <div class="timeline-period">2022 &mdash; 2024</div>
+          <h3 class="timeline-institution">Department of Pre-University Education</h3>
+          <h4 class="timeline-degree">Higher Secondary Education (PCMB Stream)</h4>
+          <p class="timeline-location"><i class="fa-solid fa-location-dot"></i> Karnataka, India</p>
+          <p class="timeline-description">
+            Rigorous training in Physics, Chemistry, Mathematics, and Biology with emphasis on analytical problem solving and quantitative foundations.
+          </p>
+        </div>
+
+        <!-- Milestone 3: Secondary School -->
+        <div class="timeline-card">
+          <div class="timeline-period">2021 &mdash; 2022</div>
+          <h3 class="timeline-institution">Karnataka Secondary Education Examination Board</h3>
+          <h4 class="timeline-degree">Secondary School Leaving Certificate (SSLC)</h4>
+          <p class="timeline-location"><i class="fa-solid fa-location-dot"></i> Karnataka, India</p>
+          <p class="timeline-description">
+            Graduated with Distinction, establishing a strong grounding in mathematics, logical reasoning, and computing fundamentals.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 6: Verified Credentials & Certifications -->
+    <section id="certifications-section" class="certifications-section">
+      <div class="section-header">
+        <span class="section-tag">[ 05 / VERIFIED CREDENTIALS ]</span>
+        <h2 class="section-title">CERTIFIED EXPERTISE</h2>
+      </div>
+
+      <div class="certs-grid">
         
-        <div class="contact-wrapper">
-          <form class="form-wrapper" autocomplete="off" id="contact-form">
-            <div class="input-wrapper">
-              <label class="input-label" for="name">Name</label>
-              <input type="text" id="name" class="contact-input" required>
+        <!-- Cert 1: AWS GenAI -->
+        <div class="cert-card">
+          <div class="cert-top">
+            <div class="cert-icon-box aws-glow">
+              <i class="fa-brands fa-aws"></i>
             </div>
-            <div class="input-wrapper">
-              <label class="input-label" for="email">Email</label>
-              <input type="email" id="email" class="contact-input" required>
+            <span class="verified-pill">
+              <i class="fa-solid fa-circle-check"></i> Verified
+            </span>
+          </div>
+          <h3 class="cert-name">Introduction to Generative AI</h3>
+          <p class="cert-issuer">AWS Educate &bull; Training Badge</p>
+          <p class="cert-desc">
+            Foundation model architectures, prompt engineering essentials, multimodal use cases, and AWS cloud GenAI ecosystem services.
+          </p>
+          <div class="cert-footer">
+            <span class="cert-year"><i class="fa-solid fa-calendar-check"></i> 2026</span>
+            <a href="https://www.credly.com/badges/6d24b297-f07c-405f-a7fd-e8edadc92822/public_url" target="_blank" rel="noopener" class="cert-link" data-cursor="pointer">
+              <span>Verify on Credly</span>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Cert 2: Microsoft Foundry AI Agents -->
+        <div class="cert-card">
+          <div class="cert-top">
+            <div class="cert-icon-box ms-glow">
+              <i class="fa-brands fa-microsoft"></i>
             </div>
-            <div class="input-wrapper">
-              <label class="input-label" for="subject">Subject</label>
-              <input type="text" id="subject" class="contact-input" required>
-            </div>
-            <div class="input-wrapper">
-              <label class="input-label" for="message">Message</label>
-              <textarea id="message" class="contact-input" required></textarea>
+            <span class="verified-pill">
+              <i class="fa-solid fa-circle-check"></i> Verified
+            </span>
+          </div>
+          <h3 class="cert-name">Developing Agents in Microsoft Foundry</h3>
+          <p class="cert-issuer">Microsoft Applied Skills &bull; Official Credential</p>
+          <p class="cert-desc">
+            Autonomous AI agent development, cognitive search orchestration, custom tool evaluation, and enterprise LLM workflow deployment.
+          </p>
+          <div class="cert-footer">
+            <span class="cert-year"><i class="fa-solid fa-calendar-check"></i> 2026</span>
+            <a href="https://learn.microsoft.com/api/credentials/share/en-in/ShreyasMChanabasannavar-1139/C067896C469AA3CD?sharingId=827D09758FB984BC" target="_blank" rel="noopener" class="cert-link" data-cursor="pointer">
+              <span>Verify on Microsoft</span>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 7: High-Impact Editorial Contact & Footer (Eliot Besson Style) -->
+    <section id="contact-section" class="contact-section">
+      <div class="contact-container">
+        
+        <div class="contact-editorial-header">
+          <span class="section-tag">[ 06 / REACH OUT ]</span>
+          <h2 class="contact-giant-title">
+            LET'S BUILD SOMETHING<br>
+            <span class="gradient-text">EXTRAORDINARY.</span>
+          </h2>
+          <p class="contact-subtext">
+            Whether you have an ambitious AI project, research collaboration, internship opportunity, or just want to discuss mathematics and stars—my inbox is always open.
+          </p>
+          
+          <div class="email-copy-bar">
+            <span class="email-address" id="footer-email-text">shreyasm1200@gmail.com</span>
+            <button id="copy-email-footer-btn" class="copy-email-btn" data-cursor="pointer">
+              <i class="fa-regular fa-copy"></i>
+              <span id="copy-feedback-text">Copy Email</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Contact Form Box -->
+        <div class="contact-form-wrapper">
+          <form id="contact-form" class="cosmic-form">
+            <div class="form-row">
+              <div class="form-field">
+                <label for="contact-name">Your Name</label>
+                <input type="text" id="contact-name" name="name" required placeholder="Alan Turing">
+              </div>
+              <div class="form-field">
+                <label for="contact-email">Your Email</label>
+                <input type="email" id="contact-email" name="email" required placeholder="alan@turing.org">
+              </div>
             </div>
             
-            <button type="submit" class="message-btn">
-              <span>Send Message</span>
+            <div class="form-field">
+              <label for="contact-subject">Subject</label>
+              <input type="text" id="contact-subject" name="subject" required placeholder="AI Collaboration / Project Query">
+            </div>
+
+            <div class="form-field">
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" name="message" rows="4" required placeholder="Tell me about what you are planning to build..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn" data-cursor="pointer">
+              <span>Transmit Message</span>
+              <i class="fa-solid fa-paper-plane"></i>
             </button>
           </form>
         </div>
+
+        <!-- Global Footer Bottom -->
+        <footer class="site-footer">
+          <div class="footer-left">
+            <span class="brand-monogram">SM &bull; 2026</span>
+            <span class="copy-tag">Designed with Passion &bull; BMSCE Bengaluru</span>
+          </div>
+
+          <div class="footer-social-links">
+            <a href="https://github.com/Shreyas-M007" target="_blank" rel="noopener" class="social-chip" data-cursor="pointer">
+              <i class="fa-brands fa-github"></i>
+              <span>GitHub</span>
+            </a>
+            <a href="https://www.linkedin.com/in/shreyas-m-chanabasannavar-647971324" target="_blank" rel="noopener" class="social-chip" data-cursor="pointer">
+              <i class="fa-brands fa-linkedin-in"></i>
+              <span>LinkedIn</span>
+            </a>
+            <a href="mailto:shreyasm1200@gmail.com" class="social-chip" data-cursor="pointer">
+              <i class="fa-regular fa-envelope"></i>
+              <span>Email</span>
+            </a>
+          </div>
+        </footer>
+
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="footer">
-      <div class="footer-content">
-        <ul class="soc">
-          <li class="soc-item"><a href="mailto:shreyasm1200@gmail.com" target="_blank" title="Email"><i class="fa-regular fa-envelope"></i></a></li>
-          <li class="soc-item"><a href="https://github.com/Shreyas-M007" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a></li>
-          <li class="soc-item"><a href="https://www.linkedin.com/in/shreyas-m007/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a></li>
-          <li class="soc-item"><a href="https://www.instagram.com/shreyas._._.007/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
-        </ul>
-        
-        <div class="copyright-wrapper center">
-          <p>Designed &amp; Handcrafted by Shreyas M Chanabasannavar &copy; 2026</p>
-        </div>
-      </div>
-    </footer>
+  </main>
 
-  </div>
+  <!-- Eliot Besson Apple-Style Floating Dock Navigation -->
+  <nav class="floating-dock-nav" id="floating-dock" aria-label="Quick Navigation">
+    <div class="dock-container">
+      <a href="#hero-section" class="dock-item active" data-tooltip="Home" data-cursor="pointer">
+        <i class="fa-solid fa-house"></i>
+      </a>
+      <a href="#about-section" class="dock-item" data-tooltip="Profile" data-cursor="pointer">
+        <i class="fa-solid fa-user"></i>
+      </a>
+      <a href="#skills-section" class="dock-item" data-tooltip="Skills" data-cursor="pointer">
+        <i class="fa-solid fa-code"></i>
+      </a>
+      <a href="#projects-section" class="dock-item" data-tooltip="Projects" data-cursor="pointer">
+        <i class="fa-solid fa-folder-open"></i>
+      </a>
+      <a href="#timeline-section" class="dock-item" data-tooltip="Milestones" data-cursor="pointer">
+        <i class="fa-solid fa-timeline"></i>
+      </a>
+      <a href="#certifications-section" class="dock-item" data-tooltip="Certificates" data-cursor="pointer">
+        <i class="fa-solid fa-award"></i>
+      </a>
+      <a href="#contact-section" class="dock-item" data-tooltip="Contact" data-cursor="pointer">
+        <i class="fa-solid fa-paper-plane"></i>
+      </a>
+    </div>
+  </nav>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="app.js?v=2.3"></script>
+  <!-- Custom Scripts -->
+  <script src="app.js?v=4.0"></script>
 </body>
 </html>
