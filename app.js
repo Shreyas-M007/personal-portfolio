@@ -1,12 +1,63 @@
 /**
- * SHREYAS M. CHANABASANNAVAR
- * Jesper Landberg Dynamic Mouse-Move Slider + Eliot Besson Lenis Motion
+ * SHREYAS M. CHANABASANNAVAR — PORTFOLIO ENGINE
+ * 1. Starting Hero Preloader Animation (Eliot Besson Lottie loader)
+ * 2. Lenis Momentum Smooth Scroll Engine
+ * 3. Jesper Landberg Signature 3D Curved WebGL Cylinder Carousel & Perspective Grid Floor (Picture 2 Exact Match)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
   // =========================================================================
-  // 1. Lenis Smooth Scroll Engine (Eliot Besson)
+  // 1. Starting Hero Preloader Animation
+  // =========================================================================
+  const loaderEl = document.querySelector('.h-hero_loader');
+  const loaderLottieEl = document.querySelector('.h-hero_loader-lottie');
+
+  if (loaderLottieEl && typeof lottie !== 'undefined') {
+    const lottiePath = loaderLottieEl.getAttribute('data-lottie-path') || 'https://cdn.prod.website-files.com/677fb4d34764579513f06df6/67d2e4a64cac3c5e7af06197_LogoMoves%20(1).json';
+    try {
+      const anim = lottie.loadAnimation({
+        container: loaderLottieEl,
+        renderer: 'svg',
+        loop: false,
+        autoplay: true,
+        path: lottiePath
+      });
+
+      const dismissLoader = () => {
+        if (!loaderEl) return;
+        if (typeof gsap !== 'undefined') {
+          gsap.to(loaderEl, {
+            opacity: 0,
+            duration: 0.6,
+            ease: 'power2.out',
+            onComplete: () => {
+              loaderEl.style.display = 'none';
+            }
+          });
+        } else {
+          loaderEl.style.opacity = '0';
+          setTimeout(() => { loaderEl.style.display = 'none'; }, 600);
+        }
+      };
+
+      anim.addEventListener('complete', dismissLoader);
+      setTimeout(dismissLoader, 1600); // Safety fallback timeout
+    } catch (e) {
+      if (loaderEl) loaderEl.style.display = 'none';
+    }
+  }
+
+  // Ensure [data-hidden] elements are revealed unconditionally
+  setTimeout(() => {
+    document.querySelectorAll('[data-hidden]').forEach(el => {
+      el.style.visibility = 'visible';
+    });
+  }, 100);
+
+
+  // =========================================================================
+  // 2. Lenis Smooth Momentum Scroll Engine (Eliot Besson)
   // =========================================================================
   let lenis = null;
   if (typeof Lenis !== 'undefined') {
@@ -43,133 +94,288 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // =========================================================================
-  // 2. Jesper Landberg Dynamic Mouse-Move & Texture Feelable Slider
+  // 3. Jesper Landberg Exact 3D Curved WebGL Cylinder Carousel (Picture 2)
   // =========================================================================
-  const stage = document.getElementById('jesper-stage');
-  const track = document.getElementById('jesper-track');
-  const cards = document.querySelectorAll('.jesper_card_item');
-  const counterEl = document.getElementById('jesper-live-counter');
+  const container = document.getElementById('jesper-webgl-container');
+  const canvas = document.getElementById('jesper-3d-canvas');
+  const counterEl = document.getElementById('jesper-3d-counter');
+  const hintEl = document.getElementById('active-project-hint');
 
-  if (stage && track && cards.length > 0) {
-    let currentX = 0;
-    let targetX = 0;
-    let prevX = 0;
+  if (container && canvas && typeof THREE !== 'undefined') {
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x000000);
+
+    const width = container.clientWidth || window.innerWidth;
+    const height = container.clientHeight || (window.innerHeight * 0.85);
+
+    const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 1000);
+    camera.position.set(0, 0.1, 14.8);
+
+    const renderer = new THREE.WebGLRenderer({
+      canvas: canvas,
+      antialias: true,
+      powerPreference: 'high-performance'
+    });
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    // Perspective Grid Floor (Exact match to Picture 2)
+    const grid = new THREE.GridHelper(60, 48, 0x444444, 0x1c1c1c);
+    grid.position.y = -3.2;
+    scene.add(grid);
+
+    // Projects Data (Shreyas M. Projects)
+    const projects = [
+      {
+        title: 'PaarakhMetric',
+        subtitle: 'Gemini Vision OCR • Firebase PWA • 2026',
+        image: 'paarakh-metric-desktop.png',
+        url: 'https://shreyas-m007.github.io/paarakhmetric/'
+      },
+      {
+        title: 'AgriMate',
+        subtitle: 'React 19 • AWS S3 • Mandi AI • 2026',
+        image: 'agrimate-desktop.png',
+        url: 'https://agrimate-web-647782045916-apsouth1.s3.ap-south-1.amazonaws.com/index.html#'
+      },
+      {
+        title: 'Drone Aero Lab',
+        subtitle: 'Three.js • Flight Physics • 2024',
+        image: 'drone-aero-desktop.png',
+        url: 'https://drone-aero-engineering-lab.vercel.app/'
+      },
+      {
+        title: 'Library Inventory',
+        subtitle: 'Python OOP • Streamlit • 2024',
+        image: 'lib-management.png',
+        url: 'https://lib-management-system.streamlit.app/'
+      },
+      {
+        title: 'Jan-Sathi',
+        subtitle: 'Govt Schemes API • TypeScript • 2025',
+        image: 'jan-sathi-desktop.png',
+        url: 'https://code-rouge-kappa.vercel.app/'
+      }
+    ];
+
+    // Card Dimensions & Cylinder Geometry
+    const cardWidth = 7.2;
+    const cardHeight = 4.4;
+    const cylinderRadius = 14.2;
+
+    const cardGeometry = new THREE.PlaneGeometry(cardWidth, cardHeight, 32, 1);
+    const posAttr = cardGeometry.attributes.position;
+    for (let i = 0; i < posAttr.count; i++) {
+      const x = posAttr.getX(i);
+      // Cylindrical parabolic curvature along Z axis (Exact curvature from Picture 2)
+      posAttr.setZ(i, -(x * x) / (2 * cylinderRadius));
+    }
+    cardGeometry.computeVertexNormals();
+
+    // Helper to create card textures with project screenshot + bottom title & circular button (Picture 2)
+    function createCardTexture(proj) {
+      const cvs = document.createElement('canvas');
+      cvs.width = 1024;
+      cvs.height = 640;
+      const ctx = cvs.getContext('2d');
+
+      // Default dark fill
+      ctx.fillStyle = '#111111';
+      ctx.fillRect(0, 0, cvs.width, cvs.height);
+
+      const texture = new THREE.CanvasTexture(cvs);
+      texture.minFilter = THREE.LinearFilter;
+      texture.magFilter = THREE.LinearFilter;
+
+      function renderCanvas(img) {
+        if (img) {
+          ctx.drawImage(img, 0, 0, cvs.width, cvs.height);
+        } else {
+          ctx.fillStyle = '#1c1c1c';
+          ctx.fillRect(0, 0, cvs.width, cvs.height);
+        }
+
+        // Bottom dark vignette overlay (matches Picture 2)
+        const grad = ctx.createLinearGradient(0, cvs.height - 180, 0, cvs.height);
+        grad.addColorStop(0, 'rgba(0,0,0,0)');
+        grad.addColorStop(0.5, 'rgba(0,0,0,0.6)');
+        grad.addColorStop(1, 'rgba(0,0,0,0.95)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, cvs.height - 180, cvs.width, 180);
+
+        // Project Title in lower left (matches Picture 2)
+        ctx.font = '600 38px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif';
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(proj.title, 40, cvs.height - 44);
+
+        // Circular Arrow Button in lower right (Picture 2 exact circle arrow)
+        const btnX = cvs.width - 58;
+        const btnY = cvs.height - 52;
+        const btnRadius = 22;
+
+        ctx.beginPath();
+        ctx.arc(btnX, btnY, btnRadius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.75)';
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // White arrow inside button
+        ctx.font = '22px sans-serif';
+        ctx.fillStyle = '#ffffff';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('→', btnX + 1, btnY);
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'alphabetic';
+
+        texture.needsUpdate = true;
+      }
+
+      const img = new Image();
+      img.onload = () => renderCanvas(img);
+      img.onerror = () => renderCanvas(null);
+      img.src = proj.image;
+
+      if (img.complete && img.naturalWidth > 0) {
+        renderCanvas(img);
+      }
+
+      return texture;
+    }
+
+    // Build the 3D Cards
+    const cardMeshes = [];
+    projects.forEach((proj) => {
+      const texture = createCardTexture(proj);
+      const material = new THREE.MeshBasicMaterial({
+        map: texture,
+        side: THREE.DoubleSide
+      });
+      const mesh = new THREE.Mesh(cardGeometry, material);
+      mesh.userData = proj;
+      scene.add(mesh);
+      cardMeshes.push(mesh);
+    });
+
+    // Positioning along cylindrical carousel
+    const spacingAngle = 0.56; // Angular gap between cards
+    let currentAngle = 0;
+    let targetAngle = 0;
     let isDragging = false;
     let dragStartX = 0;
     let dragDistance = 0;
-    let maxScroll = 0;
 
-    function recalculateBounds() {
-      const stageWidth = stage.offsetWidth;
-      const trackWidth = track.scrollWidth;
-      maxScroll = Math.max(0, trackWidth - stageWidth + 80);
-    }
-    recalculateBounds();
-    window.addEventListener('resize', recalculateBounds);
-
-    // --- MOUSE-MOVE NAVIGATION (Slides with mouse position across screen) ---
-    stage.addEventListener('mousemove', (e) => {
+    // --- MOUSE-MOVE ROTATION ("moves with mouse only") ---
+    window.addEventListener('mousemove', (e) => {
       if (isDragging) return;
-      const rect = stage.getBoundingClientRect();
-      const relativeX = (e.clientX - rect.left) / rect.width; // 0.0 to 1.0
-      targetX = -relativeX * maxScroll;
+      // Normalized X from -0.5 to 0.5
+      const normX = (e.clientX / window.innerWidth) - 0.5;
+      targetAngle = -normX * 1.8;
     });
 
-    // --- DRAG / POINTER NAVIGATION ---
-    stage.addEventListener('pointerdown', (e) => {
+    // --- DRAG / POINTER SUPPORT ---
+    container.addEventListener('pointerdown', (e) => {
       isDragging = true;
       dragStartX = e.clientX;
       dragDistance = 0;
-      stage.classList.add('is-dragging');
-      stage.setPointerCapture(e.pointerId);
+      container.style.cursor = 'grabbing';
+      container.setPointerCapture(e.pointerId);
     });
 
-    stage.addEventListener('pointermove', (e) => {
+    container.addEventListener('pointermove', (e) => {
       if (!isDragging) return;
       const deltaX = e.clientX - dragStartX;
       dragStartX = e.clientX;
-      targetX += deltaX * 1.4;
+      targetAngle += deltaX * 0.004;
       dragDistance += Math.abs(deltaX);
-
-      // Boundaries with rubber-banding
-      if (targetX > 40) targetX = 40;
-      if (targetX < -maxScroll - 40) targetX = -maxScroll - 40;
     });
 
-    function stopDragging(e) {
+    function stopDrag(e) {
       if (!isDragging) return;
       isDragging = false;
-      stage.classList.remove('is-dragging');
+      container.style.cursor = 'grab';
       if (e && e.pointerId) {
-        try { stage.releasePointerCapture(e.pointerId); } catch (_) {}
+        try { container.releasePointerCapture(e.pointerId); } catch (_) {}
       }
-
-      if (targetX > 0) targetX = 0;
-      if (targetX < -maxScroll) targetX = -maxScroll;
     }
 
-    stage.addEventListener('pointerup', stopDragging);
-    stage.addEventListener('pointercancel', stopDragging);
+    container.addEventListener('pointerup', stopDrag);
+    container.addEventListener('pointercancel', stopDrag);
 
-    // Suppress link click if dragged
-    cards.forEach(card => {
-      card.addEventListener('click', (e) => {
-        if (dragDistance > 8) {
-          e.preventDefault();
-        }
-      });
-
-      // Tactile 3D Tilt / Texture Parallax on hover
-      const surface = card.querySelector('.jesper_card_surface');
-      if (surface) {
-        card.addEventListener('mousemove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-          const rotateX = (-(y - centerY) / centerY) * 6;
-          const rotateY = ((x - centerX) / centerX) * 6;
-
-          surface.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-        });
-
-        card.addEventListener('mouseleave', () => {
-          surface.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-        });
-      }
-    });
-
-    // --- MOUSE WHEEL TRANSLATION ---
-    stage.addEventListener('wheel', (e) => {
+    // --- WHEEL HORIZONTAL ROTATION ---
+    container.addEventListener('wheel', (e) => {
       if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-        targetX -= e.deltaY * 0.95;
-        if (targetX > 0) targetX = 0;
-        if (targetX < -maxScroll) targetX = -maxScroll;
+        targetAngle -= e.deltaY * 0.002;
       }
     }, { passive: true });
 
-    // --- ANIMATION LOOP: Inertia + Velocity-Based Skew Distortion ---
-    function animateJesperSlider() {
-      requestAnimationFrame(animateJesperSlider);
+    // --- RAYCASTER FOR CLICKS ---
+    const raycaster = new THREE.Raycaster();
+    const mousePos = new THREE.Vector2();
 
-      currentX += (targetX - currentX) * 0.085;
-      const velocity = currentX - prevX;
-      prevX = currentX;
+    container.addEventListener('click', (e) => {
+      if (dragDistance > 6) return; // Prevent click on drag
 
-      // Dynamic velocity skew
-      const skew = Math.max(-12, Math.min(12, -velocity * 0.15));
-      track.style.transform = `translate3d(${currentX}px, 0, 0) skewX(${skew}deg)`;
+      const rect = container.getBoundingClientRect();
+      mousePos.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      mousePos.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
 
-      // Active Counter Update
-      if (counterEl && cards.length > 0) {
-        const cardWidth = cards[0].offsetWidth + 40;
-        let activeIdx = Math.round(Math.abs(currentX) / cardWidth) + 1;
-        activeIdx = Math.max(1, Math.min(cards.length, activeIdx));
-        counterEl.textContent = `0${activeIdx} / 0${cards.length}`;
+      raycaster.setFromCamera(mousePos, camera);
+      const intersects = raycaster.intersectObjects(cardMeshes);
+
+      if (intersects.length > 0) {
+        const clickedCard = intersects[0].object;
+        if (clickedCard.userData && clickedCard.userData.url) {
+          window.open(clickedCard.userData.url, '_blank', 'noopener');
+        }
       }
+    });
+
+    // --- RENDER LOOP: Lerp Inertia & Cylindrical Projection ---
+    function renderJesper3D() {
+      requestAnimationFrame(renderJesper3D);
+
+      // Smooth inertia
+      currentAngle += (targetAngle - currentAngle) * 0.06;
+
+      let closestIndex = 0;
+      let minDistanceToCenter = 9999;
+
+      cardMeshes.forEach((mesh, i) => {
+        const angle = (i - 2) * spacingAngle + currentAngle;
+        mesh.position.x = Math.sin(angle) * cylinderRadius;
+        mesh.position.z = Math.cos(angle) * cylinderRadius - cylinderRadius;
+        mesh.rotation.y = angle;
+
+        const dist = Math.abs(mesh.position.x);
+        if (dist < minDistanceToCenter) {
+          minDistanceToCenter = dist;
+          closestIndex = i;
+        }
+      });
+
+      // Update Live Counter and Project Label
+      if (counterEl) {
+        counterEl.textContent = `0${closestIndex + 1} / 0${projects.length}`;
+      }
+      if (hintEl) {
+        hintEl.textContent = `${projects[closestIndex].title} • ${projects[closestIndex].subtitle}`;
+      }
+
+      renderer.render(scene, camera);
     }
-    animateJesperSlider();
+    renderJesper3D();
+
+    // Resize handler
+    window.addEventListener('resize', () => {
+      const w = container.clientWidth || window.innerWidth;
+      const h = container.clientHeight || (window.innerHeight * 0.85);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    });
   }
 
 });
