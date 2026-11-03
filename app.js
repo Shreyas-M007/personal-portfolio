@@ -2,13 +2,14 @@
  * SHREYAS M. CHANABASANNAVAR — PORTFOLIO ENGINE
  * 1. Starting Hero Preloader Animation (Eliot Besson Lottie loader)
  * 2. Lenis Momentum Smooth Scroll Engine
- * 3. Jesper Landberg Signature 3D Curved WebGL Cylinder Carousel & Perspective Grid Floor (Picture 2 Exact Match)
+ * 3. Jesper Landberg Signature 3D Curved WebGL Cylinder Carousel & Perspective Grid Floor (Picture 1 Replica)
+ * 4. Jesper Landberg Interactive Project Detail Sheet Modal (Picture 2 Replica)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
   // =========================================================================
-  // 1. Starting Hero Preloader Animation
+  // 1. Starting Hero Preloader Animation (Eliot Besson)
   // =========================================================================
   const loaderEl = document.querySelector('.h-hero_loader');
   const loaderLottieEl = document.querySelector('.h-hero_loader-lottie');
@@ -94,22 +95,158 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // =========================================================================
-  // 3. Jesper Landberg Exact 3D Curved WebGL Cylinder Carousel (Picture 2)
+  // 3. Projects Data (Shreyas M. Projects)
+  // =========================================================================
+  const projects = [
+    {
+      title: 'PaarakhMetric',
+      tag1: 'Gemini Vision OCR',
+      year: '2026',
+      role: 'Full-Stack & AI',
+      description: 'Statutory Packaging Compliance & Multi-modal Vision AI System. Ingests FMCG packaging imagery to cross-reference legal metrology compliance rules with Gemini Vision OCR in real time with high-precision bounding box extraction.',
+      image: 'paarakh-metric-desktop.png',
+      demoUrl: 'https://shreyas-m007.github.io/paarakhmetric/',
+      codeUrl: 'https://github.com/Shreyas-M007/paarakhmetric'
+    },
+    {
+      title: 'AgriMate',
+      tag1: 'React 19 / AWS S3',
+      year: '2026',
+      role: 'AI & Data Eng',
+      description: 'AI-assisted agricultural market intelligence platform designed for small and marginal farmers, powered by verified APMC mandi records for real-time price clarity, freight estimation, and crop forecasting.',
+      image: 'agrimate-desktop.png',
+      demoUrl: 'https://agrimate-web-647782045916-apsouth1.s3.ap-south-1.amazonaws.com/index.html#',
+      codeUrl: 'https://github.com/Shreyas-M007/Agrimate'
+    },
+    {
+      title: 'Drone Aero Lab',
+      tag1: 'Three.js / WebGL',
+      year: '2024',
+      role: 'Physics Engine',
+      description: 'Interactive Three.js 3D Aerodynamics Sandbox and Flight Physics Simulator. Configure quadcopter motor RPM, center of mass, rotor drag, and wind resistance in real-time procedural test environments.',
+      image: 'drone-aero-desktop.png',
+      demoUrl: 'https://drone-aero-engineering-lab.vercel.app/',
+      codeUrl: 'https://github.com/Shreyas-M007/Drone-Aero-Engineering-Lab'
+    },
+    {
+      title: 'Library Inventory',
+      tag1: 'Python OOP',
+      year: '2024',
+      role: 'Backend Architecture',
+      description: 'Scalable book ledger management system implemented with object-oriented Python, Streamlit interactive analytics, and multi-tenant catalog tracking with automated return auditing.',
+      image: 'lib-management.png',
+      demoUrl: 'https://lib-management-system.streamlit.app/',
+      codeUrl: 'https://github.com/Shreyas-M007/library-management-system'
+    },
+    {
+      title: 'Jan-Sathi',
+      tag1: 'TypeScript / Next.js',
+      year: '2025',
+      role: 'Full-Stack Developer',
+      description: 'Civic technology platform indexing government schemes, subsidies, and citizen welfare eligibility with TypeScript, high-performance cached API routes, and citizen-friendly verification flows.',
+      image: 'jan-sathi-desktop.png',
+      demoUrl: 'https://code-rouge-kappa.vercel.app/',
+      codeUrl: 'https://github.com/Shreyas-M007/Jan-Sathi'
+    }
+  ];
+
+
+  // =========================================================================
+  // 4. Project Detail Modal Manager (Picture 2 Exact Match)
+  // =========================================================================
+  const modalEl = document.getElementById('jesper-project-modal');
+  const modalCloseBtn = document.getElementById('jesper-modal-close');
+  const modalTitle = document.getElementById('modal-project-title');
+  const modalDesc = document.getElementById('modal-project-desc');
+  const modalTag1 = document.getElementById('modal-pill-tag1');
+  const modalYear = document.getElementById('modal-pill-year');
+  const modalRole = document.getElementById('modal-pill-role');
+  const modalDemoBtn = document.getElementById('modal-project-demo-btn');
+  const modalCodeBtn = document.getElementById('modal-project-code-btn');
+  const modalImg = document.getElementById('modal-project-img');
+
+  function openProjectModal(proj) {
+    if (!modalEl) return;
+    if (modalTitle) modalTitle.textContent = proj.title;
+    if (modalDesc) modalDesc.textContent = proj.description;
+    if (modalTag1) modalTag1.textContent = proj.tag1;
+    if (modalYear) modalYear.textContent = proj.year;
+    if (modalRole) modalRole.textContent = proj.role;
+    if (modalDemoBtn) modalDemoBtn.href = proj.demoUrl;
+    if (modalCodeBtn) modalCodeBtn.href = proj.codeUrl;
+    if (modalImg) {
+      modalImg.src = proj.image;
+      modalImg.alt = proj.title;
+    }
+
+    modalEl.style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Lock background scroll
+    if (lenis) lenis.stop();
+
+    // Trigger smooth fade in & scale in
+    requestAnimationFrame(() => {
+      modalEl.style.opacity = '1';
+      const panel = modalEl.querySelector('.jesper_modal_panel');
+      if (panel) {
+        panel.style.transform = 'translateY(0) scale(1)';
+      }
+    });
+  }
+
+  function closeProjectModal() {
+    if (!modalEl || modalEl.style.display === 'none') return;
+    modalEl.style.opacity = '0';
+    const panel = modalEl.querySelector('.jesper_modal_panel');
+    if (panel) {
+      panel.style.transform = 'translateY(24px) scale(0.97)';
+    }
+
+    setTimeout(() => {
+      modalEl.style.display = 'none';
+      document.body.style.overflow = '';
+      if (lenis) lenis.start();
+    }, 320);
+  }
+
+  if (modalCloseBtn) {
+    modalCloseBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeProjectModal();
+    });
+  }
+
+  if (modalEl) {
+    modalEl.addEventListener('click', (e) => {
+      // Close on clicking backdrop
+      if (e.target === modalEl) {
+        closeProjectModal();
+      }
+    });
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeProjectModal();
+    }
+  });
+
+
+  // =========================================================================
+  // 5. Jesper Landberg Exact 3D Curved WebGL Cylinder Carousel (Picture 1)
+  //    "IT SHOULD NOT MOVE UNTILL I DRAG IT" — Drag Only Physics
   // =========================================================================
   const container = document.getElementById('jesper-webgl-container');
   const canvas = document.getElementById('jesper-3d-canvas');
-  const counterEl = document.getElementById('jesper-3d-counter');
-  const hintEl = document.getElementById('active-project-hint');
 
   if (container && canvas && typeof THREE !== 'undefined') {
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x000000);
 
     const width = container.clientWidth || window.innerWidth;
-    const height = container.clientHeight || (window.innerHeight * 0.85);
+    const height = container.clientHeight || (window.innerHeight * 0.9);
 
-    const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 1000);
-    camera.position.set(0, 0.1, 14.8);
+    const camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 1000);
+    camera.position.set(0, 0.2, 14.8);
 
     const renderer = new THREE.WebGLRenderer({
       canvas: canvas,
@@ -119,60 +256,26 @@ document.addEventListener('DOMContentLoaded', () => {
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    // Perspective Grid Floor (Exact match to Picture 2)
-    const grid = new THREE.GridHelper(60, 48, 0x444444, 0x1c1c1c);
+    // Perspective Grid Floor (Exact match to Picture 1)
+    const grid = new THREE.GridHelper(70, 52, 0x383838, 0x161616);
     grid.position.y = -3.2;
     scene.add(grid);
 
-    // Projects Data (Shreyas M. Projects)
-    const projects = [
-      {
-        title: 'PaarakhMetric',
-        subtitle: 'Gemini Vision OCR • Firebase PWA • 2026',
-        image: 'paarakh-metric-desktop.png',
-        url: 'https://shreyas-m007.github.io/paarakhmetric/'
-      },
-      {
-        title: 'AgriMate',
-        subtitle: 'React 19 • AWS S3 • Mandi AI • 2026',
-        image: 'agrimate-desktop.png',
-        url: 'https://agrimate-web-647782045916-apsouth1.s3.ap-south-1.amazonaws.com/index.html#'
-      },
-      {
-        title: 'Drone Aero Lab',
-        subtitle: 'Three.js • Flight Physics • 2024',
-        image: 'drone-aero-desktop.png',
-        url: 'https://drone-aero-engineering-lab.vercel.app/'
-      },
-      {
-        title: 'Library Inventory',
-        subtitle: 'Python OOP • Streamlit • 2024',
-        image: 'lib-management.png',
-        url: 'https://lib-management-system.streamlit.app/'
-      },
-      {
-        title: 'Jan-Sathi',
-        subtitle: 'Govt Schemes API • TypeScript • 2025',
-        image: 'jan-sathi-desktop.png',
-        url: 'https://code-rouge-kappa.vercel.app/'
-      }
-    ];
-
     // Card Dimensions & Cylinder Geometry
-    const cardWidth = 7.2;
-    const cardHeight = 4.4;
-    const cylinderRadius = 14.2;
+    const cardWidth = 7.6;
+    const cardHeight = 4.6;
+    const cylinderRadius = 14.5;
 
     const cardGeometry = new THREE.PlaneGeometry(cardWidth, cardHeight, 32, 1);
     const posAttr = cardGeometry.attributes.position;
     for (let i = 0; i < posAttr.count; i++) {
       const x = posAttr.getX(i);
-      // Cylindrical parabolic curvature along Z axis (Exact curvature from Picture 2)
+      // Parabolic cylindrical curvature along Z axis (Exact curvature from Picture 1)
       posAttr.setZ(i, -(x * x) / (2 * cylinderRadius));
     }
     cardGeometry.computeVertexNormals();
 
-    // Helper to create card textures with project screenshot + bottom title & circular button (Picture 2)
+    // Helper to create card textures with project screenshot + bottom title & circular button (Picture 1)
     function createCardTexture(proj) {
       const cvs = document.createElement('canvas');
       cvs.width = 1024;
@@ -191,24 +294,24 @@ document.addEventListener('DOMContentLoaded', () => {
         if (img) {
           ctx.drawImage(img, 0, 0, cvs.width, cvs.height);
         } else {
-          ctx.fillStyle = '#1c1c1c';
+          ctx.fillStyle = '#181818';
           ctx.fillRect(0, 0, cvs.width, cvs.height);
         }
 
-        // Bottom dark vignette overlay (matches Picture 2)
+        // Bottom dark vignette overlay (matches Picture 1)
         const grad = ctx.createLinearGradient(0, cvs.height - 180, 0, cvs.height);
         grad.addColorStop(0, 'rgba(0,0,0,0)');
-        grad.addColorStop(0.5, 'rgba(0,0,0,0.6)');
+        grad.addColorStop(0.5, 'rgba(0,0,0,0.65)');
         grad.addColorStop(1, 'rgba(0,0,0,0.95)');
         ctx.fillStyle = grad;
         ctx.fillRect(0, cvs.height - 180, cvs.width, 180);
 
-        // Project Title in lower left (matches Picture 2)
+        // Project Title in lower left (matches Picture 1)
         ctx.font = '600 38px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif';
         ctx.fillStyle = '#ffffff';
         ctx.fillText(proj.title, 40, cvs.height - 44);
 
-        // Circular Arrow Button in lower right (Picture 2 exact circle arrow)
+        // Circular Arrow Button in lower right (Picture 1 exact circle arrow)
         const btnX = cvs.width - 58;
         const btnY = cvs.height - 52;
         const btnRadius = 22;
@@ -260,36 +363,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Positioning along cylindrical carousel
-    const spacingAngle = 0.56; // Angular gap between cards
+    const spacingAngle = 0.58; // Angular gap between cards
     let currentAngle = 0;
     let targetAngle = 0;
+    let velocity = 0;
     let isDragging = false;
     let dragStartX = 0;
+    let dragLastX = 0;
     let dragDistance = 0;
 
-    // --- MOUSE-MOVE ROTATION ("moves with mouse only") ---
-    window.addEventListener('mousemove', (e) => {
-      if (isDragging) return;
-      // Normalized X from -0.5 to 0.5
-      const normX = (e.clientX / window.innerWidth) - 0.5;
-      targetAngle = -normX * 1.8;
-    });
-
-    // --- DRAG / POINTER SUPPORT ---
+    // =========================================================================
+    // DRAG ONLY INTERACTION — ZERO PASSIVE MOUSEMOVE ROTATION
+    // "IT SHOULD NOT MOVE UNTILL I DRAG IT"
+    // =========================================================================
     container.addEventListener('pointerdown', (e) => {
       isDragging = true;
       dragStartX = e.clientX;
+      dragLastX = e.clientX;
       dragDistance = 0;
+      velocity = 0;
       container.style.cursor = 'grabbing';
-      container.setPointerCapture(e.pointerId);
+      try {
+        container.setPointerCapture(e.pointerId);
+      } catch (_) {}
     });
 
     container.addEventListener('pointermove', (e) => {
-      if (!isDragging) return;
-      const deltaX = e.clientX - dragStartX;
-      dragStartX = e.clientX;
-      targetAngle += deltaX * 0.004;
+      if (!isDragging) return; // STRICT GUARD: Only moves when dragging!
+      const deltaX = e.clientX - dragLastX;
+      dragLastX = e.clientX;
       dragDistance += Math.abs(deltaX);
+
+      // Direct drag rotation
+      const moveStep = deltaX * 0.0035;
+      targetAngle += moveStep;
+      currentAngle += moveStep;
+      velocity = moveStep; // Momentum carry-over
     });
 
     function stopDrag(e) {
@@ -297,26 +406,24 @@ document.addEventListener('DOMContentLoaded', () => {
       isDragging = false;
       container.style.cursor = 'grab';
       if (e && e.pointerId) {
-        try { container.releasePointerCapture(e.pointerId); } catch (_) {}
+        try {
+          container.releasePointerCapture(e.pointerId);
+        } catch (_) {}
       }
     }
 
     container.addEventListener('pointerup', stopDrag);
     container.addEventListener('pointercancel', stopDrag);
 
-    // --- WHEEL HORIZONTAL ROTATION ---
-    container.addEventListener('wheel', (e) => {
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-        targetAngle -= e.deltaY * 0.002;
-      }
-    }, { passive: true });
-
-    // --- RAYCASTER FOR CLICKS ---
+    // =========================================================================
+    // CLICK RAYCASTER — OPENS PICTURE 2 PROJECT DETAIL MODAL
+    // =========================================================================
     const raycaster = new THREE.Raycaster();
     const mousePos = new THREE.Vector2();
 
     container.addEventListener('click', (e) => {
-      if (dragDistance > 6) return; // Prevent click on drag
+      // If user was dragging, do not open modal
+      if (dragDistance > 6) return;
 
       const rect = container.getBoundingClientRect();
       mousePos.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
@@ -327,42 +434,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (intersects.length > 0) {
         const clickedCard = intersects[0].object;
-        if (clickedCard.userData && clickedCard.userData.url) {
-          window.open(clickedCard.userData.url, '_blank', 'noopener');
+        if (clickedCard.userData) {
+          // Open Picture 2 Project Detail Modal
+          openProjectModal(clickedCard.userData);
         }
       }
     });
 
-    // --- RENDER LOOP: Lerp Inertia & Cylindrical Projection ---
+    // =========================================================================
+    // RENDER LOOP — Momentum friction & Cylindrical projection
+    // =========================================================================
     function renderJesper3D() {
       requestAnimationFrame(renderJesper3D);
 
-      // Smooth inertia
-      currentAngle += (targetAngle - currentAngle) * 0.06;
+      // Natural drag inertia when released
+      if (!isDragging) {
+        if (Math.abs(velocity) > 0.0001) {
+          currentAngle += velocity;
+          velocity *= 0.94; // Smooth friction
+        } else {
+          velocity = 0;
+        }
+      }
 
-      let closestIndex = 0;
-      let minDistanceToCenter = 9999;
+      // Constrain rotation to keep projects within visible bounds
+      const minAngle = -(projects.length - 1) * spacingAngle + 0.4;
+      const maxAngle = 0.4;
+      if (currentAngle < minAngle) {
+        currentAngle += (minAngle - currentAngle) * 0.1;
+        velocity = 0;
+      } else if (currentAngle > maxAngle) {
+        currentAngle += (maxAngle - currentAngle) * 0.1;
+        velocity = 0;
+      }
 
+      // Position each card along the cylinder curve
       cardMeshes.forEach((mesh, i) => {
-        const angle = (i - 2) * spacingAngle + currentAngle;
+        const angle = i * spacingAngle + currentAngle;
         mesh.position.x = Math.sin(angle) * cylinderRadius;
         mesh.position.z = Math.cos(angle) * cylinderRadius - cylinderRadius;
         mesh.rotation.y = angle;
-
-        const dist = Math.abs(mesh.position.x);
-        if (dist < minDistanceToCenter) {
-          minDistanceToCenter = dist;
-          closestIndex = i;
-        }
       });
-
-      // Update Live Counter and Project Label
-      if (counterEl) {
-        counterEl.textContent = `0${closestIndex + 1} / 0${projects.length}`;
-      }
-      if (hintEl) {
-        hintEl.textContent = `${projects[closestIndex].title} • ${projects[closestIndex].subtitle}`;
-      }
 
       renderer.render(scene, camera);
     }
@@ -371,7 +483,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Resize handler
     window.addEventListener('resize', () => {
       const w = container.clientWidth || window.innerWidth;
-      const h = container.clientHeight || (window.innerHeight * 0.85);
+      const h = container.clientHeight || (window.innerHeight * 0.9);
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);

@@ -562,38 +562,73 @@ textarea::placeholder {
     <!-- =========================================================================
          JESPER LANDBERG SIGNATURE 3D CURVED WEBGL CYLINDER CAROUSEL & GRID FLOOR
          ========================================================================= -->
-    <section id="works" class="jesper_3d_section" style="position: relative; width: 100%; min-height: 85vh; background: #000000; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: 48px 0 32px 0;">
+    <section id="works" class="jesper_3d_section" style="position: relative; width: 100%; height: 92vh; min-height: 640px; background: #000000; overflow: hidden;">
       
-      <!-- Section Top Bar -->
-      <div class="w" style="z-index: 20; position: relative; pointer-events: none;">
-        <div style="display: flex; justify-content: space-between; align-items: flex-end;">
-          <div>
-            <div class="txt-size-xs opacity60 txt-caps" style="letter-spacing: 0.12em; margin-bottom: 8px;">FEATURED WORK</div>
-            <h2 class="title-m" style="margin: 0; color: #ffffff;">Selected Projects</h2>
-          </div>
-          <div style="display: flex; align-items: center; gap: 20px;">
-            <span class="txt-size-xs opacity60 txt-caps hide-mobile-p">
-              <i class="fa-solid fa-arrow-left"></i> Move mouse to rotate &bull; Click to open <i class="fa-solid fa-arrow-right"></i>
-            </span>
-            <span id="jesper-3d-counter" style="font-family: 'Geist Mono', monospace; font-size: 1.15rem; font-weight: 500; color: #ffffff;">01 / 05</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Full-Width 3D WebGL Canvas Viewport -->
+      <!-- Full-Width 3D WebGL Canvas Viewport (Moves only on drag) -->
       <div id="jesper-webgl-container" style="position: absolute; inset: 0; width: 100%; height: 100%; cursor: grab; z-index: 10;">
         <canvas id="jesper-3d-canvas" style="width: 100%; height: 100%; display: block;"></canvas>
       </div>
 
-      <!-- Section Bottom Indicator -->
-      <div class="w" style="z-index: 20; position: relative; pointer-events: none;">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <div class="txt-size-xs opacity60 txt-caps" id="active-project-hint">PaarakhMetric &bull; Gemini Vision OCR</div>
-          <div class="txt-size-xs opacity60 txt-caps">3D Cylindrical Orbit</div>
-        </div>
-      </div>
-
     </section>
+
+    <!-- =========================================================================
+         JESPER LANDBERG PROJECT DETAIL MODAL (PICTURE 2 EXACT MATCH)
+         ========================================================================= -->
+    <div id="jesper-project-modal" class="jesper_modal_backdrop" style="display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); align-items: center; justify-content: center; padding: 24px; opacity: 0; transition: opacity 0.3s ease;">
+      
+      <div class="jesper_modal_panel" style="position: relative; width: 100%; max-width: 1140px; max-height: 88vh; background: #ffffff; color: #171717; border-radius: 24px; overflow-y: auto; padding: clamp(28px, 4vw, 52px); display: flex; flex-direction: column; box-shadow: 0 30px 100px rgba(0,0,0,0.85); transform: translateY(24px) scale(0.97); transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);">
+        
+        <!-- Top-Right Prominent Close Button (X) from Picture 2 -->
+        <button id="jesper-modal-close" aria-label="Close project" style="position: absolute; top: 24px; right: 24px; width: 44px; height: 44px; border-radius: 50%; background: #000000; color: #ffffff; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; line-height: 1; font-weight: 400; transition: transform 0.2s ease; z-index: 20;">
+          ✕
+        </button>
+        
+        <div style="display: flex; flex-direction: row; gap: 40px; align-items: flex-start; flex-wrap: wrap;">
+          
+          <!-- Left Column: Project Copy & Metadata Pills -->
+          <div style="flex: 1 1 340px; min-width: 280px; display: flex; flex-direction: column;">
+            <h2 id="modal-project-title" style="font-size: clamp(2.2rem, 3.6vw, 3.2rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.05; color: #000000; margin: 0 0 18px 0;">
+              Project Title
+            </h2>
+            <p id="modal-project-desc" style="font-size: 0.98rem; line-height: 1.6; color: #444444; margin: 0 0 28px 0;">
+              Project Description
+            </p>
+            
+            <!-- Metadata Pills (Picture 2 Exact Match) -->
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: auto; padding-top: 16px;">
+              <!-- Circular Arrow Button (↗) -->
+              <a id="modal-project-demo-btn" href="#" target="_blank" rel="noopener" style="width: 40px; height: 40px; border-radius: 50%; background: #000000; color: #ffffff; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 18px; font-weight: 500; transition: transform 0.2s ease;" title="Visit Live Site">
+                ↗
+              </a>
+              <span id="modal-pill-tag1" style="display: inline-block; padding: 7px 15px; border-radius: 999px; background: #f0f0f0; font-family: 'Geist Mono', monospace; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #171717;">
+                TAG 1
+              </span>
+              <span id="modal-pill-year" style="display: inline-block; padding: 7px 15px; border-radius: 999px; background: #f0f0f0; font-family: 'Geist Mono', monospace; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #171717;">
+                2026
+              </span>
+              <span id="modal-pill-role" style="display: inline-block; padding: 7px 15px; border-radius: 999px; background: #f0f0f0; font-family: 'Geist Mono', monospace; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #171717;">
+                SHREYAS M.
+              </span>
+              <a id="modal-project-code-btn" href="#" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 6px; padding: 7px 15px; border-radius: 999px; background: #f0f0f0; font-family: 'Geist Mono', monospace; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #171717; text-decoration: none;">
+                <span>Code</span> ↗
+              </a>
+              <span style="font-size: 1.25rem;" title="Featured Project">🏆</span>
+            </div>
+          </div>
+          
+          <!-- Right Column: Project Showcase Image -->
+          <div style="flex: 1 1 480px; min-width: 300px; display: flex; flex-direction: column;">
+            <div style="width: 100%; border-radius: 16px; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 10px 30px rgba(0,0,0,0.08); background: #f4f4f4;">
+              <img id="modal-project-img" src="" alt="Project Showcase" style="width: 100%; height: auto; display: block; object-fit: cover;" />
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
 <section id="credentials" class="templates_section div-hide"><div class="w"><div class="templates_c"><div class="w-layout-grid grid"><div id="w-node-_3b4ca4ea-ef85-c3fd-f0a3-7f5d2af76016-720a94b1" class="templates_head"><h3 data-lottie-text="" class="templates_title-w"><div class="title-m txt-inline">In addition my freelance projects, </div><div class="title-m txt-inline">I’ve earned verified certifications</div><div class="icon_lottie-element"><div class="icon_lottie-bg"></div><div data-lottie-path="https://cdn.prod.website-files.com/677fb4d34764579513f06df6/67cb08eae6670eaa5c24d0b4_647f467411bc73f7a70643da5599d7d4_PF%20-%20Template%20-%20160.json" class="icon_lottie"></div></div><div class="title-m txt-inline">to help anyone</div><div class="icon_lottie-element"><div class="icon_lottie-bg"></div><div data-lottie-path="https://cdn.prod.website-files.com/677fb4d34764579513f06df6/67caef35fdfb85ea3ba62c48_PF%20-%20Earth%20-%20160.json" class="icon_lottie"></div></div><div class="title-m txt-inline">validating real-world engineering skills.</div></h3><div class="templates_btn-w"><a href="https://learn.microsoft.com/en-in/users/shreyasmchanabasannavar-1139/?tab=credentials-tab" target="_blank" rel="noopener" class="button-dark w-inline-block"><div class="button_bg-dark"></div><div class="button_in is-lottie"><div data-is-ix2-target="1" class="button_lottie" data-w-id="3b4ca4ea-ef85-c3fd-f0a3-7f5d2af7602a" data-animation-type="lottie" data-src="https://cdn.prod.website-files.com/677fb4d34764579513f06df6/67d16870bbf30590983b5bac_works.json" data-loop="1" data-direction="1" data-autoplay="0" data-renderer="svg" data-default-duration="0" data-duration="1.25" data-loading="eager"></div><div class="button_labels-wrap"><div class="button_label-relative"><div class="txt-button">verify certs</div></div><div class="button_label-absolute"><div class="txt-button">verify certs</div></div></div></div></a></div></div></div><div class="w-layout-grid grid div-relative"><div class="template_blur-circle-w hide-tablet"><div class="template_blur-circle"></div></div><div id="w-node-_3b4ca4ea-ef85-c3fd-f0a3-7f5d2af76034-720a94b1" class="div-hide"><div class="w-layout-grid grid"><div id="w-node-_3b4ca4ea-ef85-c3fd-f0a3-7f5d2af76036-720a94b1" class="templates_slider-c"><div class="templates_slider-cms w-dyn-list"><div role="list" class="templates_slider-list w-dyn-items"><div data-cursor-arrow="" data-cursor="verify credential" role="listitem" class="template_slide w-dyn-item"><a aria-label="verify credential" href="https://learn.microsoft.com/api/credentials/share/en-in/ShreyasMChanabasannavar-1139/C067896C469AA3CD?sharingId=827D09758FB984BC" target="_blank" rel="noopener" class="template_slide-inner w-inline-block"><img loading="lazy" src="https://cdn.prod.website-files.com/677fb4d34764579513f06e12/67c982fa23d3f8cca92c409f_reve-bg.jpg" alt="" class="img-ab"/><div class="template_slide-content"><p class="tag-template">AI Agents in Foundry</p><p class="tag-template">Microsoft Applied Skills</p></div><div class="template_slide-ui-w"><div class="template_slide-ui-c"><img loading="lazy" src="cert_ms_foundry.png" alt="AI Agents in Foundry" class="img-ab" style="object-fit: contain; width: 100%; height: 100%; background: #0c0c0c;"/></div></div><div class="template_slide-border"></div></a></div><div data-cursor-arrow="" data-cursor="verify credential" role="listitem" class="template_slide w-dyn-item"><a aria-label="verify credential" href="https://www.credly.com/badges/85b27e9e-5e90-4e62-aad6-b798f914b084" target="_blank" rel="noopener" class="template_slide-inner w-inline-block"><img loading="lazy" src="https://cdn.prod.website-files.com/677fb4d34764579513f06e12/67cac838f32634f6a19e5966_wisdom-bg.jpg" alt="" class="img-ab"/><div class="template_slide-content"><p class="tag-template">AI Fundamentals</p><p class="tag-template">IBM Credentials &bull; Credly</p></div><div class="template_slide-ui-w"><div class="template_slide-ui-c"><img loading="lazy" src="cert_ai_fundamentals.png" alt="AI Fundamentals" class="img-ab" style="object-fit: contain; width: 100%; height: 100%; background: #0c0c0c;"/></div></div><div class="template_slide-border"></div></a></div><div data-cursor-arrow="" data-cursor="verify credential" role="listitem" class="template_slide w-dyn-item"><a aria-label="verify credential" href="https://www.credly.com/badges/9bfa24df-ea5f-4a00-ba57-7f559af8af3b" target="_blank" rel="noopener" class="template_slide-inner w-inline-block"><img loading="lazy" src="https://cdn.prod.website-files.com/677fb4d34764579513f06e12/67cac863ee9f3810f5e1f0e2_gazette-bg.jpg" alt="" class="img-ab"/><div class="template_slide-content"><p class="tag-template">Cloud Storage & Protection</p><p class="tag-template">IBM Credentials &bull; Credly</p></div><div class="template_slide-ui-w"><div class="template_slide-ui-c"><img loading="lazy" src="cert_cloud_storage.png" alt="Cloud Storage & Protection" class="img-ab" style="object-fit: contain; width: 100%; height: 100%; background: #0c0c0c;"/></div></div><div class="template_slide-border"></div></a></div><div data-cursor-arrow="" data-cursor="verify credential" role="listitem" class="template_slide w-dyn-item"><a aria-label="verify credential" href="https://www.credly.com/badges/cfd123c0-c122-43c9-ab11-97f17436ab32" target="_blank" rel="noopener" class="template_slide-inner w-inline-block"><img loading="lazy" src="https://cdn.prod.website-files.com/677fb4d34764579513f06e12/67cac882479f64e2ce22987a_m-m-bg.jpg" alt="" class="img-ab"/><div class="template_slide-content"><p class="tag-template">Web Development</p><p class="tag-template">IBM Credentials &bull; Credly</p></div><div class="template_slide-ui-w"><div class="template_slide-ui-c"><img loading="lazy" src="cert_web_dev.png" alt="Web Development" class="img-ab" style="object-fit: contain; width: 100%; height: 100%; background: #0c0c0c;"/></div></div><div class="template_slide-border"></div></a></div><div data-cursor-arrow="" data-cursor="verify credential" role="listitem" class="template_slide w-dyn-item"><a aria-label="verify credential" href="https://drive.google.com/file/d/1Gz4ggFlL2K6OK22sZwgJqh_rwuY8VEj0/view?usp=sharing" target="_blank" rel="noopener" class="template_slide-inner w-inline-block"><img loading="lazy" src="https://cdn.prod.website-files.com/677fb4d34764579513f06e12/67cac8b056158229b4db9233_henry-bg.jpg" alt="" class="img-ab"/><div class="template_slide-content"><p class="tag-template">Open Source & Git Dev</p><p class="tag-template">WeMakeDevs Community</p></div><div class="template_slide-ui-w"><div class="template_slide-ui-c"><img loading="lazy" src="cert_wemakedevs.png" alt="Open Source & Git Dev" class="img-ab" style="object-fit: contain; width: 100%; height: 100%; background: #0c0c0c;"/></div></div><div class="template_slide-border"></div></a></div><div data-cursor-arrow="" data-cursor="verify credential" role="listitem" class="template_slide w-dyn-item"><a aria-label="verify credential" href="https://drive.google.com/file/d/1KwQ5wptmdBypAz-o7gh3lw1CU7lxUblg/view?usp=sharing" target="_blank" rel="noopener" class="template_slide-inner w-inline-block"><img loading="lazy" src="https://cdn.prod.website-files.com/677fb4d34764579513f06e12/67cac8ce0d4754219ff328b4_lora-bg.jpg" alt="" class="img-ab"/><div class="template_slide-content"><p class="tag-template">Technical Certification</p><p class="tag-template">Verified Credential</p></div><div class="template_slide-ui-w"><div class="template_slide-ui-c"><img loading="lazy" src="cert_page_1.png" alt="Technical Certification" class="img-ab" style="object-fit: contain; width: 100%; height: 100%; background: #0c0c0c;"/></div></div><div class="template_slide-border"></div></a></div><div data-cursor-arrow="" data-cursor="verify credential" role="listitem" class="template_slide w-dyn-item"><a aria-label="verify credential" href="https://drive.google.com/file/d/1IdgPVfXubcHr1QNJDVkUwAxWJUd_DkNm/view?usp=sharing" target="_blank" rel="noopener" class="template_slide-inner w-inline-block"><img loading="lazy" src="https://cdn.prod.website-files.com/677fb4d34764579513f06e12/67c982fa23d3f8cca92c409f_reve-bg.jpg" alt="" class="img-ab"/><div class="template_slide-content"><p class="tag-template">Advanced Achievement</p><p class="tag-template">Verified Credential</p></div><div class="template_slide-ui-w"><div class="template_slide-ui-c"><img loading="lazy" src="cert_page_2.png" alt="Advanced Achievement" class="img-ab" style="object-fit: contain; width: 100%; height: 100%; background: #0c0c0c;"/></div></div><div class="template_slide-border"></div></a></div><div data-cursor-arrow="" data-cursor="verify credential" role="listitem" class="template_slide w-dyn-item"><a aria-label="verify credential" href="https://learn.microsoft.com/en-in/users/shreyasmchanabasannavar-1139/?tab=credentials-tab" target="_blank" rel="noopener" class="template_slide-inner w-inline-block"><img loading="lazy" src="https://cdn.prod.website-files.com/677fb4d34764579513f06e12/67cac838f32634f6a19e5966_wisdom-bg.jpg" alt="" class="img-ab"/><div class="template_slide-content"><p class="tag-template">Microsoft Achievements</p><p class="tag-template">Microsoft Learn Transcript</p></div><div class="template_slide-ui-w"><div class="template_slide-ui-c"><img loading="lazy" src="cert_ms_achieve_1.png" alt="Microsoft Achievements" class="img-ab" style="object-fit: contain; width: 100%; height: 100%; background: #0c0c0c;"/></div></div><div class="template_slide-border"></div></a></div></div></div><img data-w-id="3b4ca4ea-ef85-c3fd-f0a3-7f5d2af76048" sizes="(max-width: 991px) 79px, 8vw" alt="" src="https://cdn.prod.website-files.com/677fb4d34764579513f06df6/67e696fda0210123bfd9535e_583204861acd2e02df559bb18678062e_circle.png" loading="lazy" srcset="https://cdn.prod.website-files.com/677fb4d34764579513f06df6/67e696fda0210123bfd9535e_583204861acd2e02df559bb18678062e_circle-p-500.png 500w, https://cdn.prod.website-files.com/677fb4d34764579513f06df6/67e696fda0210123bfd9535e_583204861acd2e02df559bb18678062e_circle.png 1200w" class="template_blur-img"/><div class="templates_slider-nav"><a aria-label="previous template" href="#" class="template_slider-arrow-prev w-inline-block"><div class="div-relative"><div class="slider-arrow-icon"><div class="icon_embed24 w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M12.8839 8.86978C12.3957 8.38162 11.6043 8.38162 11.1161 8.86978L6.29289 13.693C5.90237 14.0835 5.90237 14.7167 6.29289 15.1072C6.68342 15.4977 7.31658 15.4977 7.70711 15.1072L12 10.8143L16.2929 15.1072C16.6834 15.4977 17.3166 15.4977 17.7071 15.1072C18.0976 14.7167 18.0976 14.0835 17.7071 13.693L12.8839 8.86978Z" fill="#FAFAFA"/>
 </svg></div></div><div data-w-id="3b4ca4ea-ef85-c3fd-f0a3-7f5d2af7604e" class="slider-arrow-icon-ab"><div class="icon_embed24 w-embed"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
