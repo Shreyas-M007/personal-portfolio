@@ -1,1058 +1,545 @@
+
 /* ==========================================================================
-   SHREYAS M. CHANABASANNAVAR — V5.0
-   Authentic Eliot Besson Editorial Architecture + Jesper Landberg Slider
-   Zero bloat. Pure, award-winning creative craft.
+   SHREYAS M. — ELIOT BESSON EXACT ADAPTATION REFINEMENTS
    ========================================================================== */
 
-/* --------------------------------------------------------------------------
-   1. Design System & Variables
-   -------------------------------------------------------------------------- */
-:root {
-  --bg: #000000;
-  --bg-surface: #0a0a0a;
-  --bg-card: #111111;
-  --bg-card-hover: #161616;
-
-  --border: rgba(255, 255, 255, 0.1);
-  --border-subtle: rgba(255, 255, 255, 0.06);
-  --border-focus: rgba(255, 255, 255, 0.28);
-
-  --text-primary: #ffffff;
-  --text-secondary: #a1a1aa;
-  --text-muted: #71717a;
-  --text-dark: #18181b;
-
-  --accent-green: #22c55e;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'Geist Mono', 'Fira Code', monospace;
-
-  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-}
-
-/* --------------------------------------------------------------------------
-   2. Base & Reset
-   -------------------------------------------------------------------------- */
-*, *::before, *::after {
-  box-sizing: border-box;
+body {
+  background-color: #090909;
+  color: #ffffff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   margin: 0;
   padding: 0;
-}
-
-html {
-  font-size: 16px;
-  background-color: var(--bg);
-  color: var(--text-primary);
-  color-scheme: dark;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  font-family: var(--font-sans);
-  background-color: var(--bg);
-  color: var(--text-primary);
-  line-height: 1.5;
-  overflow-x: hidden;
-  position: relative;
-}
-
-::selection {
-  background: #ffffff;
-  color: #000000;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button {
-  font-family: inherit;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: inherit;
-}
-
-/* --------------------------------------------------------------------------
-   3. Authentic Film Noise Overlay
-   -------------------------------------------------------------------------- */
-.noise-overlay {
+.section_noise.is-fixed {
   position: fixed;
   inset: 0;
   width: 100vw;
   height: 100vh;
+  opacity: 0.035;
   pointer-events: none;
   z-index: 999;
-  opacity: 0.035;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-/* --------------------------------------------------------------------------
-   4. Minimalist Cursor Tracker
-   -------------------------------------------------------------------------- */
-.cursor-tracker {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 1000;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.2s ease;
-}
-
-.cursor-inner {
-  width: 8px;
-  height: 8px;
-  background: #ffffff;
-  border-radius: 50%;
-  transition: width 0.25s var(--ease-expo), height 0.25s var(--ease-expo), background-color 0.25s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cursor-text {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 600;
-  color: #000000;
-  letter-spacing: 0.08em;
-  opacity: 0;
-  text-transform: uppercase;
-}
-
-body.cursor-drag-mode .cursor-inner {
-  width: 70px;
-  height: 70px;
-  background: #ffffff;
-}
-
-body.cursor-drag-mode .cursor-text {
-  opacity: 1;
-}
-
-@media (pointer: coarse) {
-  .cursor-tracker {
-    display: none !important;
-  }
-}
-
-/* --------------------------------------------------------------------------
-   5. Site Header (Eliot Besson Clean Minimal Navbar)
-   -------------------------------------------------------------------------- */
-.site-header {
+/* Nav */
+.nav_component {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 100;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(9, 9, 9, 0.75);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.header-inner {
+.is-nav {
   max-width: 1400px;
   margin: 0 auto;
-  height: 68px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: 0 32px;
 }
 
-.brand-logo {
-  font-size: 1.05rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--text-primary);
+.nav_wrapper {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.header-nav {
+.nav_brand {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav_menu {
   display: flex;
   align-items: center;
   gap: 32px;
 }
 
-.nav-link {
+.nav_link {
   font-size: 0.88rem;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
   transition: color 0.2s ease;
 }
 
-.nav-link:hover {
-  color: var(--text-primary);
+.nav_link:hover {
+  color: #ffffff;
 }
 
-.header-actions {
+.nav_actions {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
 }
 
-.status-indicator {
+.status_pill {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-muted);
 }
 
-.pulse-point {
+.status_dot {
   width: 6px;
   height: 6px;
-  background: var(--accent-green);
+  background: #22c55e;
   border-radius: 50%;
   box-shadow: 0 0 8px rgba(34, 197, 94, 0.8);
 }
 
-.btn-talk {
-  font-size: 0.82rem;
-  font-weight: 500;
+.button_in.is-nav {
   padding: 8px 18px;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 999px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
   transition: all 0.2s ease;
-  background: rgba(255, 255, 255, 0.04);
 }
 
-.btn-talk:hover {
+.button_in.is-nav:hover {
   background: #ffffff;
   color: #000000;
 }
 
-/* --------------------------------------------------------------------------
-   6. Hero Section (Eliot Besson Editorial Scale)
-   -------------------------------------------------------------------------- */
-.hero-section {
-  min-height: 85vh;
-  display: flex;
-  align-items: center;
-  padding: 140px 32px 80px 32px;
+/* Hero Section */
+.h-hero_section {
+  padding-top: 140px;
+  padding-bottom: 80px;
+}
+
+.is-h-hero {
   max-width: 1400px;
   margin: 0 auto;
+  padding: 0 32px;
 }
 
-.hero-content {
-  max-width: 1080px;
+.h-hero_header {
+  margin-bottom: 80px;
 }
 
-.hero-meta-bar {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 32px;
+.margin-bottom-s {
+  margin-bottom: 16px;
 }
 
-.mono-badge {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  letter-spacing: 0.06em;
-  padding: 4px 12px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border-subtle);
-  border-radius: 999px;
-}
-
-.hero-title {
+.title-l_h-hero {
   font-size: clamp(2.8rem, 6.8vw, 5.8rem);
   font-weight: 600;
-  line-height: 1.04;
-  letter-spacing: -0.045em;
-  color: var(--text-primary);
-  margin-bottom: 28px;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  margin-bottom: 24px;
 }
 
-.hero-lead {
-  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
-  color: var(--text-secondary);
+.h-hero_subtitle-wrap {
   max-width: 760px;
+}
+
+.txt-color-light-60o {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
   line-height: 1.55;
   letter-spacing: -0.015em;
-  margin-bottom: 44px;
 }
 
-.hero-cta-group {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
+/* Works Grid */
+.h-hero_work-divider {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 24px;
+  margin-bottom: 40px;
 }
 
-.hero-primary-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 28px;
-  background: #ffffff;
-  color: #000000;
-  font-weight: 500;
-  font-size: 0.92rem;
-  border-radius: 999px;
-  transition: transform 0.2s var(--ease-expo), background-color 0.2s ease;
-}
-
-.hero-primary-btn:hover {
-  transform: translateY(-2px);
-  background: #eaeaea;
-}
-
-.hero-secondary-btn {
-  display: inline-flex;
-  align-items: center;
-  padding: 14px 24px;
-  background: transparent;
-  color: var(--text-primary);
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  transition: all 0.2s ease;
-}
-
-.hero-secondary-btn:hover {
-  border-color: var(--border-focus);
-  background: rgba(255, 255, 255, 0.05);
-}
-
-/* --------------------------------------------------------------------------
-   7. Intersection Section (Eliot Besson Pill Feature)
-   -------------------------------------------------------------------------- */
-.intersection-section {
-  padding: 60px 32px 100px 32px;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.section-label-center {
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-  letter-spacing: 0.12em;
-  color: var(--text-muted);
-  text-align: center;
-  margin-bottom: 32px;
-}
-
-.pills-container {
+.h-hero_works-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
 }
 
-.intersect-pill {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: 20px;
-  padding: 32px 28px;
+.h-hero_work {
+  width: 100%;
+}
+
+.work_card {
+  background: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
   display: flex;
   flex-direction: column;
-  transition: border-color 0.3s ease, transform 0.3s var(--ease-expo);
 }
 
-.intersect-pill:hover {
-  border-color: var(--border);
-  transform: translateY(-4px);
+.work_card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
-.pill-number {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin-bottom: 20px;
-}
-
-.pill-title {
-  font-size: 1.35rem;
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  color: var(--text-primary);
-  margin-bottom: 8px;
-}
-
-.pill-sub {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--text-secondary);
-}
-
-/* --------------------------------------------------------------------------
-   8. JESPER LANDBERG SIGNATURE HORIZONTAL SLIDER
-   -------------------------------------------------------------------------- */
-.jesper-projects-section {
-  padding: 100px 0;
-  overflow: hidden;
-  position: relative;
-}
-
-.jesper-section-header {
-  max-width: 1400px;
-  margin: 0 auto 36px auto;
-  padding: 0 32px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-}
-
-.sec-tag {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  color: var(--text-muted);
-  display: block;
-  margin-bottom: 8px;
-}
-
-.sec-title {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 600;
-  letter-spacing: -0.04em;
-  color: var(--text-primary);
-}
-
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.drag-instruction {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.mono-counter {
-  font-family: var(--font-mono);
-  font-size: 1rem;
-  color: var(--text-primary);
-}
-
-/* Viewport & Track */
-.jesper-slider-viewport {
+.work_card-img-w {
   width: 100%;
-  cursor: grab;
-  user-select: none;
-  -webkit-user-select: none;
-  overflow: hidden;
-  padding: 10px 0 40px 0;
-}
-
-.jesper-slider-viewport.is-dragging {
-  cursor: grabbing;
-}
-
-.jesper-track {
-  display: flex;
-  gap: 32px;
-  padding-left: max(32px, calc((100vw - 1400px) / 2));
-  padding-right: 80px;
-  will-change: transform;
-  transform: translate3d(0, 0, 0);
-}
-
-/* Individual Card (Jesper Landberg aspect ratio & aesthetics) */
-.jesper-card {
-  flex: 0 0 auto;
-  height: clamp(320px, 46svh, 540px);
   aspect-ratio: 16 / 10;
-  border-radius: 20px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  position: relative;
   overflow: hidden;
-  cursor: pointer;
-  transition: border-color 0.3s ease;
+  background: #000000;
 }
 
-.jesper-card:hover {
-  border-color: var(--border-focus);
-}
-
-.card-media-wrapper {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-  background: #0d0d0d;
-}
-
-.card-img {
+.work_card-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top;
-  pointer-events: none;
-  transition: transform 0.6s var(--ease-expo);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.jesper-card:hover .card-img {
+.work_card:hover .work_card-img {
   transform: scale(1.04);
 }
 
-.card-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.25s ease;
-}
-
-.jesper-card:hover .card-overlay {
-  opacity: 1;
-}
-
-.open-label {
-  padding: 8px 18px;
-  background: #ffffff;
-  color: #000000;
-  font-weight: 500;
-  font-size: 0.82rem;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transform: translateY(6px);
-  transition: transform 0.25s var(--ease-expo);
-}
-
-.jesper-card:hover .open-label {
-  transform: translateY(0);
-}
-
-/* Bottom Card Info Overlay */
-.card-footer-info {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 24px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.3) 60%, transparent 100%);
+.work_card-infos {
+  padding: 24px 28px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  pointer-events: none;
+  flex-grow: 1;
 }
 
-.project-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  color: #ffffff;
+.work_card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
 }
 
-.project-meta {
-  font-family: var(--font-mono);
+.work_label-hover {
+  font-family: 'Geist Mono', monospace;
   font-size: 0.75rem;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.5);
 }
 
-/* --------------------------------------------------------------------------
-   9. About Section (Eliot Besson Statement Layout)
-   -------------------------------------------------------------------------- */
-.about-editorial-section {
-  padding: 140px 32px;
+.work_desc_txt {
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.6;
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+
+.work_card-links {
+  display: flex;
+  gap: 12px;
+}
+
+.work_link_btn {
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #000000;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.work_link_btn:hover {
+  background: #e2e2e2;
+}
+
+.work_link_btn.secondary {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.work_link_btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Intersection Pills (Eliot Besson) */
+.h-intro_section {
+  padding: 80px 0 120px 0;
+}
+
+.title-m {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  margin-bottom: 48px;
+}
+
+.circles_scroll-c {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
   max-width: 1400px;
   margin: 0 auto;
+  padding: 0 32px;
 }
 
-.about-giant-text {
-  font-size: clamp(2rem, 4.5vw, 3.8rem);
+.circle_scroll {
+  background: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 40px 32px;
+  transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.circle_scroll:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  transform: translateY(-4px);
+}
+
+.circle_num {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 20px;
+}
+
+.font-bold {
+  font-size: 1.35rem;
   font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.04em;
-  color: var(--text-primary);
-  margin-top: 16px;
-  margin-bottom: 64px;
-  max-width: 1100px;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
 }
 
-.about-grid-content {
+/* About Section */
+.h-about_section {
+  padding: 100px 0;
+}
+
+.about_details_grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.2fr 1fr;
   gap: 60px;
+  margin-top: 60px;
 }
 
-.about-col p {
+.about_col p {
   font-size: 1.05rem;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.65);
   line-height: 1.7;
   letter-spacing: -0.01em;
   margin-bottom: 24px;
 }
 
-.about-col strong {
-  color: var(--text-primary);
-  font-weight: 500;
+.about_col strong {
+  color: #ffffff;
 }
 
-.meta-stats-list {
-  display: flex;
-  gap: 40px;
+.stats_grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   padding-top: 24px;
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.stat-number {
-  display: block;
-  font-size: 2.2rem;
+.stat_num {
+  font-size: 2.4rem;
   font-weight: 700;
   letter-spacing: -0.04em;
-  color: var(--text-primary);
+  color: #ffffff;
 }
 
-.stat-caption {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
+/* Timeline */
+.section {
+  padding: 80px 0;
 }
 
-/* --------------------------------------------------------------------------
-   10. Academic Timeline (Eliot Besson Structured List)
-   -------------------------------------------------------------------------- */
-.timeline-list-section {
-  padding: 100px 32px;
+.w {
   max-width: 1400px;
   margin: 0 auto;
+  padding: 0 32px;
 }
 
-.section-top-bar {
-  margin-bottom: 48px;
+.h-work_head {
+  margin-bottom: 40px;
 }
 
-.editorial-list {
+.timeline_list {
   display: flex;
   flex-direction: column;
 }
 
-.editorial-row {
+.timeline_item {
   display: grid;
   grid-template-columns: 180px 1fr 120px;
   gap: 32px;
   padding: 36px 0;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   align-items: baseline;
-  transition: background-color 0.2s ease;
 }
 
-.editorial-row:first-child {
-  border-top: 1px solid var(--border-subtle);
+.timeline_item:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.row-period {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-
-.row-title {
-  font-size: 1.35rem;
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  color: var(--text-primary);
-  margin-bottom: 4px;
-}
-
-.row-subtitle {
-  font-size: 0.92rem;
-  color: var(--text-secondary);
-  margin-bottom: 8px;
-}
-
-.row-detail {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-}
-
-.row-badge {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
+.timeline_tag {
+  font-family: 'Geist Mono', monospace;
   text-align: right;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.5);
 }
 
-.editorial-row.current .row-badge {
-  color: var(--accent-green);
+.timeline_item.current .timeline_tag {
+  color: #22c55e;
   font-weight: 600;
 }
 
-/* --------------------------------------------------------------------------
-   11. Verified Credentials Section
-   -------------------------------------------------------------------------- */
-.credentials-section {
-  padding: 100px 32px;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.credentials-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-
-.credential-card {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: 20px;
-  padding: 36px;
+/* Credentials */
+.credentials_wrapper {
   display: flex;
-  gap: 24px;
-  transition: border-color 0.3s ease, transform 0.3s var(--ease-expo);
+  flex-direction: column;
 }
 
-.credential-card:hover {
-  border-color: var(--border);
-  transform: translateY(-3px);
+.credential_item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 28px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
 }
 
-.card-icon-tag {
-  font-size: 2rem;
-  color: var(--text-primary);
-  width: 48px;
-  height: 48px;
-  flex-shrink: 0;
+.credential_item:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.card-body .issuer {
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-  color: var(--text-muted);
-  display: block;
-  margin-bottom: 6px;
-}
-
-.card-body .title {
+.credential_title {
   font-size: 1.25rem;
   font-weight: 600;
   letter-spacing: -0.03em;
-  color: var(--text-primary);
-  margin-bottom: 10px;
+  color: #ffffff;
+  margin-bottom: 4px;
 }
 
-.card-body .description {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 20px;
+.credential_meta {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.55);
 }
 
-.verify-action {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--text-primary);
-  padding: 6px 14px;
-  border: 1px solid var(--border);
+.credential_btn {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.78rem;
+  padding: 8px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 999px;
+  color: #ffffff;
+  text-decoration: none;
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
-.verify-action:hover {
+.credential_btn:hover {
   background: #ffffff;
   color: #000000;
 }
 
-/* --------------------------------------------------------------------------
-   12. Footer Callout (Eliot Besson Authentic Footer)
-   -------------------------------------------------------------------------- */
-.footer-callout-section {
-  padding: 140px 32px 60px 32px;
+/* Footer (Eliot Besson Light Bottom Banner) */
+.footer {
+  margin-top: 120px;
+  background: #ffffff;
+  color: #000000;
+  border-radius: 36px 36px 0 0;
+  padding: 120px 0 40px 0;
+  overflow: hidden;
+}
+
+.footer_top {
   max-width: 1400px;
   margin: 0 auto;
+  padding: 0 32px 100px 32px;
 }
 
-.callout-block {
-  margin: 24px 0 100px 0;
+.footer_callout {
+  text-decoration: none;
+  display: block;
 }
 
-.callout-prefix {
-  font-size: clamp(1.2rem, 2vw, 1.6rem);
-  color: var(--text-muted);
-  letter-spacing: -0.02em;
-  margin-bottom: 12px;
-}
-
-.callout-headline {
-  font-size: clamp(2.6rem, 6.5vw, 5.5rem);
+.footer_callout-txt {
+  font-size: clamp(2.4rem, 6vw, 5.2rem);
   font-weight: 600;
-  line-height: 1.05;
   letter-spacing: -0.04em;
-  color: var(--text-primary);
-  display: inline-flex;
-  align-items: center;
-  gap: 20px;
-  transition: transform 0.3s var(--ease-expo), color 0.3s ease;
+  color: #000000;
+  line-height: 1.05;
 }
 
-.callout-headline:hover {
-  color: var(--text-secondary);
-  transform: translateX(8px);
+.footer_callout-hover-w {
+  display: flex;
+  align-items: baseline;
 }
 
-.footer-bottom-bar {
+.footer_bottom {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 32px;
+}
+
+.footer_btm-w {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 32px;
-  border-top: 1px solid var(--border-subtle);
   flex-wrap: wrap;
   gap: 20px;
 }
 
-.bottom-left {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-
-.location-tag {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-}
-
-.bottom-socials {
+.footer_links {
   display: flex;
   gap: 24px;
 }
 
-.social-link {
+.footer_link {
   font-size: 0.88rem;
-  color: var(--text-secondary);
-  transition: color 0.2s ease;
-}
-
-.social-link:hover {
-  color: var(--text-primary);
-}
-
-/* --------------------------------------------------------------------------
-   13. Eliot Besson Project Modal Drawer
-   -------------------------------------------------------------------------- */
-.project-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 1200;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.project-modal.is-open {
-  pointer-events: auto;
-  opacity: 1;
-}
-
-.modal-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(10px);
-}
-
-.modal-sheet {
-  position: relative;
-  width: 100%;
-  max-width: 900px;
-  max-height: 90vh;
-  background: #111111;
-  border: 1px solid var(--border);
-  border-bottom: none;
-  border-radius: 28px 28px 0 0;
-  padding: 40px;
-  overflow-y: auto;
-  transform: translateY(100%);
-  transition: transform 0.4s var(--ease-expo);
-}
-
-.project-modal.is-open .modal-sheet {
-  transform: translateY(0);
-}
-
-.modal-close-btn {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  color: var(--text-primary);
-  transition: background 0.2s ease;
-}
-
-.modal-close-btn:hover {
-  background: #ffffff;
   color: #000000;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
 }
 
-/* Injected Modal Content */
-.modal-project-header {
-  margin-bottom: 24px;
+.footer_link:hover {
+  opacity: 0.6;
 }
 
-.modal-project-tags {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 12px;
-}
-
-.modal-tag {
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-  padding: 4px 10px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 6px;
-  color: var(--text-secondary);
-}
-
-.modal-project-title {
-  font-size: 2.2rem;
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  margin-bottom: 12px;
-}
-
-.modal-project-desc {
-  font-size: 1.05rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 28px;
-}
-
-.modal-media-wrap {
-  width: 100%;
-  border-radius: 16px;
-  overflow: hidden;
-  margin-bottom: 28px;
-  border: 1px solid var(--border-subtle);
-}
-
-.modal-media-wrap img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.modal-actions {
-  display: flex;
-  gap: 16px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border-subtle);
-}
-
-.modal-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 24px;
-  border-radius: 999px;
-  font-size: 0.88rem;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.modal-btn.primary {
-  background: #ffffff;
-  color: #000000;
-}
-
-.modal-btn.primary:hover {
-  background: #e2e2e2;
-}
-
-.modal-btn.secondary {
-  border: 1px solid var(--border);
-  color: var(--text-primary);
-}
-
-.modal-btn.secondary:hover {
-  background: rgba(255, 255, 255, 0.08);
-}
-
-/* --------------------------------------------------------------------------
-   14. Responsive Layout
-   -------------------------------------------------------------------------- */
+/* Media Queries */
 @media (max-width: 1024px) {
-  .pills-container {
+  .h-hero_works-grid {
     grid-template-columns: 1fr;
   }
-  .about-grid-content {
+  .circles_scroll-c {
     grid-template-columns: 1fr;
-    gap: 32px;
   }
-  .editorial-row {
-    grid-template-columns: 120px 1fr;
+  .about_details_grid {
+    grid-template-columns: 1fr;
   }
-  .row-badge {
+  .timeline_item {
+    grid-template-columns: 140px 1fr;
+  }
+  .timeline_tag {
     display: none;
-  }
-  .credentials-grid {
-    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 768px) {
-  .header-inner {
-    padding: 0 20px;
-  }
-  .header-nav {
+  .nav_menu {
     display: none;
   }
-  .hero-section {
-    padding: 120px 20px 60px 20px;
-  }
-  .intersection-section,
-  .about-editorial-section,
-  .timeline-list-section,
-  .credentials-section,
-  .footer-callout-section {
+  .is-nav, .is-h-hero, .w, .footer_top {
     padding-left: 20px;
     padding-right: 20px;
   }
-  .jesper-section-header {
-    padding: 0 20px;
+  .h-hero_section {
+    padding-top: 110px;
   }
-  .drag-instruction {
-    display: none;
-  }
-  .jesper-card {
-    height: 38svh;
-  }
-  .editorial-row {
+  .timeline_item {
     grid-template-columns: 1fr;
     gap: 8px;
   }
-  .credential-card {
+  .credential_item {
     flex-direction: column;
-    padding: 24px;
-  }
-  .modal-sheet {
-    padding: 28px 20px;
+    align-items: flex-start;
   }
 }

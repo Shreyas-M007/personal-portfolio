@@ -1,238 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Shreyas M. — AIML Engineer &amp; Developer</title>
-  
-  <meta name="description" content="Personal portfolio of Shreyas M. Chanabasannavar — Sophomore AIML Engineer at B.M.S. College of Engineering (9.825 CGPA).">
-  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Portfolio of Shreyas M. Chanabasannavar — Sophomore AIML Engineer at B.M.S. College of Engineering (9.825 CGPA). Building high-performance AI, computer vision, and modern web applications.">
+  <meta name="theme-color" content="#090909">
 
-  <!-- Inter & Geist Mono Typography -->
+  <!-- Eliot Besson Font Assets & Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
-  <!-- Lenis Smooth Scroll -->
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.min.js"></script>
 
-  <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=5.0">
+  <!-- Lenis Smooth Scroll CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.css">
+
+  <!-- Core Stylesheet (Exact Eliot Besson CSS) -->
+  <link rel="stylesheet" href="styles.css?v=6.0">
 </head>
-<body class="bg-black text-white">
+<body class="body">
 
-  <!-- Authentic Film Noise Texture (Eliot Besson / Studio Standard) -->
-  <div class="noise-overlay" aria-hidden="true"></div>
+  <!-- Authentic Film Noise Overlay -->
+  <div class="section_noise is-fixed">
+    <div class="noise_embed"></div>
+  </div>
 
-  <!-- Minimal Custom Cursor -->
-  <div id="cursor-tracker" class="cursor-tracker" aria-hidden="true">
-    <div class="cursor-inner">
-      <span class="cursor-text"></span>
+  <!-- Custom Cursor Tracker (Eliot Besson Style) -->
+  <div class="cursor-c" id="custom-cursor" aria-hidden="true">
+    <div class="cursor-w">
+      <div class="cursor">
+        <span class="cursor-txt" id="cursor-text"></span>
+      </div>
     </div>
   </div>
 
-  <!-- Header Navigation (Eliot Besson Clean Minimal Navbar) -->
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="#hero" class="brand-logo">Shreyas M.</a>
+  <!-- Top Navigation (Eliot Besson Exact Structure) -->
+  <div class="nav_component">
+    <div class="w is-nav">
+      <div class="nav_wrapper">
+        <a href="#hero" class="nav_brand w-inline-block">
+          <div class="txt-size-s txt-caps">Shreyas M.</div>
+        </a>
 
-      <nav class="header-nav">
-        <a href="#projects" class="nav-link">Works</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#timeline" class="nav-link">Education</a>
-        <a href="#credentials" class="nav-link">Credentials</a>
-      </nav>
+        <nav class="nav_menu">
+          <a href="#works" class="nav_link">Works</a>
+          <a href="#about" class="nav_link">About</a>
+          <a href="#education" class="nav_link">Education</a>
+          <a href="#credentials" class="nav_link">Credentials</a>
+        </nav>
 
-      <div class="header-actions">
-        <span class="status-indicator">
-          <span class="pulse-point"></span>
-          <span class="status-label">Available for work</span>
-        </span>
-        <a href="#contact" class="btn-talk">Get in touch</a>
+        <div class="nav_actions">
+          <div class="status_pill hide-mobile-p">
+            <span class="status_dot"></span>
+            <span class="txt-size-xs txt-caps opacity60">Available for work</span>
+          </div>
+          <a href="mailto:shreyasm1200@gmail.com" class="button_in is-nav w-inline-block">
+            <div class="txt-size-xs txt-caps">Get in touch</div>
+          </a>
+        </div>
       </div>
     </div>
-  </header>
+  </div>
 
-  <main id="main-content">
+  <main class="main">
 
-    <!-- HERO SECTION (Eliot Besson Bold Editorial Hero) -->
-    <section id="hero" class="hero-section">
-      <div class="hero-content">
-        <div class="hero-meta-bar">
-          <span class="mono-badge">AIML &bull; B.M.S. COLLEGE OF ENGINEERING</span>
-          <span class="mono-badge">9.825 CGPA</span>
-          <span class="mono-badge">BENGALURU, INDIA</span>
-        </div>
-
-        <h1 class="hero-title">
-          Crafting Intelligent &amp;<br>
-          Memorable Software.
-        </h1>
-
-        <p class="hero-lead">
-          I am a sophomore Artificial Intelligence &amp; Machine Learning engineer building predictive neural models, computer vision systems, and high-performance interactive interfaces.
-        </p>
-
-        <div class="hero-cta-group">
-          <a href="#projects" class="hero-primary-btn">
-            <span>Explore Works</span>
-            <i class="fa-solid fa-arrow-down"></i>
-          </a>
-          <a href="mailto:shreyasm1200@gmail.com" class="hero-secondary-btn">
-            <span>shreyasm1200@gmail.com</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- INTRO PILL SECTION (Eliot Besson Intersection Feature) -->
-    <section class="intersection-section">
-      <div class="section-label-center">I BUILD SOFTWARE AT THE INTERSECTION OF :</div>
-      <div class="pills-container">
-        <div class="intersect-pill">
-          <span class="pill-number">01</span>
-          <span class="pill-title">Artificial Intelligence</span>
-          <span class="pill-sub">Deep Learning &bull; Vision &bull; LLM</span>
-        </div>
-        <div class="intersect-pill">
-          <span class="pill-number">02</span>
-          <span class="pill-title">Scalable Architecture</span>
-          <span class="pill-sub">TypeScript &bull; React &bull; Node</span>
-        </div>
-        <div class="intersect-pill">
-          <span class="pill-number">03</span>
-          <span class="pill-title">Engineered Motion</span>
-          <span class="pill-sub">Physics &bull; Performance &bull; Craft</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- JESPER LANDBERG SIGNATURE HORIZONTAL PROJECTS SLIDER -->
-    <section id="projects" class="jesper-projects-section">
-      <div class="jesper-section-header">
-        <div class="header-left">
-          <span class="sec-tag">FEATURED WORK</span>
-          <h2 class="sec-title">Selected Projects</h2>
-        </div>
-        <div class="header-right">
-          <span class="drag-instruction"><i class="fa-solid fa-arrow-left-long"></i> Drag to navigate <i class="fa-solid fa-arrow-right-long"></i></span>
-          <span id="slider-counter" class="mono-counter">01 / 05</span>
-        </div>
-      </div>
-
-      <!-- Full-bleed Jesper Landberg Draggable Track -->
-      <div class="jesper-slider-viewport" id="jesper-viewport" data-cursor="DRAG">
-        <div class="jesper-track" id="jesper-track">
+    <!-- HERO SECTION (Eliot Besson Exact Layout) -->
+    <section id="hero" class="section h-hero_section">
+      <div class="w is-h-hero">
+        <div class="h-hero_header">
           
-          <!-- Card 01: AgriMate -->
-          <article class="jesper-card" data-index="1" onclick="openProjectModal('agrimate')">
-            <div class="card-media-wrapper">
-              <img src="https://api.microlink.io/?url=https%3A%2F%2Fagrimate-web-647782045916-apsouth1.s3.ap-south-1.amazonaws.com%2Findex.html&screenshot=true&embed=screenshot.url" alt="AgriMate Platform" class="card-img" loading="lazy">
-              <div class="card-overlay">
-                <span class="open-label">View Project <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-              </div>
+          <div class="h-hero_title-w">
+            <div class="txt-size-xs opacity60 txt-caps margin-bottom-s">
+              AIML STUDENT &bull; BMS COLLEGE OF ENGINEERING (9.825 CGPA) &bull; BENGALURU, IN
             </div>
-            <div class="card-footer-info">
-              <span class="project-title">AgriMate</span>
-              <span class="project-meta">01 &mdash; AI Market Intelligence &bull; React 19 / AWS</span>
-            </div>
-          </article>
+            <h1 class="title-l_h-hero">
+              Crafting Intelligent &amp;<br>Scalable AI Systems.
+            </h1>
+          </div>
 
-          <!-- Card 02: PaarakhMetric -->
-          <article class="jesper-card" data-index="2" onclick="openProjectModal('paarakhmetric')">
-            <div class="card-media-wrapper">
-              <img src="paarakh-metric-desktop.png" alt="PaarakhMetric Legal Metrology" class="card-img" loading="lazy">
-              <div class="card-overlay">
-                <span class="open-label">View Project <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-              </div>
-            </div>
-            <div class="card-footer-info">
-              <span class="project-title">PaarakhMetric</span>
-              <span class="project-meta">02 &mdash; Gemini Vision OCR &bull; Firebase PWA</span>
-            </div>
-          </article>
-
-          <!-- Card 03: Drone Aero Lab -->
-          <article class="jesper-card" data-index="3" onclick="openProjectModal('dronelab')">
-            <div class="card-media-wrapper">
-              <img src="https://api.microlink.io/?url=https%3A%2F%2Fdrone-aero-engineering-lab.vercel.app&screenshot=true&embed=screenshot.url" alt="Drone Aero Lab Simulation" class="card-img" loading="lazy">
-              <div class="card-overlay">
-                <span class="open-label">View Project <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-              </div>
-            </div>
-            <div class="card-footer-info">
-              <span class="project-title">Drone Aero Lab</span>
-              <span class="project-meta">03 &mdash; 3D Aerodynamic Physics &bull; Three.js</span>
-            </div>
-          </article>
-
-          <!-- Card 04: Library System -->
-          <article class="jesper-card" data-index="4" onclick="openProjectModal('library')">
-            <div class="card-media-wrapper">
-              <img src="lib-management.png" alt="Library Management System" class="card-img" loading="lazy">
-              <div class="card-overlay">
-                <span class="open-label">View Project <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-              </div>
-            </div>
-            <div class="card-footer-info">
-              <span class="project-title">Library Inventory</span>
-              <span class="project-meta">04 &mdash; Python OOP &bull; Analytics / Streamlit</span>
-            </div>
-          </article>
-
-          <!-- Card 05: Jan-Sathi -->
-          <article class="jesper-card" data-index="5" onclick="openProjectModal('jansathi')">
-            <div class="card-media-wrapper">
-              <img src="https://api.microlink.io/?url=https%3A%2F%2Fcode-rouge-kappa.vercel.app&screenshot=true&embed=screenshot.url" alt="Jan-Sathi Welfare Portal" class="card-img" loading="lazy">
-              <div class="card-overlay">
-                <span class="open-label">View Project <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-              </div>
-            </div>
-            <div class="card-footer-info">
-              <span class="project-title">Jan-Sathi</span>
-              <span class="project-meta">05 &mdash; Public Welfare Schemes &bull; TypeScript</span>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT SECTION (Eliot Besson Clean Editorial Statement) -->
-    <section id="about" class="about-editorial-section">
-      <div class="about-inner">
-        <span class="sec-tag">ABOUT</span>
-        <h2 class="about-giant-text">
-          I combine mathematical foundations with software engineering to turn ambitious ideas into robust, deployed products.
-        </h2>
-        <div class="about-grid-content">
-          <div class="about-col">
-            <p>
-              I am currently pursuing my <strong>Bachelor of Engineering in Artificial Intelligence &amp; Machine Learning</strong> at <strong>B.M.S. College of Engineering</strong> in Basavanagudi, Bengaluru, holding an outstanding <strong>9.825 CGPA</strong>.
-            </p>
-            <p>
-              My engineering philosophy is rooted in clean architecture, performance optimization, and rigorous problem-solving—whether training computer vision models, orchestrating cloud pipelines on AWS, or building responsive interfaces.
+          <div class="h-hero_subtitle-wrap">
+            <p class="txt-color-light-60o">
+              I am a sophomore Artificial Intelligence &amp; Machine Learning engineer architecting predictive neural models, computer vision inspection pipelines, and high-performance interactive interfaces.
             </p>
           </div>
-          <div class="about-col">
-            <p>
-              Beyond technical systems, I find balance exploring mountain trails, cycling scenic highway routes, or stargazing under the night sky.
-            </p>
-            <div class="meta-stats-list">
-              <div class="stat-item">
-                <span class="stat-number">9.825</span>
-                <span class="stat-caption">Freshman CGPA</span>
+
+        </div>
+
+        <!-- FEATURED WORKS GRID (Eliot Besson Exact Card Grid) -->
+        <div id="works" class="h-hero_works">
+          <div class="h-hero_work-divider">
+            <div class="txt-size-xs opacity60 txt-caps">Featured Works (01 &mdash; 05)</div>
+          </div>
+
+          <div class="h-hero_works-grid">
+            
+            <!-- Work 01: AgriMate -->
+            <div class="h-hero_work">
+              <div class="work_card">
+                <div class="work_card-img-w">
+                  <img src="https://api.microlink.io/?url=https%3A%2F%2Fagrimate-web-647782045916-apsouth1.s3.ap-south-1.amazonaws.com%2Findex.html&screenshot=true&embed=screenshot.url" alt="AgriMate Platform" class="work_card-img" loading="lazy">
+                </div>
+                <div class="work_card-infos">
+                  <div class="work_card-top">
+                    <span class="txt-size-s txt-caps">AgriMate</span>
+                    <span class="work_label-hover">React 19 / AWS S3 / Mandi AI</span>
+                  </div>
+                  <p class="work_desc_txt">
+                    AI-assisted agricultural market intelligence platform for small &amp; marginal farmers, powered by verified APMC mandi records for price clarity and crop forecasting.
+                  </p>
+                  <div class="work_card-links">
+                    <a href="https://agrimate-web-647782045916-apsouth1.s3.ap-south-1.amazonaws.com/index.html#" target="_blank" rel="noopener" class="work_link_btn">Live Demo &nearr;</a>
+                    <a href="https://github.com/Shreyas-M007/Agrimate" target="_blank" rel="noopener" class="work_link_btn secondary">GitHub &nearr;</a>
+                  </div>
+                </div>
               </div>
-              <div class="stat-item">
-                <span class="stat-number">05</span>
-                <span class="stat-caption">Full-Stack Deployments</span>
+            </div>
+
+            <!-- Work 02: PaarakhMetric -->
+            <div class="h-hero_work">
+              <div class="work_card">
+                <div class="work_card-img-w">
+                  <img src="paarakh-metric-desktop.png" alt="PaarakhMetric Legal Metrology" class="work_card-img" loading="lazy">
+                </div>
+                <div class="work_card-infos">
+                  <div class="work_card-top">
+                    <span class="txt-size-s txt-caps">PaarakhMetric</span>
+                    <span class="work_label-hover">Gemini Vision OCR / Firebase PWA</span>
+                  </div>
+                  <p class="work_desc_txt">
+                    Mobile-first statutory compliance audit system for field inspectors. Employs multimodal computer vision OCR, real-time Firebase sync, and automated digital seizure memos.
+                  </p>
+                  <div class="work_card-links">
+                    <a href="https://shreyas-m007.github.io/paarakhmetric/" target="_blank" rel="noopener" class="work_link_btn">Live Demo &nearr;</a>
+                    <a href="https://github.com/Shreyas-M007/paarakhmetric" target="_blank" rel="noopener" class="work_link_btn secondary">GitHub &nearr;</a>
+                  </div>
+                </div>
               </div>
-              <div class="stat-item">
-                <span class="stat-number">2028</span>
-                <span class="stat-caption">Graduation Year</span>
+            </div>
+
+            <!-- Work 03: Drone Aero Lab -->
+            <div class="h-hero_work">
+              <div class="work_card">
+                <div class="work_card-img-w">
+                  <img src="https://api.microlink.io/?url=https%3A%2F%2Fdrone-aero-engineering-lab.vercel.app&screenshot=true&embed=screenshot.url" alt="Drone Aero Lab Simulation" class="work_card-img" loading="lazy">
+                </div>
+                <div class="work_card-infos">
+                  <div class="work_card-top">
+                    <span class="txt-size-s txt-caps">Drone Aero Lab</span>
+                    <span class="work_label-hover">Three.js / Aerodynamics Physics</span>
+                  </div>
+                  <p class="work_desc_txt">
+                    A 3D flight assembler sandbox city featuring DJI drone configurations. Models aerodynamic lifting physics, payload weight adjustments, motor thrust velocity, and air drag factors.
+                  </p>
+                  <div class="work_card-links">
+                    <a href="https://drone-aero-engineering-lab.vercel.app" target="_blank" rel="noopener" class="work_link_btn">Live Demo &nearr;</a>
+                    <a href="https://github.com/Shreyas-M007/Drone-Aero-Engineering-Lab" target="_blank" rel="noopener" class="work_link_btn secondary">GitHub &nearr;</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Work 04: Library System -->
+            <div class="h-hero_work">
+              <div class="work_card">
+                <div class="work_card-img-w">
+                  <img src="lib-management.png" alt="Library Management Interface" class="work_card-img" loading="lazy">
+                </div>
+                <div class="work_card-infos">
+                  <div class="work_card-top">
+                    <span class="txt-size-s txt-caps">Library Inventory</span>
+                    <span class="work_label-hover">Python OOP / Streamlit Analytics</span>
+                  </div>
+                  <p class="work_desc_txt">
+                    An automated borrower and book inventory tracker with real-time penalty/fine calculation algorithms. Built with robust object-oriented patterns and analytics dashboards.
+                  </p>
+                  <div class="work_card-links">
+                    <a href="https://lib-management-system.streamlit.app" target="_blank" rel="noopener" class="work_link_btn">Live Demo &nearr;</a>
+                    <a href="https://github.com/Shreyas-M007/library-management-system" target="_blank" rel="noopener" class="work_link_btn secondary">GitHub &nearr;</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Work 05: Jan-Sathi -->
+            <div class="h-hero_work">
+              <div class="work_card">
+                <div class="work_card-img-w">
+                  <img src="https://api.microlink.io/?url=https%3A%2F%2Fcode-rouge-kappa.vercel.app&screenshot=true&embed=screenshot.url" alt="Jan-Sathi Portal" class="work_card-img" loading="lazy">
+                </div>
+                <div class="work_card-infos">
+                  <div class="work_card-top">
+                    <span class="txt-size-s txt-caps">Jan-Sathi</span>
+                    <span class="work_label-hover">Public Schemes API / TypeScript</span>
+                  </div>
+                  <p class="work_desc_txt">
+                    Citizen welfare matching portal routing government schemes to eligible applicants based on demographic, income, and regional criteria with strongly-typed field schemas.
+                  </p>
+                  <div class="work_card-links">
+                    <a href="https://code-rouge-kappa.vercel.app" target="_blank" rel="noopener" class="work_link_btn">Live Demo &nearr;</a>
+                    <a href="https://github.com/Shreyas-M007/Jan-Sathi" target="_blank" rel="noopener" class="work_link_btn secondary">GitHub &nearr;</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INTRO SECTION (Eliot Besson Signature Circles / Intersection Feature) -->
+    <section class="section h-intro_section">
+      <div class="w div-relative">
+        <div class="h-intro_sticky-marquee">
+          <div class="h-intro_sticky-c">
+            <h2 class="txt-align-center title-m">
+              <div>I build software</div>
+              <div>at the intersection of :</div>
+            </h2>
+
+            <div class="circles_scroll-c">
+              
+              <div class="circle_scroll-parent">
+                <div class="circle_scroll">
+                  <div class="circle_scroll-inner">
+                    <div class="circle_num txt-caps">01</div>
+                    <div class="txt-align-center txt-caps font-bold">Intelligence</div>
+                    <div class="txt-size-xs opacity60 txt-align-center">Neural Models &bull; Vision &bull; LLM</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="circle_scroll-parent">
+                <div class="circle_scroll center">
+                  <div class="circle_scroll-inner">
+                    <div class="circle_num txt-caps">02</div>
+                    <div class="txt-align-center txt-caps font-bold">Architecture</div>
+                    <div class="txt-size-xs opacity60 txt-align-center">TypeScript &bull; React &bull; Node &bull; AWS</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="circle_scroll-parent">
+                <div class="circle_scroll">
+                  <div class="circle_scroll-inner">
+                    <div class="circle_num txt-caps">03</div>
+                    <div class="txt-align-center txt-caps font-bold">Performance</div>
+                    <div class="txt-size-xs opacity60 txt-align-center">Clean Algorithms &bull; Zero Bloat</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION (Eliot Besson Statement & Stats) -->
+    <section id="about" class="section h-about_section">
+      <div class="w">
+        <div class="h-about_title-track">
+          <h3 class="title-m txt-align-center">
+            I combine algorithmic rigor with modern software engineering to turn complex technical challenges into scalable, deployed products.
+          </h3>
+          
+          <div class="about_details_grid">
+            <div class="about_col">
+              <p class="txt-color-light-60o">
+                Currently pursuing my <strong>Bachelor of Engineering in Artificial Intelligence &amp; Machine Learning</strong> at <strong>B.M.S. College of Engineering</strong> in Basavanagudi, Bengaluru, maintaining an exceptional <strong>9.825 CGPA</strong>.
+              </p>
+              <p class="txt-color-light-60o">
+                I enjoy finding creative solutions to technical challenges and exploring predictive models, AI paradigms, and frontend system layouts. When away from the terminal, you will find me exploring mountain trails, riding my bike through scenic routes, or stargazing under the night sky.
+              </p>
+            </div>
+            
+            <div class="about_col">
+              <div class="stats_grid">
+                <div class="stat_box">
+                  <div class="stat_num">9.825</div>
+                  <div class="txt-size-xs opacity60 txt-caps">Freshman CGPA</div>
+                </div>
+                <div class="stat_box">
+                  <div class="stat_num">05</div>
+                  <div class="txt-size-xs opacity60 txt-caps">Deployed Systems</div>
+                </div>
+                <div class="stat_box">
+                  <div class="stat_num">2028</div>
+                  <div class="txt-size-xs opacity60 txt-caps">Graduation Year</div>
+                </div>
               </div>
             </div>
           </div>
@@ -240,131 +300,129 @@
       </div>
     </section>
 
-    <!-- ACADEMIC TIMELINE (Eliot Besson Structured List) -->
-    <section id="timeline" class="timeline-list-section">
-      <div class="timeline-inner">
-        <div class="section-top-bar">
-          <span class="sec-tag">EDUCATION</span>
-          <h2 class="sec-title">Academic Milestones</h2>
+    <!-- EDUCATION / TIMELINE SECTION -->
+    <section id="education" class="section">
+      <div class="w">
+        <div class="h-work_head">
+          <div class="txt-size-xs opacity60 txt-caps">Academic Milestones</div>
+          <h2 class="title-m">Education &amp; Background</h2>
         </div>
 
-        <div class="editorial-list">
-          <!-- Item 1: BMSCE -->
-          <div class="editorial-row current">
-            <div class="row-period">2024 &mdash; 2028</div>
-            <div class="row-main">
-              <h3 class="row-title">B.M.S. College of Engineering</h3>
-              <p class="row-subtitle">B.E. in Artificial Intelligence &amp; Machine Learning &bull; Basavanagudi, Bengaluru</p>
-              <p class="row-detail">Freshman Year Standing: <strong>9.825 CGPA</strong>. Core subjects: Data Structures &amp; Algorithms, Deep Learning Architectures, Discrete Math, and Object-Oriented Systems.</p>
+        <div class="timeline_list">
+          
+          <div class="timeline_item current">
+            <div class="timeline_period txt-size-xs opacity60 txt-caps">2024 &mdash; 2028</div>
+            <div class="timeline_main">
+              <div class="txt-size-m txt-caps font-bold">B.M.S. College of Engineering</div>
+              <div class="txt-size-s opacity80">Bachelor of Engineering in Artificial Intelligence &amp; Machine Learning</div>
+              <div class="txt-size-xs opacity60">Basavanagudi, Bengaluru &bull; Academic Standing: <strong>9.825 CGPA</strong> (Freshman Year)</div>
             </div>
-            <div class="row-badge">Current</div>
+            <div class="timeline_tag txt-size-xs txt-caps">Current</div>
           </div>
 
-          <!-- Item 2: Pre-University -->
-          <div class="editorial-row">
-            <div class="row-period">2022 &mdash; 2024</div>
-            <div class="row-main">
-              <h3 class="row-title">Department of Pre-University Education</h3>
-              <p class="row-subtitle">Higher Secondary Education (PCMB Stream) &bull; Karnataka</p>
-              <p class="row-detail">Rigorous preparation in Physics, Chemistry, Mathematics, and Biology with strong analytical grounding.</p>
+          <div class="timeline_item">
+            <div class="timeline_period txt-size-xs opacity60 txt-caps">2022 &mdash; 2024</div>
+            <div class="timeline_main">
+              <div class="txt-size-m txt-caps font-bold">Department of Pre-University Education</div>
+              <div class="txt-size-s opacity80">Higher Secondary Education (PCMB Stream)</div>
+              <div class="txt-size-xs opacity60">Karnataka, India &bull; Rigorous training in Physics, Chemistry, Math &amp; Biology</div>
             </div>
-            <div class="row-badge">Completed</div>
+            <div class="timeline_tag txt-size-xs txt-caps">Completed</div>
           </div>
 
-          <!-- Item 3: SSLC -->
-          <div class="editorial-row">
-            <div class="row-period">2021 &mdash; 2022</div>
-            <div class="row-main">
-              <h3 class="row-title">Karnataka Secondary Education Board</h3>
-              <p class="row-subtitle">Secondary School Leaving Certificate (SSLC) &bull; Karnataka</p>
-              <p class="row-detail">Graduated with Distinction, establishing early problem-solving and algorithmic foundations.</p>
+          <div class="timeline_item">
+            <div class="timeline_period txt-size-xs opacity60 txt-caps">2021 &mdash; 2022</div>
+            <div class="timeline_main">
+              <div class="txt-size-m txt-caps font-bold">Karnataka Secondary Education Examination Board</div>
+              <div class="txt-size-s opacity80">Secondary School Leaving Certificate (SSLC)</div>
+              <div class="txt-size-xs opacity60">Karnataka, India &bull; Graduated with Distinction</div>
             </div>
-            <div class="row-badge">Distinction</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- VERIFIED CREDENTIALS (Eliot Besson Style Grid) -->
-    <section id="credentials" class="credentials-section">
-      <div class="credentials-inner">
-        <div class="section-top-bar">
-          <span class="sec-tag">VERIFIED BADGES</span>
-          <h2 class="sec-title">Certifications</h2>
-        </div>
-
-        <div class="credentials-grid">
-          <!-- Badge 1: AWS -->
-          <div class="credential-card">
-            <div class="card-icon-tag"><i class="fa-brands fa-aws"></i></div>
-            <div class="card-body">
-              <span class="issuer">AWS Educate &bull; 2026</span>
-              <h3 class="title">Introduction to Generative AI</h3>
-              <p class="description">Validated understanding of foundational generative models, prompt engineering paradigms, multimodal systems, and AWS cloud GenAI offerings.</p>
-              <a href="https://www.credly.com/badges/6d24b297-f07c-405f-a7fd-e8edadc92822/public_url" target="_blank" rel="noopener" class="verify-action">
-                <span>Verify Credly Badge</span>
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-              </a>
-            </div>
+            <div class="timeline_tag txt-size-xs txt-caps">Distinction</div>
           </div>
 
-          <!-- Badge 2: Microsoft -->
-          <div class="credential-card">
-            <div class="card-icon-tag"><i class="fa-brands fa-microsoft"></i></div>
-            <div class="card-body">
-              <span class="issuer">Microsoft Applied Skills &bull; 2026</span>
-              <h3 class="title">Get Started Developing Agents in Microsoft Foundry</h3>
-              <p class="description">Validated core capabilities in designing, evaluating, and deploying autonomous AI agents and enterprise cognitive workflows.</p>
-              <a href="https://learn.microsoft.com/api/credentials/share/en-in/ShreyasMChanabasannavar-1139/C067896C469AA3CD?sharingId=827D09758FB984BC" target="_blank" rel="noopener" class="verify-action">
-                <span>Verify Microsoft Credential</span>
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- FOOTER CALLOUT (Eliot Besson Authentic Footer) -->
-    <footer id="contact" class="footer-callout-section">
-      <div class="footer-callout-inner">
-        <span class="sec-tag">CONTACT</span>
-        <div class="callout-block">
-          <p class="callout-prefix">Have a project or opportunity in mind?</p>
-          <a href="mailto:shreyasm1200@gmail.com" class="callout-headline">
-            Let&#x27;s talk about it <i class="fa-solid fa-arrow-right-long"></i>
+    <!-- CREDENTIALS SECTION -->
+    <section id="credentials" class="section">
+      <div class="w">
+        <div class="h-work_head">
+          <div class="txt-size-xs opacity60 txt-caps">Official Credentials</div>
+          <h2 class="title-m">Verified Certifications</h2>
+        </div>
+
+        <div class="credentials_wrapper">
+          
+          <div class="credential_item">
+            <div>
+              <div class="credential_title">Introduction to Generative AI</div>
+              <div class="credential_meta">AWS Educate &bull; Issued 2026 &bull; Foundation models, prompt fundamentals &amp; cloud AI</div>
+            </div>
+            <a href="https://www.credly.com/badges/6d24b297-f07c-405f-a7fd-e8edadc92822/public_url" target="_blank" rel="noopener" class="credential_btn">
+              Verify Credly Badge &nearr;
+            </a>
+          </div>
+
+          <div class="credential_item">
+            <div>
+              <div class="credential_title">Developing Agents in Microsoft Foundry</div>
+              <div class="credential_meta">Microsoft Applied Skills &bull; Issued 2026 &bull; Autonomous agent orchestration &amp; cognitive tools</div>
+            </div>
+            <a href="https://learn.microsoft.com/api/credentials/share/en-in/ShreyasMChanabasannavar-1139/C067896C469AA3CD?sharingId=827D09758FB984BC" target="_blank" rel="noopener" class="credential_btn">
+              Verify Microsoft Credential &nearr;
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER CALLOUT (Eliot Besson Exact Layout) -->
+    <footer id="contact" class="footer">
+      <div class="footer_inner txt-color-dark">
+        <div class="section_noise is-footer">
+          <div class="noise_embed-footer"></div>
+        </div>
+
+        <div class="footer_top">
+          <a href="mailto:shreyasm1200@gmail.com" class="footer_callout w-inline-block">
+            <div class="footer_callout-txt div-relative">have an opportunity in mind?</div>
+            <div class="footer_callout-hover-w div-relative">
+              <div class="footer_callout-txt">let&#x27;s&nbsp;</div>
+              <div class="div-relative div-hide">
+                <div class="footer_callout-txt default">talk about it!</div>
+                <div class="footer_callout-txt absolute hide-tablet">get in touch!</div>
+              </div>
+            </div>
           </a>
         </div>
 
-        <div class="footer-bottom-bar">
-          <div class="bottom-left">
-            <span>&copy; 2026 Shreyas M. Chanabasannavar</span>
-            <span class="location-tag">Bengaluru, Karnataka, India</span>
-          </div>
-          <div class="bottom-socials">
-            <a href="https://github.com/Shreyas-M007" target="_blank" rel="noopener" class="social-link">GitHub</a>
-            <a href="https://www.linkedin.com/in/shreyas-m-chanabasannavar-647971324" target="_blank" rel="noopener" class="social-link">LinkedIn</a>
-            <a href="mailto:shreyasm1200@gmail.com" class="social-link">Email</a>
+        <div class="footer_bottom">
+          <div class="w is-footer">
+            <div class="footer_btm-w">
+              <div class="txt-size-xs opacity60 txt-caps">
+                &copy; 2026 Shreyas M. Chanabasannavar &bull; Bengaluru, India
+              </div>
+              <div class="footer_links">
+                <a href="https://github.com/Shreyas-M007" target="_blank" rel="noopener" class="footer_link">GitHub &nearr;</a>
+                <a href="https://www.linkedin.com/in/shreyas-m-chanabasannavar-647971324" target="_blank" rel="noopener" class="footer_link">LinkedIn &nearr;</a>
+                <a href="mailto:shreyasm1200@gmail.com" class="footer_link">Email &nearr;</a>
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
     </footer>
 
   </main>
 
-  <!-- ELIOT BESSON MODAL DRAWER FOR PROJECT DETAILS -->
-  <div id="project-modal" class="project-modal" aria-hidden="true">
-    <div class="modal-backdrop" onclick="closeProjectModal()"></div>
-    <div class="modal-sheet">
-      <button class="modal-close-btn" onclick="closeProjectModal()" aria-label="Close modal">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-      <div class="modal-content" id="modal-content-area">
-        <!-- Injected via JavaScript -->
-      </div>
-    </div>
-  </div>
-
-  <script src="app.js?v=5.0"></script>
+  <!-- External CDNs matching Eliot Besson -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/timothydesign/script/split-type.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.min.js"></script>
+  <script src="app.js?v=6.0"></script>
 </body>
 </html>
