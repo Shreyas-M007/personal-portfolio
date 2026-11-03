@@ -1,291 +1,130 @@
 /**
- * SHREYAS M. CHANABASANNAVAR — PORTFOLIO JS V4.0
- * Architecture:
- * 1. Three.js Cosmic Canvas & Celestial 3D Core (Space Theme)
- * 2. Jesper Landberg Signature Projects Slider (Inertia + Velocity Skew)
- * 3. Eliot Besson Style Apple Floating Dock Navigation & Scrollspy
- * 4. Magnetic Custom Cursor
- * 5. Live IST Clock & One-Click Copy Handlers
+ * SHREYAS M. CHANABASANNAVAR — V5.0
+ * Pure Craft: Lenis Smooth Scroll + Jesper Landberg Drag Slider + Eliot Besson Modal
  */
+
+// =========================================================================
+// 1. Project Data Store for Eliot Besson Modal Drawer
+// =========================================================================
+const PROJECTS_DATA = {
+  agrimate: {
+    title: 'AgriMate',
+    category: 'AI Agricultural Intelligence & Mandi Forecasting',
+    tags: ['React 19', 'TypeScript', 'Node / Express', 'AWS S3', 'APMC API'],
+    description: 'AI-assisted agricultural market intelligence platform designed for small and marginal farmers, powered by verified APMC mandi records for price clarity and crop forecasting. Features predictive price trend algorithms and multi-device responsive design.',
+    image: 'https://api.microlink.io/?url=https%3A%2F%2Fagrimate-web-647782045916-apsouth1.s3.ap-south-1.amazonaws.com%2Findex.html&screenshot=true&embed=screenshot.url',
+    demoUrl: 'https://agrimate-web-647782045916-apsouth1.s3.ap-south-1.amazonaws.com/index.html#',
+    githubUrl: 'https://github.com/Shreyas-M007/Agrimate'
+  },
+  paarakhmetric: {
+    title: 'PaarakhMetric',
+    category: 'Legal Metrology & Computer Vision Inspection',
+    tags: ['Gemini Vision', 'Firebase Firestore', 'TypeScript', 'PWA', 'OCR'],
+    description: 'Mobile-first statutory compliance audit system for field inspectors. Employs Gemini multimodal vision OCR to analyze statutory packaging labels, flag non-compliant declarations in real time, and auto-generate legal digital seizure memos.',
+    image: 'paarakh-metric-desktop.png',
+    demoUrl: 'https://shreyas-m007.github.io/paarakhmetric/',
+    githubUrl: 'https://github.com/Shreyas-M007/paarakhmetric'
+  },
+  dronelab: {
+    title: 'Drone Aero Lab',
+    category: '3D Aerodynamics & Flight Physics Simulation',
+    tags: ['Three.js', 'Aerodynamics', 'Physics Engine', 'JavaScript'],
+    description: 'A 3D flight assembler sandbox city featuring DJI drone configurations. Models aerodynamic lifting physics, payload weight adjustments, motor thrust velocity, air resistance, and drag factor calculations.',
+    image: 'https://api.microlink.io/?url=https%3A%2F%2Fdrone-aero-engineering-lab.vercel.app&screenshot=true&embed=screenshot.url',
+    demoUrl: 'https://drone-aero-engineering-lab.vercel.app',
+    githubUrl: 'https://github.com/Shreyas-M007/Drone-Aero-Engineering-Lab'
+  },
+  library: {
+    title: 'Library Inventory System',
+    category: 'OOP Software Architecture & Automation',
+    tags: ['Python', 'Streamlit', 'OOP Architecture', 'File I/O'],
+    description: 'An automated borrower and book inventory tracker with real-time fine and penalty calculations. Built with robust object-oriented patterns, student records tracking, and interactive Streamlit analytics dashboards.',
+    image: 'lib-management.png',
+    demoUrl: 'https://lib-management-system.streamlit.app',
+    githubUrl: 'https://github.com/Shreyas-M007/library-management-system'
+  },
+  jansathi: {
+    title: 'Jan-Sathi',
+    category: 'Public Welfare Eligibility Routing Portal',
+    tags: ['TypeScript', 'Public Schemes API', 'CSS Grid', 'Schema Validation'],
+    description: 'Citizen welfare matching portal routing government schemes to eligible applicants based on demographic, income, and regional criteria with strongly-typed field validation schemas.',
+    image: 'https://api.microlink.io/?url=https%3A%2F%2Fcode-rouge-kappa.vercel.app&screenshot=true&embed=screenshot.url',
+    demoUrl: 'https://code-rouge-kappa.vercel.app',
+    githubUrl: 'https://github.com/Shreyas-M007/Jan-Sathi'
+  }
+};
 
 document.addEventListener('DOMContentLoaded', () => {
 
   // =========================================================================
-  // 1. Live Bengaluru IST Clock
+  // 2. Lenis Smooth Scroll (Eliot Besson Standard)
   // =========================================================================
-  const clockElement = document.getElementById('live-ist-clock');
-  function updateISTClock() {
-    if (!clockElement) return;
-    const now = new Date();
-    // Format to Asia/Kolkata
-    const options = {
-      timeZone: 'Asia/Kolkata',
-      hour12: false,
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit'
-    };
-    const timeString = new Intl.DateTimeFormat('en-GB', options).format(now);
-    clockElement.textContent = `${timeString} IST`;
+  let lenis = null;
+  if (typeof Lenis !== 'undefined') {
+    lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      smoothWheel: true
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
   }
-  updateISTClock();
-  setInterval(updateISTClock, 1000);
 
 
   // =========================================================================
-  // 2. Custom Magnetic Cursor
+  // 3. Minimal Cursor Tracker
   // =========================================================================
-  const cursor = document.getElementById('custom-cursor');
-  const cursorDot = cursor ? cursor.querySelector('.cursor-dot') : null;
-  const cursorRing = cursor ? cursor.querySelector('.cursor-ring') : null;
-  const cursorLabel = cursor ? cursor.querySelector('.cursor-label') : null;
+  const tracker = document.getElementById('cursor-tracker');
+  const trackerText = tracker ? tracker.querySelector('.cursor-text') : null;
+  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
 
-  let mouseX = window.innerWidth / 2;
-  let mouseY = window.innerHeight / 2;
-  let ringX = mouseX;
-  let ringY = mouseY;
-  let isTouch = window.matchMedia('(pointer: coarse)').matches;
+  if (tracker && !isTouchDevice) {
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let curX = mouseX;
+    let curY = mouseY;
 
-  if (cursor && !isTouch) {
     window.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
-      if (cursorDot) {
-        cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
-      }
     });
 
-    function renderCursor() {
-      ringX += (mouseX - ringX) * 0.15;
-      ringY += (mouseY - ringY) * 0.15;
-      if (cursorRing) {
-        cursorRing.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
-      }
-      requestAnimationFrame(renderCursor);
+    function animateCursor() {
+      curX += (mouseX - curX) * 0.18;
+      curY += (mouseY - curY) * 0.18;
+      tracker.style.transform = `translate3d(${curX}px, ${curY}px, 0) translate(-50%, -50%)`;
+      requestAnimationFrame(animateCursor);
     }
-    requestAnimationFrame(renderCursor);
+    animateCursor();
 
-    // Dynamic Cursor Modes
-    document.querySelectorAll('[data-cursor]').forEach((el) => {
-      el.addEventListener('mouseenter', () => {
-        const type = el.getAttribute('data-cursor');
-        document.body.classList.remove('cursor-hover', 'cursor-drag', 'cursor-explore');
-
-        if (type === 'drag') {
-          document.body.classList.add('cursor-drag');
-          if (cursorLabel) cursorLabel.textContent = 'DRAG';
-        } else if (type === 'explore') {
-          document.body.classList.add('cursor-explore');
-          if (cursorLabel) cursorLabel.textContent = 'VIEW';
-        } else if (type === 'pointer') {
-          document.body.classList.add('cursor-hover');
-        }
+    const jesperViewport = document.getElementById('jesper-viewport');
+    if (jesperViewport) {
+      jesperViewport.addEventListener('mouseenter', () => {
+        document.body.classList.add('cursor-drag-mode');
+        if (trackerText) trackerText.textContent = 'DRAG';
       });
-
-      el.addEventListener('mouseleave', () => {
-        document.body.classList.remove('cursor-hover', 'cursor-drag', 'cursor-explore');
-        if (cursorLabel) cursorLabel.textContent = '';
+      jesperViewport.addEventListener('mouseleave', () => {
+        document.body.classList.remove('cursor-drag-mode');
+        if (trackerText) trackerText.textContent = '';
       });
-    });
+    }
   }
 
 
   // =========================================================================
-  // 3. Three.js Fullscreen Deep Space Starfield Canvas
+  // 4. Jesper Landberg Signature Projects Slider (Inertia + Velocity Skew)
   // =========================================================================
-  const canvas = document.getElementById('space-canvas');
-  if (canvas && typeof THREE !== 'undefined') {
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 2000);
-    camera.position.z = 400;
+  const viewport = document.getElementById('jesper-viewport');
+  const track = document.getElementById('jesper-track');
+  const cards = document.querySelectorAll('.jesper-card');
+  const counterEl = document.getElementById('slider-counter');
 
-    const renderer = new THREE.WebGLRenderer({
-      canvas: canvas,
-      alpha: true,
-      antialias: false,
-      powerPreference: 'high-performance'
-    });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-    // Starfield Generation
-    const starCount = 2000;
-    const geometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(starCount * 3);
-    const colors = new Float32Array(starCount * 3);
-
-    const palette = [
-      new THREE.Color('#ffffff'),
-      new THREE.Color('#00f2fe'),
-      new THREE.Color('#8b5cf6'),
-      new THREE.Color('#cbd5e1')
-    ];
-
-    for (let i = 0; i < starCount; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 2000;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 2000;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 2000;
-
-      const color = palette[Math.floor(Math.random() * palette.length)];
-      colors[i * 3] = color.r;
-      colors[i * 3 + 1] = color.g;
-      colors[i * 3 + 2] = color.b;
-    }
-
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-
-    const material = new THREE.PointsMaterial({
-      size: 2.2,
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.85
-    });
-
-    const starField = new THREE.Points(geometry, material);
-    scene.add(starField);
-
-    // Subtle cosmic parallax with mouse
-    let targetRotX = 0;
-    let targetRotY = 0;
-
-    window.addEventListener('mousemove', (e) => {
-      targetRotX = (e.clientY / window.innerHeight - 0.5) * 0.18;
-      targetRotY = (e.clientX / window.innerWidth - 0.5) * 0.18;
-    });
-
-    let prevScrollY = window.scrollY;
-    let scrollVelocity = 0;
-
-    window.addEventListener('scroll', () => {
-      const curScroll = window.scrollY;
-      scrollVelocity = (curScroll - prevScrollY) * 0.05;
-      prevScrollY = curScroll;
-    }, { passive: true });
-
-    function animateSpace() {
-      requestAnimationFrame(animateSpace);
-
-      starField.rotation.y += 0.0006;
-      starField.rotation.x += (targetRotX - starField.rotation.x) * 0.05;
-      starField.rotation.z += (targetRotY - starField.rotation.z) * 0.05;
-
-      // React to scroll velocity
-      scrollVelocity *= 0.92;
-      starField.position.z += scrollVelocity;
-      if (starField.position.z > 300) starField.position.z = -300;
-      if (starField.position.z < -300) starField.position.z = 300;
-
-      renderer.render(scene, camera);
-    }
-    animateSpace();
-
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-  }
-
-
-  // =========================================================================
-  // 4. Interactive 3D Celestial Core (Hero Section)
-  // =========================================================================
-  const orbViewport = document.getElementById('hero-orb-viewport');
-  if (orbViewport && typeof THREE !== 'undefined') {
-    const orbScene = new THREE.Scene();
-    const orbCamera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
-    orbCamera.position.z = 5.2;
-
-    const orbRenderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    orbRenderer.setSize(180, 180);
-    orbRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    orbViewport.appendChild(orbRenderer.domElement);
-
-    // Inner Glowing Core
-    const coreGeo = new THREE.IcosahedronGeometry(1.2, 1);
-    const coreMat = new THREE.MeshBasicMaterial({
-      color: 0x00f2fe,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.7
-    });
-    const coreMesh = new THREE.Mesh(coreGeo, coreMat);
-    orbScene.add(coreMesh);
-
-    // Outer Orbit Rings
-    const ringGeo = new THREE.TorusGeometry(1.8, 0.02, 16, 100);
-    const ringMat = new THREE.MeshBasicMaterial({
-      color: 0x8b5cf6,
-      transparent: true,
-      opacity: 0.65
-    });
-    const ringMesh1 = new THREE.Mesh(ringGeo, ringMat);
-    ringMesh1.rotation.x = Math.PI / 3;
-    orbScene.add(ringMesh1);
-
-    const ringMesh2 = new THREE.Mesh(ringGeo, ringMat.clone());
-    ringMesh2.rotation.y = Math.PI / 4;
-    ringMesh2.rotation.x = Math.PI / 6;
-    orbScene.add(ringMesh2);
-
-    let isDraggingOrb = false;
-    let prevOrbX = 0;
-    let prevOrbY = 0;
-    let orbVelX = 0.01;
-    let orbVelY = 0.008;
-
-    orbViewport.addEventListener('pointerdown', (e) => {
-      isDraggingOrb = true;
-      prevOrbX = e.clientX;
-      prevOrbY = e.clientY;
-    });
-
-    window.addEventListener('pointermove', (e) => {
-      if (!isDraggingOrb) return;
-      const deltaX = e.clientX - prevOrbX;
-      const deltaY = e.clientY - prevOrbY;
-      orbVelY = deltaX * 0.008;
-      orbVelX = deltaY * 0.008;
-      prevOrbX = e.clientX;
-      prevOrbY = e.clientY;
-    });
-
-    window.addEventListener('pointerup', () => {
-      isDraggingOrb = false;
-    });
-
-    function animateOrb() {
-      requestAnimationFrame(animateOrb);
-
-      coreMesh.rotation.y += orbVelY;
-      coreMesh.rotation.x += orbVelX;
-      ringMesh1.rotation.z += 0.008;
-      ringMesh2.rotation.z -= 0.006;
-
-      if (!isDraggingOrb) {
-        orbVelX += (0.005 - orbVelX) * 0.05;
-        orbVelY += (0.008 - orbVelY) * 0.05;
-      }
-
-      orbRenderer.render(orbScene, orbCamera);
-    }
-    animateOrb();
-  }
-
-
-  // =========================================================================
-  // 5. JESPER LANDBERG SIGNATURE PROJECTS SLIDER (Inertia + Velocity Skew)
-  // =========================================================================
-  const dragContainer = document.getElementById('projects-drag-container');
-  const track = document.getElementById('projects-track');
-  const slides = document.querySelectorAll('.project-slide');
-  const progressBar = document.getElementById('slider-progress-bar');
-  const currentNumEl = document.getElementById('slider-current-num');
-  const prevBtn = document.getElementById('slider-prev-btn');
-  const nextBtn = document.getElementById('slider-next-btn');
-
-  if (dragContainer && track && slides.length > 0) {
+  if (viewport && track && cards.length > 0) {
     let currentX = 0;
     let targetX = 0;
     let prevX = 0;
@@ -294,65 +133,51 @@ document.addEventListener('DOMContentLoaded', () => {
     let dragDistance = 0;
     let maxScroll = 0;
 
-    function updateBounds() {
-      const containerWidth = dragContainer.offsetWidth;
+    function calculateBounds() {
+      const viewportWidth = viewport.offsetWidth;
       const trackWidth = track.scrollWidth;
-      maxScroll = Math.max(0, trackWidth - containerWidth + 60);
+      maxScroll = Math.max(0, trackWidth - viewportWidth + 60);
     }
-    updateBounds();
-    window.addEventListener('resize', updateBounds);
+    calculateBounds();
+    window.addEventListener('resize', calculateBounds);
 
-    // Mouse & Touch Pointer Listeners
-    dragContainer.addEventListener('pointerdown', (e) => {
+    viewport.addEventListener('pointerdown', (e) => {
       isDown = true;
       startX = e.clientX;
       dragDistance = 0;
-      dragContainer.classList.add('is-dragging');
-      dragContainer.setPointerCapture(e.pointerId);
+      viewport.classList.add('is-dragging');
+      viewport.setPointerCapture(e.pointerId);
     });
 
-    dragContainer.addEventListener('pointermove', (e) => {
+    viewport.addEventListener('pointermove', (e) => {
       if (!isDown) return;
       const deltaX = e.clientX - startX;
       startX = e.clientX;
       targetX += deltaX * 1.35;
       dragDistance += Math.abs(deltaX);
 
-      // Clamping with slight rubber-banding
-      if (targetX > 50) targetX = 50;
-      if (targetX < -maxScroll - 50) targetX = -maxScroll - 50;
+      // Resistance bounds
+      if (targetX > 40) targetX = 40;
+      if (targetX < -maxScroll - 40) targetX = -maxScroll - 40;
     });
 
-    function endDrag(e) {
+    function releaseDrag(e) {
       if (!isDown) return;
       isDown = false;
-      dragContainer.classList.remove('is-dragging');
+      viewport.classList.remove('is-dragging');
       if (e && e.pointerId) {
-        try { dragContainer.releasePointerCapture(e.pointerId); } catch (_) {}
+        try { viewport.releasePointerCapture(e.pointerId); } catch (_) {}
       }
 
-      // Snap back if beyond bounds
       if (targetX > 0) targetX = 0;
       if (targetX < -maxScroll) targetX = -maxScroll;
     }
 
-    dragContainer.addEventListener('pointerup', endDrag);
-    dragContainer.addEventListener('pointercancel', endDrag);
+    viewport.addEventListener('pointerup', releaseDrag);
+    viewport.addEventListener('pointercancel', releaseDrag);
 
-    // Prevent accidental link clicking during drag gestures
-    slides.forEach(slide => {
-      const links = slide.querySelectorAll('a');
-      links.forEach(link => {
-        link.addEventListener('click', (e) => {
-          if (dragDistance > 8) {
-            e.preventDefault();
-          }
-        });
-      });
-    });
-
-    // Mouse Wheel to Horizontal Translation
-    dragContainer.addEventListener('wheel', (e) => {
+    // Mouse wheel horizontal translation over slider
+    viewport.addEventListener('wheel', (e) => {
       if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
         targetX -= e.deltaY * 0.95;
         if (targetX > 0) targetX = 0;
@@ -360,138 +185,96 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, { passive: true });
 
-    // Slider Navigation Buttons
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        const slideWidth = slides[0].offsetWidth + 36;
-        targetX += slideWidth;
-        if (targetX > 0) targetX = 0;
+    // Track card click suppression if dragging
+    cards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (dragDistance > 6) {
+          e.stopPropagation();
+          e.preventDefault();
+        }
       });
-    }
+    });
 
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        const slideWidth = slides[0].offsetWidth + 36;
-        targetX -= slideWidth;
-        if (targetX < -maxScroll) targetX = -maxScroll;
-      });
-    }
+    // Inertia & Velocity-Skew Animation Loop
+    function renderJesperSlider() {
+      requestAnimationFrame(renderJesperSlider);
 
-    // Animation Loop: Inertia + Velocity-Based Dynamic Skew
-    function renderSlider() {
-      requestAnimationFrame(renderSlider);
-
-      // Lerp momentum physics
-      currentX += (targetX - currentX) * 0.09;
-
-      // Compute velocity for skew effect
+      currentX += (targetX - currentX) * 0.085;
       const velocity = currentX - prevX;
       prevX = currentX;
 
-      // Clamp skew to realistic, smooth degree range [-12deg, 12deg]
-      const skew = Math.max(-12, Math.min(12, -velocity * 0.14));
-
+      // Dynamic velocity skew clamped to realistic range
+      const skew = Math.max(-10, Math.min(10, -velocity * 0.12));
       track.style.transform = `translate3d(${currentX}px, 0, 0) skewX(${skew}deg)`;
 
-      // Update Scrub Progress Bar
-      if (progressBar && maxScroll > 0) {
-        const progress = Math.max(0, Math.min(1, Math.abs(currentX) / maxScroll));
-        progressBar.style.width = `${Math.max(20, progress * 100)}%`;
-      }
-
-      // Update Current Slide Index Counter
-      if (currentNumEl && slides.length > 0) {
-        const slideWidth = slides[0].offsetWidth + 36;
-        let activeIdx = Math.round(Math.abs(currentX) / slideWidth) + 1;
-        activeIdx = Math.max(1, Math.min(slides.length, activeIdx));
-        currentNumEl.textContent = `0${activeIdx}`;
+      // Active slide indicator counter
+      if (counterEl && cards.length > 0) {
+        const cardWidth = cards[0].offsetWidth + 32;
+        let activeIndex = Math.round(Math.abs(currentX) / cardWidth) + 1;
+        activeIndex = Math.max(1, Math.min(cards.length, activeIndex));
+        counterEl.textContent = `0${activeIndex} / 0${cards.length}`;
       }
     }
-    renderSlider();
+    renderJesperSlider();
   }
 
 
   // =========================================================================
-  // 6. Eliot Besson Apple-Style Floating Dock & Scrollspy
+  // 5. Eliot Besson Project Modal Functions (Global scope)
   // =========================================================================
-  const dockItems = document.querySelectorAll('.dock-item');
-  const sections = document.querySelectorAll('section');
+  window.openProjectModal = function(projectId) {
+    const data = PROJECTS_DATA[projectId];
+    if (!data) return;
 
-  window.addEventListener('scroll', () => {
-    let currentId = 'hero-section';
-    const scrollPos = window.scrollY + window.innerHeight * 0.35;
+    const modal = document.getElementById('project-modal');
+    const content = document.getElementById('modal-content-area');
+    if (!modal || !content) return;
 
-    sections.forEach(sec => {
-      const top = sec.offsetTop;
-      const height = sec.offsetHeight;
-      if (scrollPos >= top && scrollPos < top + height) {
-        currentId = sec.getAttribute('id');
-      }
-    });
+    content.innerHTML = `
+      <div class="modal-project-header">
+        <div class="modal-project-tags">
+          ${data.tags.map(t => `<span class="modal-tag">${t}</span>`).join('')}
+        </div>
+        <h2 class="modal-project-title">${data.title}</h2>
+        <p class="modal-project-desc">${data.description}</p>
+      </div>
 
-    dockItems.forEach(item => {
-      const href = item.getAttribute('href').replace('#', '');
-      if (href === currentId) {
-        item.classList.add('active');
-      } else {
-        item.classList.remove('active');
-      }
-    });
-  }, { passive: true });
+      <div class="modal-media-wrap">
+        <img src="${data.image}" alt="${data.title}">
+      </div>
 
+      <div class="modal-actions">
+        <a href="${data.demoUrl}" target="_blank" rel="noopener" class="modal-btn primary">
+          <span>Open Live Project</span>
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+        <a href="${data.githubUrl}" target="_blank" rel="noopener" class="modal-btn secondary">
+          <i class="fa-brands fa-github"></i>
+          <span>View Source Code</span>
+        </a>
+      </div>
+    `;
 
-  // =========================================================================
-  // 7. One-Click Copy Email Handlers
-  // =========================================================================
-  const copyHeroBtn = document.getElementById('quick-copy-email-hero');
-  const copyFooterBtn = document.getElementById('copy-email-footer-btn');
-  const copyFeedback = document.getElementById('copy-feedback-text');
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    if (lenis) lenis.stop();
+  };
 
-  function copyEmailToClipboard(btn, labelEl) {
-    const email = 'shreyasm1200@gmail.com';
-    navigator.clipboard.writeText(email).then(() => {
-      const originalText = labelEl ? labelEl.textContent : 'Copy Email';
-      if (labelEl) labelEl.textContent = 'Copied!';
-      btn.style.background = '#00f2fe';
-      btn.style.color = '#07080c';
+  window.closeProjectModal = function() {
+    const modal = document.getElementById('project-modal');
+    if (!modal) return;
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lenis) lenis.start();
+  };
 
-      setTimeout(() => {
-        if (labelEl) labelEl.textContent = originalText;
-        btn.style.background = '';
-        btn.style.color = '';
-      }, 2000);
-    }).catch(err => {
-      console.warn('Clipboard write failed:', err);
-    });
-  }
-
-  if (copyHeroBtn) {
-    const label = copyHeroBtn.querySelector('.btn-copy-text');
-    copyHeroBtn.addEventListener('click', () => copyEmailToClipboard(copyHeroBtn, label));
-  }
-
-  if (copyFooterBtn) {
-    copyFooterBtn.addEventListener('click', () => copyEmailToClipboard(copyFooterBtn, copyFeedback));
-  }
-
-
-  // =========================================================================
-  // 8. Contact Form Mailto Handler
-  // =========================================================================
-  const contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('contact-name').value.trim();
-      const email = document.getElementById('contact-email').value.trim();
-      const subject = document.getElementById('contact-subject').value.trim();
-      const message = document.getElementById('contact-message').value.trim();
-
-      const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
-      const mailtoUrl = `mailto:shreyasm1200@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-      window.location.href = mailtoUrl;
-    });
-  }
+  // Close modal on Escape key
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      window.closeProjectModal();
+    }
+  });
 
 });
