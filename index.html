@@ -471,6 +471,91 @@
   }
 }
 
+
+/* Shreyas Header Brand Emblem & Interactive Expansion (S -> Shreyas) */
+.menu_logo-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  text-decoration: none !important;
+  color: #FAFAFA !important;
+  cursor: pointer !important;
+  overflow: visible !important;
+  width: auto !important;
+  min-width: 3.25em !important;
+  height: 3.25em !important;
+  position: relative !important;
+  z-index: 10 !important;
+  transition: opacity 0.3s ease !important;
+}
+
+.shreyas_logo-emblem {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  color: #FAFAFA;
+}
+
+.shreyas_logo-emblem svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.shreyas_logo-letters {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 0;
+  opacity: 0;
+  transform: translateX(-8px);
+  margin-left: 2px;
+  font-family: 'Aeonik', system-ui, -apple-system, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  color: #FAFAFA;
+  pointer-events: none;
+  transition: max-width 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.35s ease,
+              transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.shreyas_logo-letters .char {
+  display: inline-block;
+  transform: translateY(14px);
+  opacity: 0;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.25s ease;
+}
+
+.shreyas_logo-letters .char:nth-child(1) { transition-delay: 0.04s; }
+.shreyas_logo-letters .char:nth-child(2) { transition-delay: 0.08s; }
+.shreyas_logo-letters .char:nth-child(3) { transition-delay: 0.12s; }
+.shreyas_logo-letters .char:nth-child(4) { transition-delay: 0.16s; }
+.shreyas_logo-letters .char:nth-child(5) { transition-delay: 0.20s; }
+.shreyas_logo-letters .char:nth-child(6) { transition-delay: 0.24s; }
+
+/* HOVER: S expands into Shreyas */
+.menu_logo-link:hover .shreyas_logo-letters {
+  max-width: 140px;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.menu_logo-link:hover .shreyas_logo-letters .char {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.menu_logo-link:hover .shreyas_logo-emblem {
+  transform: rotate(-6deg) scale(1.06);
+}
 </style><script>(function(w,i,g){w[g]=w[g]||[];if(typeof w[g].push=='function')w[g].push.apply(w[g],Array.isArray(i)?i:[i]);})(window,['G-NL2XKT2S1E'],'google_tags_first_party');</script><script async="" src="https://www.eliotbesson.com/nvhc9u4gxsagNjc3ZmI0ZDM0NzY0NTc5NTEzZjA2ZGY2/ks8-EW46WZlXdrbyI7Wv2uIWuyU"></script><script type="text/javascript">window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('set', 'developer_id.dZGVlNj', true);gtag('set', 'developer_id.dYWYxNW', true);gtag('js', new Date());gtag('config', 'G-NL2XKT2S1E');</script><script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head><body><div class="contact_component"><div class="contact_bg-wrap"><div class="contact_bg"></div></div><div class="contact_wrap"><a data-scroll="start" data-cursor="close" href="#" class="contact_close-w w-inline-block"><div class="contact_close-btn"><div class="icon_embed20"><div class="svg-icon w-embed"><svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M4.86621 4.61621C5.32387 4.15855 6.04809 4.12979 6.53906 4.53027L6.63379 4.61621L19.1338 17.1162L19.2197 17.2109C19.6202 17.7019 19.5915 18.4261 19.1338 18.8838C18.6761 19.3415 17.9519 19.3702 17.4609 18.9697L17.3662 18.8838L4.86621 6.38379L4.78027 6.28906C4.37979 5.79809 4.40855 5.07387 4.86621 4.61621Z" fill="#FAFAFA"/>
@@ -480,10 +565,7 @@
 <path d="M4.375 18.875H20.625V6.375H4.375V18.875ZM21.875 19.1875C21.875 19.7053 21.4553 20.125 20.9375 20.125H4.0625C3.54473 20.125 3.125 19.7053 3.125 19.1875V6.0625C3.125 5.54473 3.54473 5.125 4.0625 5.125H20.9375C21.4553 5.125 21.875 5.54473 21.875 6.0625V19.1875Z" fill="#FAFAFA"/>
 </svg></div></div><div class="txt-size-s txt-caps">send an email</div></div></a></div><div class="contact_form-overlay"></div></div></div></div><div class="cursor hide-tablet"><p>label</p><div class="cursor_icon"><div class="svg-icon w-embed"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M3.46055 12.139L10.3852 5.21434H4.52121V4.21445H12.0922V11.7855H11.0923V5.92145L4.16766 12.8461L3.46055 12.139Z" fill="#FAFAFA"/>
-</svg></div></div></div><menu data-hidden="" class="menu"><div class="menu_inner"><a aria-label="Go to homepage" id="w-node-bd053704-fb67-3f28-b2d5-4e71e37d6052-e37d6050" data-w-id="bd053704-fb67-3f28-b2d5-4e71e37d6052" href="/" aria-current="page" class="menu_logo-link w-inline-block w--current"><div class="menu_logo-embed w-embed"><svg width="100%" height="100%" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M32.4921 5.90108C29.5615 3.93855 25.9953 3.51434 23.6205 3.74415L23.5605 3.74997H23.5001C18.001 3.74997 13.9141 6.63433 10.9862 10.3931C8.04306 14.1715 6.35943 18.7357 5.72325 21.7575C4.43671 27.8685 5.68378 31.7647 7.34984 34.3282C9.07161 36.9776 12.1641 38.5894 15.4887 39.069C23.8595 40.2764 29.393 36.5106 32.8916 31.6019C36.446 26.6148 37.8203 20.5333 37.7505 17.529L37.7501 17.5145V17.5C37.7501 11.2786 35.344 7.81094 32.4921 5.90108ZM40.2501 17.4858C40.2464 10.5156 37.4871 6.23735 33.8832 3.82385C30.3808 1.47838 26.2318 0.992536 23.4402 1.25007C16.97 1.27119 12.2428 4.71172 9.01396 8.85682C5.79044 12.9951 3.97405 17.9309 3.27687 21.2425C1.86283 27.9591 3.20437 32.5373 5.25363 35.6906C7.47001 39.1009 11.3035 40.9911 15.1318 41.5434C24.62 42.912 31.0077 38.5525 34.9274 33.0529C38.7859 27.6392 40.3281 21.0404 40.2501 17.4858Z" fill="currentcolor"/>
-<path d="M19.0996 35C15.4009 35 13.5516 32.9546 14.0928 29.6818L16.9345 13.6818C17.566 10 20.1371 8.00001 23.7907 8.00001C27.4443 8.00001 29.5192 9.9091 28.8877 13.6818L27.3541 22.2273H20.4528L19.1448 29.6818C19.0094 30.5455 18.9192 31.3636 19.7762 31.3636C20.6784 31.3636 20.9039 30.5 21.0392 29.6364L22.0767 23.7273H27.0835L26.046 29.6364C25.5048 33 22.7533 35 19.0996 35ZM20.9941 19H22.8886L23.8358 13.6364C24.0162 12.5455 24.0614 11.7727 23.2494 11.7727C22.3924 11.7727 22.1218 12.5455 21.9414 13.6364L20.9941 19Z" fill="currentcolor"/>
-</svg></div><div data-is-ix2-target="1" class="menu_logo-lottie" data-w-id="bd053704-fb67-3f28-b2d5-4e71e37d6054" data-animation-type="lottie" data-src="https://cdn.prod.website-files.com/677fb4d34764579513f06df6/67e2da4fcd20f511c6061796_Menu%20Logo.json" data-loop="0" data-direction="1" data-autoplay="0" data-renderer="svg" data-default-duration="0" data-duration="1.1" data-loading="eager"></div></a><div class="menu_links hide-mobile-l"><a href="/" aria-current="page" class="menu_link w-inline-block w--current"><p class="txt-size-s">home</p></a><a href="#works" class="menu_link w-inline-block"><p class="txt-size-s">works</p></a><a href="/about" class="menu_link w-inline-block"><p class="txt-size-s">about</p></a><a href="#credentials" class="menu_link w-inline-block"><p class="txt-size-s">credentials</p></a></div><div class="menu_main-inner"><div class="menu_button-w"><a data-scroll="stop" contact-trigger="" href="#" class="button-dark w-inline-block"><div class="button_bg-dark"></div><div class="button_in is-lottie"><div data-is-ix2-target="1" class="button_lottie" data-w-id="bd053704-fb67-3f28-b2d5-4e71e37d6067" data-animation-type="lottie" data-src="https://cdn.prod.website-files.com/677fb4d34764579513f06df6/67d02290066d5ae0097618bc_Contact%20V4.json" data-loop="1" data-direction="1" data-autoplay="0" data-renderer="svg" data-default-duration="0" data-duration="1.25" data-loading="eager"></div><div class="button_labels-wrap"><div class="button_label-relative"><div class="txt-button">Contact</div></div><div class="button_label-absolute"><div class="txt-button">Contact</div></div></div></div></a></div><div data-scroll="toggle" data-w-id="bd053704-fb67-3f28-b2d5-4e71e37d606f" class="menu_burger"><div data-is-ix2-target="1" class="menu_burger-lottie" data-w-id="bd053704-fb67-3f28-b2d5-4e71e37d6070" data-animation-type="lottie" data-src="https://cdn.prod.website-files.com/677fb4d34764579513f06df6/67e6c0538c06f9b6ac4743c3_a97c2a6d56756ebedf32a01f63edb633_Menu%20Burger.json" data-loop="0" data-direction="1" data-autoplay="0" data-renderer="svg" data-default-duration="1" data-duration="0" data-loading="eager"></div></div></div></div><div class="menu_overlay"></div><div class="menu_full"><div class="menu_full-w txt-color-dark"><div class="menu_full-links"><a href="/" aria-current="page" class="menu_full-link w--current">home</a><a href="#works" class="menu_full-link">works</a><a href="/about" class="menu_full-link">about</a><a href="https://learn.microsoft.com/en-in/users/shreyasmchanabasannavar-1139/?tab=credentials-tab" target="_blank" rel="noopener" class="menu_full-link">templates</a><a contact-trigger="" href="#" class="menu_full-link">contact</a></div><div class="menu_full-social-links"><a aria-label="Linkedin" href="https://www.linkedin.com/in/shreyas-m007/" target="_blank" rel="noopener" class="footer_social-link w-inline-block"><div class="icon_embed20"><div class="svg-icon w-embed"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+</svg></div></div></div><menu data-hidden="" class="menu"><div class="menu_inner"><a aria-label="Go to homepage" id="menu-logo-shreyas" href="/" aria-current="page" class="menu_logo-link w-inline-block w--current"><div class="shreyas_logo-emblem"><svg width="100%" height="100%" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M32.4921 5.90108C29.5615 3.93855 25.9953 3.51434 23.6205 3.74415L23.5605 3.74997H23.5001C18.001 3.74997 13.9141 6.63433 10.9862 10.3931C8.04306 14.1715 6.35943 18.7357 5.72325 21.7575C4.43671 27.8685 5.68378 31.7647 7.34984 34.3282C9.07161 36.9776 12.1641 38.5894 15.4887 39.069C23.8595 40.2764 29.393 36.5106 32.8916 31.6019C36.446 26.6148 37.8203 20.5333 37.7505 17.529L37.7501 17.5145V17.5C37.7501 11.2786 35.344 7.81094 32.4921 5.90108ZM40.2501 17.4858C40.2464 10.5156 37.4871 6.23735 33.8832 3.82385C30.3808 1.47838 26.2318 0.992536 23.4402 1.25007C16.97 1.27119 12.2428 4.71172 9.01396 8.85682C5.79044 12.9951 3.97405 17.9309 3.27687 21.2425C1.86283 27.9591 3.20437 32.5373 5.25363 35.6906C7.47001 39.1009 11.3035 40.9911 15.1318 41.5434C24.62 42.912 31.0077 38.5525 34.9274 33.0529C38.7859 27.6392 40.3281 21.0404 40.2501 17.4858Z" fill="currentColor"/><path d="M 28.5 12.8 L 23.8 12.8 C 23.5 11.6 22.8 10.8 21.4 10.8 C 19.8 10.8 18.5 11.8 18.0 13.2 C 17.5 14.8 18.2 16.0 20.2 17.1 L 23.2 18.7 C 26.6 20.5 28.2 23.0 27.2 26.8 C 26.2 30.8 22.5 33.2 18.0 33.2 C 13.8 33.2 11.2 31.0 10.5 27.2 L 15.2 27.2 C 15.6 29.0 16.8 29.8 18.5 29.8 C 20.2 29.8 21.8 28.6 22.4 26.8 C 23.0 25.0 22.2 23.8 20.0 22.6 L 17.0 21.0 C 13.6 19.2 12.2 16.8 13.2 13.0 C 14.2 9.0 17.8 7.2 22.2 7.2 C 26.5 7.2 28.0 9.8 28.5 12.8 Z" fill="currentColor"/></svg></div><div class="shreyas_logo-letters" aria-label="Shreyas"><span class="char">h</span><span class="char">r</span><span class="char">e</span><span class="char">y</span><span class="char">a</span><span class="char">s</span></div></a><div class="menu_links hide-mobile-l"><a href="/" aria-current="page" class="menu_link w-inline-block w--current"><p class="txt-size-s">home</p></a><a href="#works" class="menu_link w-inline-block"><p class="txt-size-s">works</p></a><a href="/about" class="menu_link w-inline-block"><p class="txt-size-s">about</p></a><a href="#credentials" class="menu_link w-inline-block"><p class="txt-size-s">credentials</p></a></div><div class="menu_main-inner"><div class="menu_button-w"><a data-scroll="stop" contact-trigger="" href="#" class="button-dark w-inline-block"><div class="button_bg-dark"></div><div class="button_in is-lottie"><div data-is-ix2-target="1" class="button_lottie" data-w-id="bd053704-fb67-3f28-b2d5-4e71e37d6067" data-animation-type="lottie" data-src="https://cdn.prod.website-files.com/677fb4d34764579513f06df6/67d02290066d5ae0097618bc_Contact%20V4.json" data-loop="1" data-direction="1" data-autoplay="0" data-renderer="svg" data-default-duration="0" data-duration="1.25" data-loading="eager"></div><div class="button_labels-wrap"><div class="button_label-relative"><div class="txt-button">Contact</div></div><div class="button_label-absolute"><div class="txt-button">Contact</div></div></div></div></a></div><div data-scroll="toggle" data-w-id="bd053704-fb67-3f28-b2d5-4e71e37d606f" class="menu_burger"><div data-is-ix2-target="1" class="menu_burger-lottie" data-w-id="bd053704-fb67-3f28-b2d5-4e71e37d6070" data-animation-type="lottie" data-src="https://cdn.prod.website-files.com/677fb4d34764579513f06df6/67e6c0538c06f9b6ac4743c3_a97c2a6d56756ebedf32a01f63edb633_Menu%20Burger.json" data-loop="0" data-direction="1" data-autoplay="0" data-renderer="svg" data-default-duration="1" data-duration="0" data-loading="eager"></div></div></div></div><div class="menu_overlay"></div><div class="menu_full"><div class="menu_full-w txt-color-dark"><div class="menu_full-links"><a href="/" aria-current="page" class="menu_full-link w--current">home</a><a href="#works" class="menu_full-link">works</a><a href="/about" class="menu_full-link">about</a><a href="https://learn.microsoft.com/en-in/users/shreyasmchanabasannavar-1139/?tab=credentials-tab" target="_blank" rel="noopener" class="menu_full-link">templates</a><a contact-trigger="" href="#" class="menu_full-link">contact</a></div><div class="menu_full-social-links"><a aria-label="Linkedin" href="https://www.linkedin.com/in/shreyas-m007/" target="_blank" rel="noopener" class="footer_social-link w-inline-block"><div class="icon_embed20"><div class="svg-icon w-embed"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M16.1111 17.8573H3.88885C2.92455 17.8573 2.14282 17.0756 2.14282 16.1113V3.8891C2.14282 2.92479 2.92455 2.14307 3.88885 2.14307H16.1111C17.0754 2.14307 17.8571 2.92479 17.8571 3.8891V16.1113C17.8571 17.0756 17.0754 17.8573 16.1111 17.8573ZM13.3426 15.675H15.6745V10.8846C15.6745 8.85768 14.5256 7.87767 12.9207 7.87767C11.3151 7.87767 10.6394 9.12798 10.6394 9.12798V8.10882H8.39212V15.675H10.6394V11.7032C10.6394 10.639 11.1293 10.0057 12.0669 10.0057C12.9289 10.0057 13.3426 10.6143 13.3426 11.7032V15.675ZM4.32532 5.72193C4.32532 6.49294 4.94561 7.1181 5.71109 7.1181C6.47657 7.1181 7.0965 6.49294 7.0965 5.72193C7.0965 4.95091 6.47657 4.32575 5.71109 4.32575C4.94561 4.32575 4.32532 4.95091 4.32532 5.72193ZM6.89404 15.675H4.55068V8.10882H6.89404V15.675Z" fill="#171717"/>
 </svg></div></div><div class="social_link-tag-w"><div class="social-link-tag"><p>linkedin</p></div></div></a><a aria-label="GitHub" href="https://github.com/Shreyas-M007" target="_blank" rel="noopener" class="footer_social-link w-inline-block"><div class="icon_embed20"><div class="svg-icon w-embed"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M10 2C5.58 2 2 5.58 2 10C2 13.54 4.29 16.53 7.47 17.59C7.87 17.66 8.02 17.42 8.02 17.21C8.02 17.02 8.01 16.38 8.01 15.71C6 16.08 5.46 15.22 5.3 14.77C5.21 14.54 4.82 13.84 4.48 13.65C4.2 13.5 3.8 13.13 4.47 13.12C5.1 13.11 5.55 13.7 5.7 13.94C6.42 15.16 7.58 14.82 8.04 14.61C8.11 14.09 8.32 13.74 8.55 13.54C6.73 13.33 4.82 12.63 4.82 9.5C4.82 8.61 5.14 7.88 5.67 7.31C5.59 7.1 5.31 6.27 5.75 5.15C5.75 5.15 6.43 4.93 7.98 5.98C8.63 4.8 9.33 4.74 10 4.74C10.67 4.74 11.37 4.8 12.02 5.98C13.57 4.93 14.25 5.15 14.25 5.15C14.69 6.27 14.41 7.1 14.33 7.31C14.86 7.88 15.18 8.61 15.18 9.5C15.18 12.64 13.26 13.33 11.44 13.54C11.73 13.79 11.99 14.28 11.99 15.03C11.99 16.11 11.98 16.98 11.98 17.21C11.98 17.42 12.13 17.67 12.53 17.59C15.71 16.53 18 13.53 18 10C18 5.58 14.42 2 10 2Z" fill="#171717"/>
@@ -660,10 +742,7 @@ textarea::placeholder {
 <path fill-rule="evenodd" clip-rule="evenodd" d="M10 2C5.58 2 2 5.58 2 10C2 13.54 4.29 16.53 7.47 17.59C7.87 17.66 8.02 17.42 8.02 17.21C8.02 17.02 8.01 16.38 8.01 15.71C6 16.08 5.46 15.22 5.3 14.77C5.21 14.54 4.82 13.84 4.48 13.65C4.2 13.5 3.8 13.13 4.47 13.12C5.1 13.11 5.55 13.7 5.7 13.94C6.42 15.16 7.58 14.82 8.04 14.61C8.11 14.09 8.32 13.74 8.55 13.54C6.73 13.33 4.82 12.63 4.82 9.5C4.82 8.61 5.14 7.88 5.67 7.31C5.59 7.1 5.31 6.27 5.75 5.15C5.75 5.15 6.43 4.93 7.98 5.98C8.63 4.8 9.33 4.74 10 4.74C10.67 4.74 11.37 4.8 12.02 5.98C13.57 4.93 14.25 5.15 14.25 5.15C14.69 6.27 14.41 7.1 14.33 7.31C14.86 7.88 15.18 8.61 15.18 9.5C15.18 12.64 13.26 13.33 11.44 13.54C11.73 13.79 11.99 14.28 11.99 15.03C11.99 16.11 11.98 16.98 11.98 17.21C11.98 17.42 12.13 17.67 12.53 17.59C15.71 16.53 18 13.53 18 10C18 5.58 14.42 2 10 2Z" fill="#171717"/>
 </svg></div></div><div class="social_link-tag-w"><div class="social-link-tag"><p>github</p></div></div></a><a aria-label="Send an email" href="mailto:shreyasm1200@gmail.com" class="footer_social-link w-inline-block"><div class="icon_embed20"><div class="svg-icon w-embed"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 6.20885V15.5H17.5V6.20888L11.2149 11.0151C10.4978 11.5635 9.50223 11.5635 8.78512 11.0151L2.5 6.20885ZM17.2654 4.5H2.73468L9.6963 9.82359C9.87557 9.96068 10.1245 9.96068 10.3037 9.82359L17.2654 4.5ZM1 4C1 3.44772 1.44772 3 2 3H18C18.5523 3 19 3.44772 19 4V16C19 16.5523 18.5523 17 18 17H2C1.44772 17 1 16.5523 1 16V4Z" fill="#171717"/>
-</svg></div></div><div class="social_link-tag-w"><div class="social-link-tag"><p>email</p></div></div></a></div></div><div class="footer_main-btm hide-mobile-l"><div class="txt-size-xs txt-caps opacity60">Shreyas M. Chanabasannavar © 2026</div><a open-credits="" href="#" class="txt-size-xs txt-caps opacity60 txt-underline">infos &amp; credits</a></div><div class="footer_credits pointer-events_none hide-mobile-l"><div class="txt-size-xs txt-caps pointer-events_auto"><span class="txt-size-s">01/fonts used</span><br/><br/><a href="https://blazetype.eu/typefaces/arges" target="_blank" class="txt-underline"><span class="opacity60">arges</span></a><span class="opacity60"> by blazetype <br/></span><a href="https://cotypefoundry.com/our-fonts/aeonik" target="_blank" class="txt-underline"><span class="opacity60">aeonik</span></a><span class="opacity60"> by cotype foundry<br/></span><a href="https://vercel.com/font" target="_blank" class="txt-underline"><span class="opacity60">Geist mono</span></a><span class="opacity60"> by Vercel</span></div><div class="txt-size-xs txt-caps pointer-events_auto"><span class="txt-size-s">02/infos</span><br/>‍<br/><span class="opacity60">designed in figma, developed with webflow/gsap/css, animated icons made in lottielab, 3D made with spline</span></div><div class="txt-size-xs txt-caps pointer-events_auto"><span class="txt-size-s">03/something else ?</span><br/><br/><span class="opacity60">if you have any feedbacks, comments, questions, don’t hesitate </span><a href="mailto:shreyasm1200@gmail.com" class="txt-underline"><span class="opacity60">to reach out!</span></a></div></div></div><div class="footer_logo"><div class="footer_logo-c"><div data-video="playpause" class="footer_logo-embed w-embed"><video muted loop autoplay preload="none" playsinline style="width: 100%; height: 100%; object-fit: cover;">
-  <source src="https://eliotbesson.b-cdn.net/logo-footer-opti.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video></div></div></div><div class="footer_main-btm is-mobile"><div class="txt-size-xs txt-caps opacity60">Shreyas M. Chanabasannavar © 2026</div></div></div></div></footer></main><script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=677fb4d34764579513f06df6" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script><script src="https://cdn.prod.website-files.com/677fb4d34764579513f06df6/js/eliot-25.schunk.f2efb3c5440a81cf.js" type="text/javascript" integrity="sha384-VK02VJvMib7ytrF5M2joPWNtDQs366FZgEQ5B+Iwnjx0WBnwQXfootyziSYxdrmS" crossorigin="anonymous"></script><script src="https://cdn.prod.website-files.com/677fb4d34764579513f06df6/js/eliot-25.9eeea996.234ea538ec34f5ce.js" type="text/javascript" integrity="sha384-ZLaf35auvIcO/qrzfjRqruTpulZmM5SslmwfNVhGkOjF3Jsq6BZ7H+oa0tcqUm/T" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</svg></div></div><div class="social_link-tag-w"><div class="social-link-tag"><p>email</p></div></div></a></div></div><div class="footer_main-btm hide-mobile-l"><div class="txt-size-xs txt-caps opacity60">Shreyas M. Chanabasannavar © 2026</div><a open-credits="" href="#" class="txt-size-xs txt-caps opacity60 txt-underline">infos &amp; credits</a></div><div class="footer_credits pointer-events_none hide-mobile-l"><div class="txt-size-xs txt-caps pointer-events_auto"><span class="txt-size-s">01/fonts used</span><br/><br/><a href="https://blazetype.eu/typefaces/arges" target="_blank" class="txt-underline"><span class="opacity60">arges</span></a><span class="opacity60"> by blazetype <br/></span><a href="https://cotypefoundry.com/our-fonts/aeonik" target="_blank" class="txt-underline"><span class="opacity60">aeonik</span></a><span class="opacity60"> by cotype foundry<br/></span><a href="https://vercel.com/font" target="_blank" class="txt-underline"><span class="opacity60">Geist mono</span></a><span class="opacity60"> by Vercel</span></div><div class="txt-size-xs txt-caps pointer-events_auto"><span class="txt-size-s">02/infos</span><br/>‍<br/><span class="opacity60">designed in figma, developed with webflow/gsap/css, animated icons made in lottielab, 3D made with spline</span></div><div class="txt-size-xs txt-caps pointer-events_auto"><span class="txt-size-s">03/something else ?</span><br/><br/><span class="opacity60">if you have any feedbacks, comments, questions, don’t hesitate </span><a href="mailto:shreyasm1200@gmail.com" class="txt-underline"><span class="opacity60">to reach out!</span></a></div></div></div><div class="footer_logo"><div class="footer_logo-c"><div id="footer-3d-logo-wrap" class="footer_logo-embed w-embed" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: auto;"><canvas id="footer-3d-canvas" style="width: 100%; height: 100%; display: block;"></canvas></div></div></div><div class="footer_main-btm is-mobile"><div class="txt-size-xs txt-caps opacity60">Shreyas M. Chanabasannavar © 2026</div></div></div></div></footer></main><script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=677fb4d34764579513f06df6" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script><script src="https://cdn.prod.website-files.com/677fb4d34764579513f06df6/js/eliot-25.schunk.f2efb3c5440a81cf.js" type="text/javascript" integrity="sha384-VK02VJvMib7ytrF5M2joPWNtDQs366FZgEQ5B+Iwnjx0WBnwQXfootyziSYxdrmS" crossorigin="anonymous"></script><script src="https://cdn.prod.website-files.com/677fb4d34764579513f06df6/js/eliot-25.9eeea996.234ea538ec34f5ce.js" type="text/javascript" integrity="sha384-ZLaf35auvIcO/qrzfjRqruTpulZmM5SslmwfNVhGkOjF3Jsq6BZ7H+oa0tcqUm/T" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/timothydesign/script/split-type.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.min.js"></script>
@@ -2173,5 +2252,5 @@ $('.template_slider-arrow-prev').on(
 updateClasses();
 });
 
-</script><script src="app.js?v=1793726123"></script>
+</script><script src="app.js?v=1793730187"></script>
 </body></html>

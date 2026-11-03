@@ -490,4 +490,135 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+
+  // =========================================================================
+  // 5. 3D Rotating Metallic Chrome S Emblem in Footer (Replacing Eliot Besson MP4)
+  // =========================================================================
+  function initFooter3DLogo() {
+    const canvas = document.getElementById('footer-3d-canvas');
+    if (!canvas || typeof THREE === 'undefined') return;
+
+    const container = canvas.parentElement;
+    let width = container.clientWidth || 240;
+    let height = container.clientHeight || 240;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
+    camera.position.set(0, 0, 5.2);
+
+    const renderer = new THREE.WebGLRenderer({
+      canvas: canvas,
+      alpha: true,
+      antialias: true,
+      powerPreference: 'high-performance'
+    });
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    // Studio Lighting setup matching metallic dark chrome reflections
+    const ambient = new THREE.AmbientLight(0xffffff, 0.7);
+    scene.add(ambient);
+
+    const dirLight1 = new THREE.DirectionalLight(0xffffff, 2.2);
+    dirLight1.position.set(4, 6, 5);
+    scene.add(dirLight1);
+
+    const dirLight2 = new THREE.DirectionalLight(0x7ea8d8, 1.4);
+    dirLight2.position.set(-5, -4, -4);
+    scene.add(dirLight2);
+
+    const pointLight = new THREE.PointLight(0xffffff, 0.9, 10);
+    pointLight.position.set(0, 0, 4);
+    scene.add(pointLight);
+
+    const logoGroup = new THREE.Group();
+    scene.add(logoGroup);
+
+    // Initial slanted aesthetic tilt
+    logoGroup.rotation.x = -0.28;
+    logoGroup.rotation.z = -0.18;
+
+    // Dark Chrome PBR Material
+    const chromeMaterial = new THREE.MeshStandardMaterial({
+      color: 0x141416,
+      metalness: 0.94,
+      roughness: 0.18
+    });
+
+    // 1. Slanted Oval Ring Geometry
+    const ringGeom = new THREE.TorusGeometry(1.68, 0.12, 32, 80);
+    ringGeom.scale(0.85, 1.25, 1.0);
+    const ringMesh = new THREE.Mesh(ringGeom, chromeMaterial);
+    logoGroup.add(ringMesh);
+
+    // 2. Beveled 3D "S" Emblem
+    const sShape = new THREE.Shape();
+    sShape.moveTo(0.96, 0.924);
+    sShape.lineTo(0.396, 0.924);
+    sShape.bezierCurveTo(0.36, 1.068, 0.276, 1.164, 0.108, 1.164);
+    sShape.bezierCurveTo(-0.084, 1.164, -0.24, 1.044, -0.3, 0.876);
+    sShape.bezierCurveTo(-0.36, 0.684, -0.276, 0.54, -0.036, 0.408);
+    sShape.lineTo(0.324, 0.216);
+    sShape.bezierCurveTo(0.732, -0.0, 0.924, -0.3, 0.804, -0.756);
+    sShape.bezierCurveTo(0.684, -1.236, 0.24, -1.524, -0.3, -1.524);
+    sShape.bezierCurveTo(-0.804, -1.524, -1.116, -1.26, -1.2, -0.804);
+    sShape.lineTo(-0.636, -0.804);
+    sShape.bezierCurveTo(-0.588, -1.02, -0.444, -1.116, -0.24, -1.116);
+    sShape.bezierCurveTo(-0.036, -1.116, 0.156, -0.972, 0.228, -0.756);
+    sShape.bezierCurveTo(0.3, -0.54, 0.204, -0.396, -0.06, -0.252);
+    sShape.lineTo(-0.42, -0.06);
+    sShape.bezierCurveTo(-0.828, 0.156, -0.996, 0.444, -0.876, 0.9);
+    sShape.bezierCurveTo(-0.756, 1.38, -0.324, 1.596, 0.204, 1.596);
+    sShape.bezierCurveTo(0.72, 1.596, 0.9, 1.284, 0.96, 0.924);
+    sShape.closePath();
+
+    const sGeom = new THREE.ExtrudeGeometry(sShape, {
+      depth: 0.26,
+      bevelEnabled: true,
+      bevelThickness: 0.05,
+      bevelSize: 0.03,
+      bevelSegments: 4
+    });
+    sGeom.center();
+    const sMesh = new THREE.Mesh(sGeom, chromeMaterial);
+    logoGroup.add(sMesh);
+
+    // Mouse interactive tilt
+    let targetRotX = -0.28;
+    let targetRotZ = -0.18;
+    window.addEventListener('mousemove', (e) => {
+      const normX = (e.clientX / window.innerWidth) * 2 - 1;
+      const normY = -(e.clientY / window.innerHeight) * 2 + 1;
+      targetRotX = -0.28 + normY * 0.2;
+      targetRotZ = -0.18 + normX * 0.2;
+    });
+
+    let isVisible = true;
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        isVisible = entries[0].isIntersecting;
+      }, { threshold: 0.05 });
+      observer.observe(canvas);
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      if (!isVisible) return;
+      logoGroup.rotation.y += 0.015;
+      logoGroup.rotation.x += (targetRotX - logoGroup.rotation.x) * 0.05;
+      logoGroup.rotation.z += (targetRotZ - logoGroup.rotation.z) * 0.05;
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      width = container.clientWidth || 240;
+      height = container.clientHeight || 240;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+    });
+  }
+  initFooter3DLogo();
+
 });
