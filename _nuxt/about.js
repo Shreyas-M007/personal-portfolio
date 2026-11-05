@@ -6,11 +6,11 @@ import {
 } from "./DZyj3ghP.js";
 
 const whatIDoItems = [
-  { title: "Machine Learning Operations & Deep Learning Architectures", slug: "mlops" },
-  { title: "Autonomous AI Agents & Vector Search Solutions", slug: "agents" },
-  { title: "High-Performance WebGL & Aerodynamic Simulation", slug: "webgl" },
-  { title: "Modern Full-Stack Platforms", slug: "fullstack" },
-  { title: "Computer Vision Systems", slug: "cv" }
+  { title: "Machine Learning & Deep Learning", slug: "ml-dl" },
+  { title: "Autonomous AI Agents & Vector Search", slug: "agents" },
+  { title: "Computer Vision & Edge Intelligence", slug: "cv-edge" },
+  { title: "High-Performance WebGL & 3D Graphics", slug: "webgl-3d" },
+  { title: "Full-Stack Platforms & Cloud MLOps", slug: "fullstack-mlops" }
 ];
 
 const toolkitItems = [
@@ -23,13 +23,13 @@ const toolkitItems = [
   { title: "Next.js", slug: "nextjs" },
   { title: "Nuxt", slug: "nuxt" },
   { title: "Three.js", slug: "threejs" },
-  { title: "WebGL", slug: "webgl-tech" },
+  { title: "WebGL", slug: "webgl" },
   { title: "GSAP", slug: "gsap" },
   { title: "FastAPI", slug: "fastapi" },
   { title: "Docker", slug: "docker" },
-  { title: "Amazon Web Services", slug: "aws" },
+  { title: "AWS", slug: "aws" },
   { title: "Google Cloud", slug: "gcp" },
-  { title: "Microsoft Azure", slug: "azure" }
+  { title: "Azure", slug: "azure" }
 ];
 
 const _ = 0.03, k = 0.55, re = 0.4;
@@ -103,7 +103,7 @@ const ue = {
         }),
         f("div", { class: "absolute inset-0" }, [
           f("div", {
-            class: "cert-container mx-auto flex min-h-full max-w-[46rem] s:max-w-[92rem] flex-col content-center items-center justify-center px-20 gap-y-36"
+            class: "cert-container mx-auto flex min-h-full max-w-[46rem] s:max-w-[92rem] flex-col content-center items-center justify-center px-20 gap-y-52 s:gap-y-64"
           }, [
             f("div", { class: "flex flex-col items-center w-full" }, [
               f("div", { class: "label text-11 s:text-12 uppercase tracking-[0.15em] opacity-40 mb-16 text-center" }, "What I Do"),
