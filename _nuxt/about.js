@@ -131,7 +131,7 @@ const ue = {
                 )), 128))
               ])
             ]),
-            f("div", { class: "flex flex-col items-center w-full" }, [
+            f("div", { class: "about-tech-stack-section flex flex-col items-center w-full", style: "margin-top:clamp(44px, 8.5vw, 72px) !important;" }, [
               f("div", { ref_key: "h2", ref: H2, class: "about-heading pointer-events-none whitespace-nowrap leading-none tracking-[-0.04em] mb-24 s:mb-32 text-center w-full", style: "font-size:clamp(42px, 5.25vw, 63px);line-height:1;" }, "Tech Stack"),
               f("div", {
                 class: "flex flex-wrap content-center items-center justify-center",

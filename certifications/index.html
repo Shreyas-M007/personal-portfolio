@@ -127,8 +127,15 @@ document.addEventListener("click", function(e) {
 
 <style id="custom-headings-css">
 .cert-heading {
-  font-size: 4.8rem !important;
-  line-height: 1 !important;
+  font-size: clamp(2.4rem, 7.8vw, 3.8rem) !important;
+  line-height: 1.1 !important;
+  text-align: center !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 @media (min-width: 650px) {
   .cert-heading {
@@ -146,16 +153,34 @@ document.addEventListener("click", function(e) {
     line-height: 1 !important;
   }
 }
+.about-tech-stack-section {
+  margin-top: clamp(44px, 8.5vw, 72px) !important;
+}
+#profile-card {
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
 @media (max-width: 649px) {
   #profile-card {
     padding-left: 28px !important;
     padding-right: 28px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
   }
   #profile-card p {
     max-width: 250px !important;
     font-size: 11.5px !important;
     line-height: 1.5 !important;
     margin: 0 auto !important;
+  }
+  [aria-label="Close project"] {
+    min-width: 48px !important;
+    min-height: 48px !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    touch-action: manipulation !important;
+    pointer-events: auto !important;
+    z-index: 99999 !important;
   }
 }
 </style>
