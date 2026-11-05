@@ -37,7 +37,7 @@ const ue = {
   __name: "about",
   setup() {
     const { $folio: n, $resize: b, $event: $ } = z();
-    const j = A(null);
+    const j = A(null), H1 = A(null), H2 = A(null);
     R(() => ({ title: "About — Shreyas M" }));
     const [x, w] = B();
     const [D, K] = B();
@@ -63,7 +63,7 @@ const ue = {
         n.scan(j.value);
         n.depart();
         n.fadeLeaving();
-        for (const e of x) p.push(await n.text(e, { reveal: !1 }));
+        if (H1.value) { const ht = await n.text(H1.value, { reveal: !1 }); ht && (p.push(ht), n.showText(ht, !0, 0)); } if (H2.value) { const ht = await n.text(H2.value, { reveal: !1 }); ht && (p.push(ht), n.showText(ht, !0, 0.2)); } for (const e of x) p.push(await n.text(e, { reveal: !1 }));
         for (const e of D) {
           const t = await n.text(e, { reveal: !1 });
           t && (t.pop = 0), d.push(t);
@@ -106,7 +106,7 @@ const ue = {
             class: "cert-container mx-auto flex min-h-full max-w-[46rem] s:max-w-[92rem] flex-col content-center items-center justify-center px-20 gap-y-52 s:gap-y-64"
           }, [
             f("div", { class: "flex flex-col items-center w-full" }, [
-              f("div", { class: "label text-11 s:text-12 uppercase tracking-[0.15em] opacity-40 mb-16 text-center" }, "What I Do"),
+              f("div", { ref_key: "h1", ref: H1, class: "pointer-events-none whitespace-nowrap text-28 s:text-42 leading-none tracking-[-0.04em] mb-24 s:mb-32 text-center w-full" }, "My Expertise"),
               f("div", {
                 class: "flex flex-wrap content-center items-center justify-center",
                 style: "column-gap: 32px !important; row-gap: 16px !important;"
@@ -132,7 +132,7 @@ const ue = {
               ])
             ]),
             f("div", { class: "flex flex-col items-center w-full" }, [
-              f("div", { class: "label text-11 s:text-12 uppercase tracking-[0.15em] opacity-40 mb-16 text-center" }, "Technical Toolkit"),
+              f("div", { ref_key: "h2", ref: H2, class: "pointer-events-none whitespace-nowrap text-28 s:text-42 leading-none tracking-[-0.04em] mb-24 s:mb-32 text-center w-full" }, "Tech Stack"),
               f("div", {
                 class: "flex flex-wrap content-center items-center justify-center",
                 style: "column-gap: 32px !important; row-gap: 16px !important;"
