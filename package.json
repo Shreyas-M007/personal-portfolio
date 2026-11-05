@@ -1,0 +1,11 @@
+{
+  "name": "shreyas-portfolio",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node tools/serve.mjs"
+  },
+  "dependencies": {
+    "devalue": "^6.0.3"
+  }
+}

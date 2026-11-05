@@ -1,0 +1,38 @@
+# Shreyas M Chanabasannavar
+
+> Shreyas M Chanabasannavar, AIML student & developer at B.M.S. College of Engineering in Bengaluru, building intelligent software systems, computer vision tools, and high-performance web applications. Maintaining a 9.825 CGPA with a strong foundation in scalable architectures and AI paradigms.
+
+9.825 CGPA — Microsoft & AWS Certified — Top Academic Rank. Contactable by email at shreyasm1200@gmail.com; the portfolio site itself is an interactive WebGL experience layered over Nuxt.
+
+## When to use this
+
+- Looking for an AIML engineer and full-stack developer with strong foundations in machine learning, computer vision, and systems architecture.
+- Collaborating on AI agent workflows, MLOps deployment pipelines, or interactive Three.js 3D simulations.
+- Inquiries regarding the academic research, algorithms, and projects listed below.
+
+What the work is made of:
+
+- Machine Learning Operations (MLOps) & Deep Learning Architectures
+- Computer Vision OCR & Multimodal Document Intelligence
+- WebGL, Three.js 3D physics assemblers & aerodynamic flight simulations
+- Modern Full-Stack web engineering with TypeScript, React 19, Python, and Cloud (AWS / Azure)
+
+How to reach: Email shreyasm1200@gmail.com.
+
+## Work
+
+- [AgriMate](https://shreyas-m.is-a.dev/projects/agrimate): AI-assisted agricultural market intelligence platform designed for small and marginal farmers, powered by verified APMC mandi records for price clarity and crop forecasting.
+- [PaarakhMetric](https://shreyas-m.is-a.dev/projects/paarakhmetric): Mobile-first legal metrology and statutory compliance audit system for field inspectors. Features multimodal computer vision OCR, real-time Firebase sync, and automated digital seizure memos.
+- [Drone Aero Lab](https://shreyas-m.is-a.dev/projects/drone-aero-lab): A 3D flight assembler sandbox city featuring DJI drone configurations. Models lifting physics, payload weight adjustments, motor thrust, and drag factors.
+- [Library System](https://shreyas-m.is-a.dev/projects/library-system): An automated borrower and book inventory tracker with penalty and fine calculators. Created for freshman engineering programming labs using files operations.
+- [Jan-Sathi](https://shreyas-m.is-a.dev/projects/jan-sathi): Citizen helper eligibility portal matching government support options with profiles. Employs strong typed data validation fields for public schemes query.
+- [AI Agents in Foundry](https://shreyas-m.is-a.dev/projects/ai-agents-foundry): Autonomous multi-agent orchestration architecture utilizing Microsoft Foundry suite. Leverages cognitive vector search, structured tool bindings, and prompt execution graphs.
+- [MLOps Architecture](https://shreyas-m.is-a.dev/projects/mlops-pipeline): Comprehensive Machine Learning Operations lifecycle implementation covering data drift monitoring, automated retraining pipelines, experiment tracking, and production model serving.
+- [Cloud Data Protection](https://shreyas-m.is-a.dev/projects/cloud-data-protection): Resilient cloud storage and data protection architecture designed for high-availability enterprise environments, with zero-trust role-based access control and snapshot redundancy.
+
+## Profiles
+
+- [GitHub](https://github.com/Shreyas-M007)
+- [LinkedIn](https://www.linkedin.com/in/shreyas-m007/)
+- [Instagram](https://www.instagram.com/shreyas._._.007/)
+- [Email](mailto:shreyasm1200@gmail.com)
