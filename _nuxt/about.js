@@ -106,7 +106,7 @@ const ue = {
             class: "cert-container mx-auto flex min-h-full max-w-[46rem] s:max-w-[92rem] flex-col content-center items-center justify-center px-20 gap-y-52 s:gap-y-64"
           }, [
             f("div", { class: "flex flex-col items-center w-full" }, [
-              f("div", { ref_key: "h1", ref: H1, class: "about-heading pointer-events-none whitespace-nowrap leading-none tracking-[-0.04em] mb-24 s:mb-32 text-center w-full", style: "font-size:clamp(42px, 5.25vw, 63px);line-height:1;" }, "My Expertise"),
+              f("div", { ref_key: "h1", ref: H1, "data-gl": "text", class: "about-heading font-regular [-webkit-text-fill-color:transparent] pointer-events-none whitespace-nowrap leading-none tracking-[-0.04em] mb-24 s:mb-32 text-center w-full", style: "font-size:clamp(42px, 5.25vw, 63px);line-height:1;" }, "My Expertise"),
               f("div", {
                 class: "flex flex-wrap content-center items-center justify-center",
                 style: "column-gap: 32px !important; row-gap: 16px !important;"
@@ -132,7 +132,7 @@ const ue = {
               ])
             ]),
             f("div", { class: "about-tech-stack-section flex flex-col items-center w-full", style: "margin-top:clamp(44px, 8.5vw, 72px) !important;" }, [
-              f("div", { ref_key: "h2", ref: H2, class: "about-heading pointer-events-none whitespace-nowrap leading-none tracking-[-0.04em] mb-24 s:mb-32 text-center w-full", style: "font-size:clamp(42px, 5.25vw, 63px);line-height:1;" }, "Tech Stack"),
+              f("div", { ref_key: "h2", ref: H2, "data-gl": "text", class: "about-heading font-regular [-webkit-text-fill-color:transparent] pointer-events-none whitespace-nowrap leading-none tracking-[-0.04em] mb-24 s:mb-32 text-center w-full", style: "font-size:clamp(42px, 5.25vw, 63px);line-height:1;" }, "Tech Stack"),
               f("div", {
                 class: "flex flex-wrap content-center items-center justify-center",
                 style: "column-gap: 32px !important; row-gap: 16px !important;"
