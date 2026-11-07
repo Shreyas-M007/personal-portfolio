@@ -487,6 +487,16 @@ html.v4-active #v4-fallback-container {
   filter: none;
 }
 
+@media (hover: none) {
+  .v4-about-pic-wrapper {
+    background: transparent;
+  }
+  .v4-about-pic-wrapper img {
+    mix-blend-mode: normal;
+    filter: none;
+  }
+}
+
 .v4-about-pic-wrapper::after {
   content: "";
   display: block;
