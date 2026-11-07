@@ -90,20 +90,37 @@
     }
 
     // Preloader animation lifecycle (Brittany Chiang v4 entry sequence)
-    var loader = document.getElementById('v4-loader');
-    if (loader && !document.documentElement.classList.contains('v4-loaded')) {
-      setTimeout(function() {
-        loader.classList.add('v4-loader-hidden');
-        document.documentElement.classList.add('v4-loaded');
-        setTimeout(function() {
-          loader.style.display = 'none';
-        }, 450);
-      }, 1500);
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', handleLoaderTransition);
     } else {
-      document.documentElement.classList.add('v4-loaded');
+      handleLoaderTransition();
     }
 
     initScrollReveal();
+  }
+
+  var loaderHandled = false;
+  function handleLoaderTransition() {
+    if (loaderHandled) return;
+    var loader = document.getElementById('v4-loader');
+    if (!loader) {
+      if (document.readyState === 'loading') return;
+      document.documentElement.classList.add('v4-loaded');
+      return;
+    }
+    loaderHandled = true;
+
+    // Brittany Chiang signature hexagon preloader sequence:
+    // 0s-1.15s: Hexagon perimeter draws in teal #64ffda
+    // 0.65s-1.1s: Monogram "S" fades in
+    // 1.35s: Loader smoothly fades out and hero elements slide in
+    setTimeout(function() {
+      loader.classList.add('v4-loader-hidden');
+      document.documentElement.classList.add('v4-loaded');
+      setTimeout(function() {
+        loader.style.display = 'none';
+      }, 500);
+    }, 1350);
   }
 
   // 1. Force v4 via query string or hash
@@ -154,6 +171,7 @@
   function onDomReady() {
     if (document.documentElement.classList.contains('v4-active')) {
       activateV4Fallback();
+      handleLoaderTransition();
       initScrollReveal();
     }
 

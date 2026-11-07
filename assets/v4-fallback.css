@@ -1191,6 +1191,7 @@ html.v4-active #v4-fallback-container {
               visibility 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
+html.v4-loaded .v4-loader,
 .v4-loader.v4-loader-hidden {
   opacity: 0 !important;
   visibility: hidden !important;
