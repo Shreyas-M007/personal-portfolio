@@ -36,6 +36,21 @@
     });
   }
 
+  var nativeScrollEnabled = false;
+  function enableNativeScroll() {
+    if (nativeScrollEnabled) return;
+    nativeScrollEnabled = true;
+
+    // In Chrome/macOS, prevent any external scripts from blocking natural mousewheel or touch scrolling
+    window.addEventListener('wheel', function(e) {
+      e.stopImmediatePropagation();
+    }, { capture: true, passive: true });
+
+    window.addEventListener('touchmove', function(e) {
+      e.stopImmediatePropagation();
+    }, { capture: true, passive: true });
+  }
+
   function activateV4Fallback() {
     // If on a subpage that doesn't have the fallback container in DOM, redirect to root anchor
     var v4Container = document.getElementById('v4-fallback-container');
@@ -67,16 +82,21 @@
     document.documentElement.style.overflowX = 'hidden';
     document.documentElement.style.position = 'static';
     document.documentElement.style.height = 'auto';
-    document.documentElement.style.minHeight = '100vh';
+    document.documentElement.style.minHeight = '100%';
 
     if (document.body) {
-      document.body.style.overflowY = 'auto';
+      document.body.style.overflow = 'visible';
+      document.body.style.overflowY = 'visible';
       document.body.style.overflowX = 'hidden';
       document.body.style.position = 'static';
       document.body.style.height = 'auto';
       document.body.style.minHeight = '100vh';
+      document.body.style.touchAction = 'auto';
       document.body.style.backgroundColor = '#0a192f';
     }
+
+    // Stop Nuxt/Three.js from intercepting wheel/touch events in Chrome
+    enableNativeScroll();
 
     // Hide Nuxt / Three.js
     var glEl = document.querySelector('.gl');
@@ -195,6 +215,24 @@
           }
         });
       });
+    });
+
+    // Handle smooth scrolling for all anchor navigation links
+    document.addEventListener('click', function(e) {
+      if (!document.documentElement.classList.contains('v4-active')) return;
+      var a = e.target.closest('a');
+      if (!a) return;
+      var href = a.getAttribute('href');
+      if (href && href.charAt(0) === '#' && href.length > 1) {
+        var target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+          if (history.pushState) {
+            history.pushState(null, null, href);
+          }
+        }
+      }
     });
 
     // Handle initial hash scroll if present
