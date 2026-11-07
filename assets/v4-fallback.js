@@ -1,18 +1,51 @@
 /**
  * Brittany Chiang v4 Fallback Controller
- * Dual-Engine Auto-Detection and Interactive Handlers
+ * Dual-Engine Auto-Detection, Scroll Animations, and Interactive Handlers
  * Exclusively customized for Shreyas M Chanabasannavar
  */
 (function() {
+  function initScrollReveal() {
+    var revealElements = document.querySelectorAll('.v4-reveal');
+    if (!revealElements.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+      revealElements.forEach(function(el) { el.classList.add('is-revealed'); });
+      return;
+    }
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting || entry.intersectionRatio > 0) {
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px 0px -20px 0px',
+      threshold: 0.05
+    });
+
+    revealElements.forEach(function(el) {
+      var rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight + 80 && rect.bottom > 0) {
+        el.classList.add('is-revealed');
+      } else {
+        observer.observe(el);
+      }
+    });
+  }
+
   function activateV4Fallback() {
-    if (document.documentElement.classList.contains('v4-active')) return;
-    
     // If on a subpage that doesn't have the fallback container in DOM, redirect to root anchor
     var v4Container = document.getElementById('v4-fallback-container');
     if (!v4Container) {
       var path = window.location.pathname.replace(/\/+$/, '');
       if (path.indexOf('about') !== -1) {
         window.location.replace('/#about');
+        return;
+      } else if (path.indexOf('education') !== -1 || path.indexOf('academic') !== -1) {
+        window.location.replace('/#education');
         return;
       } else if (path.indexOf('certifications') !== -1) {
         window.location.replace('/#certifications');
@@ -30,6 +63,12 @@
     document.documentElement.classList.remove('grabbable', 'grabbing');
     
     // Allow natural page scrolling
+    document.documentElement.style.overflowY = 'auto';
+    document.documentElement.style.overflowX = 'hidden';
+    document.documentElement.style.position = 'static';
+    document.documentElement.style.height = 'auto';
+    document.documentElement.style.minHeight = '100vh';
+
     if (document.body) {
       document.body.style.overflowY = 'auto';
       document.body.style.overflowX = 'hidden';
@@ -49,6 +88,8 @@
       v4Container.style.display = 'block';
       v4Container.style.visibility = 'visible';
     }
+
+    initScrollReveal();
   }
 
   // 1. Force v4 via query string or hash
@@ -95,8 +136,13 @@
     }
   }, 2500);
 
-  // 5. Interactive Tabs for Certifications
-  document.addEventListener('DOMContentLoaded', function() {
+  // 5. Interactive Tabs & DOM Ready Handlers
+  function onDomReady() {
+    if (document.documentElement.classList.contains('v4-active')) {
+      activateV4Fallback();
+      initScrollReveal();
+    }
+
     var tabBtns = document.querySelectorAll('.v4-tab-btn');
     var tabPanels = document.querySelectorAll('.v4-tab-panel');
 
@@ -115,12 +161,33 @@
       });
     });
 
-    // Re-verify on DOM ready in case body was not available earlier
+    // Handle initial hash scroll if present
+    if (window.location.hash) {
+      setTimeout(function() {
+        var target = document.querySelector(window.location.hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+          if (target.classList.contains('v4-reveal')) {
+            target.classList.add('is-revealed');
+          }
+        }
+      }, 100);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', onDomReady);
+  } else {
+    onDomReady();
+  }
+
+  window.addEventListener('load', function() {
     if (document.documentElement.classList.contains('v4-active')) {
-      activateV4Fallback();
+      initScrollReveal();
     }
   });
 
-  // Export helper globally
+  // Export helpers globally
   window.activateV4Fallback = activateV4Fallback;
+  window.initScrollReveal = initScrollReveal;
 })();
