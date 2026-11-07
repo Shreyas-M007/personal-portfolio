@@ -194,7 +194,7 @@ class J {
     this.uClip.value.set(cx, cy, breath * 0.99, aspect);
     this.uTime.value = t;
     this.uAmp.value = post.u_wave.value * Math.sin(Math.PI * n);
-    this.core.renderer.getDrawingBufferSize(this.uRes.value);
+    this.core?.renderer?.getDrawingBufferSize?.(this.uRes.value);
   }
 
   dispose() {
