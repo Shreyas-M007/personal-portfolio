@@ -136,28 +136,32 @@
     }
   }, 2500);
 
-  // 5. Interactive Tabs & DOM Ready Handlers
+  // 5. Scoped Interactive Tabs & DOM Ready Handlers
   function onDomReady() {
     if (document.documentElement.classList.contains('v4-active')) {
       activateV4Fallback();
       initScrollReveal();
     }
 
-    var tabBtns = document.querySelectorAll('.v4-tab-btn');
-    var tabPanels = document.querySelectorAll('.v4-tab-panel');
+    // Isolate tabs by their container so Education and Certifications don't conflict
+    var tabContainers = document.querySelectorAll('.v4-tabs-container');
+    tabContainers.forEach(function(container) {
+      var tabBtns = container.querySelectorAll('.v4-tab-btn');
+      var tabPanels = container.querySelectorAll('.v4-tab-panel');
 
-    tabBtns.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var targetId = btn.getAttribute('data-tab');
-        
-        tabBtns.forEach(function(b) { b.classList.remove('active'); });
-        tabPanels.forEach(function(p) { p.classList.remove('active'); });
+      tabBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var targetId = btn.getAttribute('data-tab');
+          
+          tabBtns.forEach(function(b) { b.classList.remove('active'); });
+          tabPanels.forEach(function(p) { p.classList.remove('active'); });
 
-        btn.classList.add('active');
-        var panel = document.getElementById(targetId);
-        if (panel) {
-          panel.classList.add('active');
-        }
+          btn.classList.add('active');
+          var panel = container.querySelector('#' + targetId);
+          if (panel) {
+            panel.classList.add('active');
+          }
+        });
       });
     });
 
