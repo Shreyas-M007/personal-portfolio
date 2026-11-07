@@ -89,6 +89,20 @@
       v4Container.style.visibility = 'visible';
     }
 
+    // Preloader animation lifecycle (Brittany Chiang v4 entry sequence)
+    var loader = document.getElementById('v4-loader');
+    if (loader && !document.documentElement.classList.contains('v4-loaded')) {
+      setTimeout(function() {
+        loader.classList.add('v4-loader-hidden');
+        document.documentElement.classList.add('v4-loaded');
+        setTimeout(function() {
+          loader.style.display = 'none';
+        }, 450);
+      }, 1500);
+    } else {
+      document.documentElement.classList.add('v4-loaded');
+    }
+
     initScrollReveal();
   }
 

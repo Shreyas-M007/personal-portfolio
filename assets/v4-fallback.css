@@ -1173,7 +1173,78 @@ html.v4-active #v4-fallback-container {
 }
 
 /* ==========================================================================
-   BRITTANY CHIANG INTRO ANIMATIONS
+   BRITTANY CHIANG INTRO PRELOADER TRANSITION
+   ========================================================================== */
+.v4-loader {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #020c1b;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s cubic-bezier(0.645, 0.045, 0.355, 1),
+              visibility 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.v4-loader.v4-loader-hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.v4-loader-logo {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease-out;
+}
+
+.v4-hex-polygon {
+  stroke-dasharray: 280;
+  stroke-dashoffset: 280;
+  animation: v4DrawHex 1.15s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+}
+
+.v4-hex-letter {
+  opacity: 0;
+  animation: v4FadeInLetter 0.45s cubic-bezier(0.645, 0.045, 0.355, 1) 0.65s forwards;
+}
+
+@keyframes v4DrawHex {
+  0% {
+    stroke-dashoffset: 280;
+    fill: transparent;
+  }
+  70% {
+    stroke-dashoffset: 0;
+    fill: transparent;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    fill: rgba(100, 255, 218, 0.08);
+  }
+}
+
+@keyframes v4FadeInLetter {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ==========================================================================
+   BRITTANY CHIANG INTRO SEQUENTIAL ANIMATIONS
    ========================================================================== */
 @keyframes v4NavSlideDown {
   0% {
@@ -1208,44 +1279,55 @@ html.v4-active #v4-fallback-container {
   }
 }
 
-html.v4-active .v4-logo {
-  animation: v4NavSlideDown 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.1s both;
+html.v4-active:not(.v4-loaded) .v4-logo,
+html.v4-active:not(.v4-loaded) .v4-nav-links li,
+html.v4-active:not(.v4-loaded) .v4-hero-intro,
+html.v4-active:not(.v4-loaded) .v4-hero-title,
+html.v4-active:not(.v4-loaded) .v4-hero-subtitle,
+html.v4-active:not(.v4-loaded) .v4-hero-desc,
+html.v4-active:not(.v4-loaded) .v4-hero-cta-wrap,
+html.v4-active:not(.v4-loaded) .v4-side-left,
+html.v4-active:not(.v4-loaded) .v4-side-right {
+  opacity: 0;
 }
 
-html.v4-active .v4-nav-links li {
+html.v4-loaded .v4-logo {
+  animation: v4NavSlideDown 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.05s both;
+}
+
+html.v4-loaded .v4-nav-links li {
   animation: v4NavSlideDown 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) both;
 }
 
-html.v4-active .v4-nav-links li:nth-child(1) { animation-delay: 0.15s; }
-html.v4-active .v4-nav-links li:nth-child(2) { animation-delay: 0.25s; }
-html.v4-active .v4-nav-links li:nth-child(3) { animation-delay: 0.35s; }
-html.v4-active .v4-nav-links li:nth-child(4) { animation-delay: 0.45s; }
-html.v4-active .v4-nav-links li:nth-child(5) { animation-delay: 0.55s; }
-html.v4-active .v4-nav-links li:nth-child(6) { animation-delay: 0.65s; }
+html.v4-loaded .v4-nav-links li:nth-child(1) { animation-delay: 0.12s; }
+html.v4-loaded .v4-nav-links li:nth-child(2) { animation-delay: 0.22s; }
+html.v4-loaded .v4-nav-links li:nth-child(3) { animation-delay: 0.32s; }
+html.v4-loaded .v4-nav-links li:nth-child(4) { animation-delay: 0.42s; }
+html.v4-loaded .v4-nav-links li:nth-child(5) { animation-delay: 0.52s; }
 
-html.v4-active .v4-hero-intro {
-  animation: v4HeroFadeInUp 0.55s cubic-bezier(0.645, 0.045, 0.355, 1) 0.75s both;
+html.v4-loaded .v4-hero-intro {
+  animation: v4HeroFadeInUp 0.55s cubic-bezier(0.645, 0.045, 0.355, 1) 0.65s both;
 }
 
-html.v4-active .v4-hero-title {
-  animation: v4HeroFadeInUp 0.55s cubic-bezier(0.645, 0.045, 0.355, 1) 0.88s both;
+html.v4-loaded .v4-hero-title {
+  animation: v4HeroFadeInUp 0.55s cubic-bezier(0.645, 0.045, 0.355, 1) 0.78s both;
 }
 
-html.v4-active .v4-hero-subtitle {
-  animation: v4HeroFadeInUp 0.55s cubic-bezier(0.645, 0.045, 0.355, 1) 1.01s both;
+html.v4-loaded .v4-hero-subtitle {
+  animation: v4HeroFadeInUp 0.55s cubic-bezier(0.645, 0.045, 0.355, 1) 0.91s both;
 }
 
-html.v4-active .v4-hero-desc {
-  animation: v4HeroFadeInUp 0.55s cubic-bezier(0.645, 0.045, 0.355, 1) 1.14s both;
+html.v4-loaded .v4-hero-desc {
+  animation: v4HeroFadeInUp 0.55s cubic-bezier(0.645, 0.045, 0.355, 1) 1.04s both;
 }
 
-html.v4-active .v4-hero-cta-wrap {
-  animation: v4HeroFadeInUp 0.55s cubic-bezier(0.645, 0.045, 0.355, 1) 1.27s both;
+html.v4-loaded .v4-hero-cta-wrap {
+  animation: v4HeroFadeInUp 0.55s cubic-bezier(0.645, 0.045, 0.355, 1) 1.17s both;
 }
 
-html.v4-active .v4-side-left,
-html.v4-active .v4-side-right {
-  animation: v4SideFadeIn 0.6s cubic-bezier(0.645, 0.045, 0.355, 1) 1.4s both;
+html.v4-loaded .v4-side-left,
+html.v4-loaded .v4-side-right {
+  animation: v4SideFadeIn 0.6s cubic-bezier(0.645, 0.045, 0.355, 1) 1.3s both;
 }
 
 /* ==========================================================================
@@ -1269,6 +1351,9 @@ html.v4-active .v4-side-right {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .v4-loader {
+    display: none !important;
+  }
   html.v4-active .v4-logo,
   html.v4-active .v4-nav-links li,
   html.v4-active .v4-hero-intro,

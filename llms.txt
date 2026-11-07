@@ -1,8 +1,8 @@
 # Shreyas M Chanabasannavar
 
-> Shreyas M Chanabasannavar, AIML student & developer at B.M.S. College of Engineering in Bengaluru, building intelligent software systems, computer vision tools, and high-performance web applications. Maintaining a 9.825 CGPA with a strong foundation in scalable architectures and AI paradigms.
+> Shreyas M Chanabasannavar, AIML student & developer at B.M.S. College of Engineering in Bengaluru, building intelligent software systems, computer vision tools, and modern web applications. Maintaining a 9.825 CGPA with a strong foundation in scalable architectures and AI paradigms.
 
-9.825 CGPA — Microsoft & AWS Certified — Top Academic Rank. Contactable by email at shreyasm1200@gmail.com; the portfolio site itself is an interactive WebGL experience layered over Nuxt.
+9.825 CGPA — Microsoft & AWS Certified. Contactable by email at shreyasm1200@gmail.com; the portfolio site itself is an interactive WebGL experience layered over Nuxt.
 
 ## When to use this
 
