@@ -3,17 +3,12 @@
 <title>Shreyas M Chanabasannavar</title>
 <script>
 (function() {
-  var ua = navigator.userAgent || '';
-  var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua)
-                 || (window.innerWidth <= 820)
-                 || (navigator.maxTouchPoints > 1 && window.innerWidth <= 1024);
-  var isWindows = /Windows|Win32|Win64/i.test(ua) || /Win/i.test(navigator.platform || '');
   var forceV4 = window.location.search.indexOf('v4') !== -1 || window.location.hash.indexOf('v4') !== -1;
   var hasWebGL = false;
 
   try {
     var c = document.createElement('canvas');
-    var gl = c.getContext('webgl2') || c.getContext('webgl');
+    var gl = c.getContext('webgl2') || c.getContext('webgl') || c.getContext('experimental-webgl');
     if (gl && !gl.isContextLost()) {
       var dbw = gl.drawingBufferWidth;
       var dbh = gl.drawingBufferHeight;
@@ -21,7 +16,7 @@
         var dbgRenderInfo = gl.getExtension('WEBGL_debug_renderer_info');
         if (dbgRenderInfo) {
           var renderer = gl.getParameter(dbgRenderInfo.UNMASKED_RENDERER_WEBGL) || '';
-          if (/SwiftShader|Software|llvmpipe|Basic Render/i.test(renderer)) {
+          if (/SwiftShader|llvmpipe|Software Rasterizer/i.test(renderer)) {
             hasWebGL = false;
           } else {
             hasWebGL = true;
@@ -35,7 +30,8 @@
     hasWebGL = false;
   }
 
-  if (isMobile || isWindows || !hasWebGL || forceV4) {
+  // Fallback is ONLY for incapable devices without WebGL, or when manually forced via ?v4
+  if (!hasWebGL || forceV4) {
     document.documentElement.classList.add('v4-active');
   }
 })();
@@ -240,8 +236,8 @@ document.addEventListener("click", function(e) {
 }
 </style>
 
-<link rel="stylesheet" href="/assets/v4-fallback.css?v=10">
-<script src="/assets/v4-fallback.js?v=10"></script>
+<link rel="stylesheet" href="/assets/v4-fallback.css?v=11">
+<script src="/assets/v4-fallback.js?v=11"></script>
 </head><body>
 
 

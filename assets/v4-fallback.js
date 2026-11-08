@@ -154,14 +154,8 @@
     }, 1350);
   }
 
-  // 1. Force v4 via pre-tagging, query string, hash, mobile, or Windows detection
-  var ua = navigator.userAgent || '';
-  var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua)
-                 || (window.innerWidth <= 820)
-                 || (navigator.maxTouchPoints > 1 && window.innerWidth <= 1024);
-  var isWindows = /Windows|Win32|Win64/i.test(ua) || /Win/i.test(navigator.platform || '');
-
-  if (document.documentElement.classList.contains('v4-active') || isMobile || isWindows || window.location.search.indexOf('v4') !== -1 || window.location.hash.indexOf('v4') !== -1) {
+  // 1. Force v4 ONLY if pre-tagged (incapable device), or explicit query string/hash
+  if (document.documentElement.classList.contains('v4-active') || window.location.search.indexOf('v4') !== -1 || window.location.hash.indexOf('v4') !== -1) {
     activateV4Fallback();
   }
 
@@ -194,15 +188,15 @@
     }
   }, true);
 
-  // 4. Watchdog: if after 1.2 seconds canvas is missing or WebGL failed silently, activate fallback
+  // 4. Watchdog: only fallback if WebGL completely failed to mount after 4 seconds AND no canvas exists
   setTimeout(function() {
     if (!document.documentElement.classList.contains('v4-active')) {
       var canvas = document.querySelector('.gl canvas');
-      if (!canvas || canvas.width <= 0 || canvas.height <= 0) {
+      if (!canvas) {
         activateV4Fallback();
       }
     }
-  }, 1200);
+  }, 4000);
 
   // 5. Scoped Interactive Tabs & DOM Ready Handlers
   function onDomReady() {
