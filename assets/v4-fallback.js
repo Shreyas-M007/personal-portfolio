@@ -154,8 +154,14 @@
     }, 1350);
   }
 
-  // 1. Force v4 via query string or hash
-  if (window.location.search.indexOf('v4') !== -1 || window.location.hash.indexOf('v4') !== -1) {
+  // 1. Force v4 via pre-tagging, query string, hash, mobile, or Windows detection
+  var ua = navigator.userAgent || '';
+  var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua)
+                 || (window.innerWidth <= 820)
+                 || (navigator.maxTouchPoints > 1 && window.innerWidth <= 1024);
+  var isWindows = /Windows|Win32|Win64/i.test(ua) || /Win/i.test(navigator.platform || '');
+
+  if (document.documentElement.classList.contains('v4-active') || isMobile || isWindows || window.location.search.indexOf('v4') !== -1 || window.location.hash.indexOf('v4') !== -1) {
     activateV4Fallback();
   }
 
@@ -188,15 +194,15 @@
     }
   }, true);
 
-  // 4. Watchdog: if after 2.5 seconds canvas is missing or WebGL failed silently, activate fallback
+  // 4. Watchdog: if after 1.2 seconds canvas is missing or WebGL failed silently, activate fallback
   setTimeout(function() {
     if (!document.documentElement.classList.contains('v4-active')) {
       var canvas = document.querySelector('.gl canvas');
-      if (!canvas) {
+      if (!canvas || canvas.width <= 0 || canvas.height <= 0) {
         activateV4Fallback();
       }
     }
-  }, 2500);
+  }, 1200);
 
   // 5. Scoped Interactive Tabs & DOM Ready Handlers
   function onDomReady() {

@@ -37,20 +37,37 @@ const ue = {
   __name: "about",
   setup() {
     const { $folio: n, $resize: b, $event: $ } = z();
-    const j = A(null), H1 = A(null), H2 = A(null);
+    const j = A(null), H1 = A(null), H2 = A(null), T = A(null);
     R(() => ({ title: "About — Shreyas M" }));
     const [x, w] = B();
     const [D, K] = B();
     const p = [], d = [];
+    const allItems = [...whatIDoItems, ...toolkitItems];
+    const L = e => b.mouse && n.rail && n.rail.point(e.clientX, e.clientY);
+    const c = (e, t) => t && b.mouse && n.rail && n.rail.pick(e);
 
     const y = () => {
-      for (let e = 0; e < d.length; e++) {
+      // 1. whatIDoItems (indices 0..3 in d, connecting word e and word e+1 in x)
+      for (let e = 0; e < 4; e++) {
         const t = d[e];
         if (!t?.material) continue;
         const u = x[e]?.getBoundingClientRect(), a = x[e + 1]?.getBoundingClientRect();
         if (!u || !a) continue;
-        const o = Math.abs(u.top - a.top) < u.height * 0.75;
-        S.set(t.material.uniforms.u_alpha, { value: o ? t.cssAlpha : 0 });
+        const o = Math.abs(u.top - a.top) < Math.max(u.height, a.height) * 0.75;
+        S.set(t.material.uniforms.u_alpha, { value: o ? (t.cssAlpha || 0.6) : 0 });
+      }
+
+      // 2. toolkitItems (indices 4..18 in d, where dot 4 connects x[5] and x[6])
+      const wordOffset = 5;
+      const dotOffset = 4;
+      for (let j = 0; j < 15; j++) {
+        const t = d[dotOffset + j];
+        if (!t?.material) continue;
+        const u = x[wordOffset + j]?.getBoundingClientRect();
+        const a = x[wordOffset + j + 1]?.getBoundingClientRect();
+        if (!u || !a) continue;
+        const o = Math.abs(u.top - a.top) < Math.max(u.height, a.height) * 0.75;
+        S.set(t.material.uniforms.u_alpha, { value: o ? (t.cssAlpha || 0.6) : 0 });
       }
     };
 
@@ -68,6 +85,9 @@ const ue = {
           const t = await n.text(e, { reveal: !1 });
           t && (t.pop = 0), d.push(t);
         }
+        if (n.rail && T.value) {
+          n.rail.bind(T.value, allItems);
+        }
         p.forEach((e, t) => {
           n.showText(e, !0, Math.min(t * _, k));
         });
@@ -83,6 +103,7 @@ const ue = {
 
     E(() => {
       $.off("resize", y);
+      if (n.rail) n.rail.bind(null);
       n.dropTexts([...p, ...d]);
     });
 
@@ -92,7 +113,8 @@ const ue = {
         ref_key: "root",
         ref: j,
         "data-gl-shield": "",
-        class: "fixed inset-0 overflow-hidden"
+        class: "fixed inset-0 overflow-hidden",
+        onPointermove: L
       }, [
         X(u, null, {
           default: F(() => [
@@ -116,7 +138,9 @@ const ue = {
                     r("span", {
                       ref_for: !0,
                       ref: l(w),
-                      class: "pointer-events-auto whitespace-nowrap text-18 s:text-28 leading-none tracking-[-0.04em]"
+                      class: "pointer-events-auto cursor-pointer whitespace-nowrap text-18 s:text-28 leading-none tracking-[-0.04em]",
+                      onPointerenter: s => c(o, !0),
+                      onPointerleave: s => c(o, !1)
                     }, v(a.title), 513),
                     o < whatIDoItems.length - 1 ? (
                       i(), r("span", {
@@ -142,7 +166,9 @@ const ue = {
                     r("span", {
                       ref_for: !0,
                       ref: l(w),
-                      class: "pointer-events-auto whitespace-nowrap text-18 s:text-28 leading-none tracking-[-0.04em]"
+                      class: "pointer-events-auto cursor-pointer whitespace-nowrap text-18 s:text-28 leading-none tracking-[-0.04em]",
+                      onPointerenter: s => c(whatIDoItems.length + o, !0),
+                      onPointerleave: s => c(whatIDoItems.length + o, !1)
                     }, v(a.title), 513),
                     o < toolkitItems.length - 1 ? (
                       i(), r("span", {
@@ -158,6 +184,9 @@ const ue = {
               ])
             ])
           ])
+        ]),
+        f("div", { class: "pointer-events-none absolute inset-0" }, [
+          f("div", { ref_key: "panel", ref: T, class: "h-200 w-0 rounded-20" }, null, 512)
         ])
       ], 512);
     };

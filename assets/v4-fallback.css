@@ -416,6 +416,35 @@ html.v4-active,
   }
 }
 
+.v4-about-text {
+  background: rgba(17, 34, 64, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(100, 255, 218, 0.15);
+  border-radius: 8px;
+  padding: 34px 36px;
+  box-shadow: 0 10px 30px -15px var(--navy-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.v4-about-text::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #64ffda, transparent 80%);
+  opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+  .v4-about-text {
+    padding: 24px 20px;
+  }
+}
+
 .v4-about-text p {
   margin-bottom: 15px;
   color: var(--slate);
