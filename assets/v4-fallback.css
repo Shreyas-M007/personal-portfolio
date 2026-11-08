@@ -41,7 +41,9 @@ html.v4-active body {
 
 html.v4-active .gl,
 html.v4-active canvas,
-html.v4-active #__nuxt {
+html.v4-active #__nuxt,
+html.v4-active #teleports,
+html.v4-active body > *:not(#v4-fallback-container) {
   display: none !important;
   visibility: hidden !important;
   pointer-events: none !important;

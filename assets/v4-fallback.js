@@ -98,11 +98,22 @@
     // Stop Nuxt/Three.js from intercepting wheel/touch events in Chrome
     enableNativeScroll();
 
-    // Hide Nuxt / Three.js
+    // Hide Nuxt / Three.js / Vue teleports
     var glEl = document.querySelector('.gl');
     if (glEl) glEl.style.display = 'none';
     var nuxtEl = document.getElementById('__nuxt');
     if (nuxtEl) nuxtEl.style.display = 'none';
+    var teleportsEl = document.getElementById('teleports');
+    if (teleportsEl) teleportsEl.style.display = 'none';
+
+    // Guard against dynamically mounted teleports
+    if (typeof MutationObserver !== 'undefined' && document.body) {
+      var telObserver = new MutationObserver(function() {
+        var tel = document.getElementById('teleports');
+        if (tel) tel.style.display = 'none';
+      });
+      telObserver.observe(document.body, { childList: true });
+    }
 
     if (v4Container) {
       v4Container.style.display = 'block';
