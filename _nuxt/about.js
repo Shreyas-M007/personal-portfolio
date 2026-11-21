@@ -6,11 +6,11 @@ import {
 } from "./DZyj3ghP.js";
 
 const whatIDoItems = [
-  { title: "Machine Learning & Deep Learning", slug: "ml-dl" },
-  { title: "Autonomous AI Agents & Vector Search", slug: "agents" },
-  { title: "Computer Vision & Edge Intelligence", slug: "cv-edge" },
-  { title: "High-Performance WebGL & 3D Graphics", slug: "webgl-3d" },
-  { title: "Full-Stack Platforms & Cloud MLOps", slug: "fullstack-mlops" }
+  { title: "Machine Learning Operations & Deep Learning Architectures", slug: "mlops" },
+  { title: "Autonomous AI Agents & Vector Search Solutions", slug: "agents" },
+  { title: "High-Performance WebGL & Aerodynamic Simulation", slug: "webgl" },
+  { title: "Modern Full-Stack Platforms", slug: "fullstack" },
+  { title: "Computer Vision Systems", slug: "cv" }
 ];
 
 const toolkitItems = [
@@ -23,13 +23,13 @@ const toolkitItems = [
   { title: "Next.js", slug: "nextjs" },
   { title: "Nuxt", slug: "nuxt" },
   { title: "Three.js", slug: "threejs" },
-  { title: "WebGL", slug: "webgl" },
+  { title: "WebGL", slug: "webgl-tech" },
   { title: "GSAP", slug: "gsap" },
   { title: "FastAPI", slug: "fastapi" },
   { title: "Docker", slug: "docker" },
-  { title: "AWS", slug: "aws" },
+  { title: "Amazon Web Services", slug: "aws" },
   { title: "Google Cloud", slug: "gcp" },
-  { title: "Azure", slug: "azure" }
+  { title: "Microsoft Azure", slug: "azure" }
 ];
 
 const _ = 0.03, k = 0.55, re = 0.4;
@@ -80,11 +80,22 @@ const ue = {
         n.scan(j.value);
         n.depart();
         n.fadeLeaving();
-        if (H1.value) { const ht = await n.text(H1.value, { reveal: !1 }); ht && (p.push(ht), n.showText(ht, !0, 0)); } if (H2.value) { const ht = await n.text(H2.value, { reveal: !1 }); ht && (p.push(ht), n.showText(ht, !0, 0.2)); } for (const e of x) p.push(await n.text(e, { reveal: !1 }));
-        for (const e of D) {
-          const t = await n.text(e, { reveal: !1 });
-          t && (t.pop = 0), d.push(t);
-        }
+
+        // Parallelize rasterization of all text meshes so there is no freeze
+        const [tH1, tH2, textsX, textsD] = await Promise.all([
+          H1.value ? n.text(H1.value, { reveal: !1 }) : null,
+          H2.value ? n.text(H2.value, { reveal: !1 }) : null,
+          Promise.all(x.map(e => n.text(e, { reveal: !1 }))),
+          Promise.all(D.map(e => n.text(e, { reveal: !1 })))
+        ]);
+
+        if (!alive) return;
+
+        if (tH1) { p.push(tH1); n.showText(tH1, !0, 0); }
+        if (tH2) { p.push(tH2); n.showText(tH2, !0, 0.15); }
+        for (const t of textsX) { if (t) p.push(t); }
+        for (const t of textsD) { if (t) { t.pop = 0; d.push(t); } }
+
         if (n.rail && T.value) {
           n.rail.bind(T.value, allItems);
         }
@@ -125,10 +136,10 @@ const ue = {
         }),
         f("div", { class: "absolute inset-0" }, [
           f("div", {
-            class: "cert-container mx-auto flex min-h-full max-w-[46rem] s:max-w-[92rem] flex-col content-center items-center justify-center px-20 gap-y-52 s:gap-y-64"
+            class: "cert-container mx-auto flex min-h-full max-w-[46rem] s:max-w-[92rem] flex-col content-center items-center justify-center px-20 gap-y-36"
           }, [
-            f("div", { class: "flex flex-col items-center w-full" }, [
-              f("div", { ref_key: "h1", ref: H1, "data-gl": "text", class: "about-heading font-regular [-webkit-text-fill-color:transparent] pointer-events-none whitespace-nowrap leading-none tracking-[-0.04em] mb-24 s:mb-32 text-center w-full", style: "font-size:clamp(42px, 5.25vw, 63px);line-height:1;" }, "My Expertise"),
+            f("div", { class: "about-tech-stack-section flex flex-col items-center w-full" }, [
+              f("h2", { ref_key: "h1", ref: H1, "data-gl": "text", class: "about-heading font-regular pointer-events-none whitespace-nowrap leading-none tracking-[-0.04em] mb-24 s:mb-32 text-center w-full" }, "My Expertise"),
               f("div", {
                 class: "flex flex-wrap content-center items-center justify-center",
                 style: "column-gap: 32px !important; row-gap: 16px !important;"
@@ -155,8 +166,8 @@ const ue = {
                 )), 128))
               ])
             ]),
-            f("div", { class: "about-tech-stack-section flex flex-col items-center w-full", style: "margin-top:clamp(44px, 8.5vw, 72px) !important;" }, [
-              f("div", { ref_key: "h2", ref: H2, "data-gl": "text", class: "about-heading font-regular [-webkit-text-fill-color:transparent] pointer-events-none whitespace-nowrap leading-none tracking-[-0.04em] mb-24 s:mb-32 text-center w-full", style: "font-size:clamp(42px, 5.25vw, 63px);line-height:1;" }, "Tech Stack"),
+            f("div", { class: "about-tech-stack-section flex flex-col items-center w-full" }, [
+              f("h2", { ref_key: "h2", ref: H2, "data-gl": "text", class: "about-heading font-regular pointer-events-none whitespace-nowrap leading-none tracking-[-0.04em] mb-24 s:mb-32 text-center w-full" }, "Tech Stack"),
               f("div", {
                 class: "flex flex-wrap content-center items-center justify-center",
                 style: "column-gap: 32px !important; row-gap: 16px !important;"
