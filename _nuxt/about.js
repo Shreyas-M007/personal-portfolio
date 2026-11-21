@@ -37,14 +37,11 @@ const ue = {
   __name: "about",
   setup() {
     const { $folio: n, $resize: b, $event: $ } = z();
-    const j = A(null), H1 = A(null), H2 = A(null), T = A(null);
+    const j = A(null), H1 = A(null), H2 = A(null);
     R(() => ({ title: "About — Shreyas M" }));
     const [x, w] = B();
     const [D, K] = B();
     const p = [], d = [];
-    const allItems = [...whatIDoItems, ...toolkitItems];
-    const L = e => b.mouse && n.rail && n.rail.point(e.clientX, e.clientY);
-    const c = (e, t) => t && b.mouse && n.rail && n.rail.pick(e);
 
     const y = () => {
       // 1. whatIDoItems (indices 0..3 in d, connecting word e and word e+1 in x)
@@ -96,9 +93,6 @@ const ue = {
         for (const t of textsX) { if (t) p.push(t); }
         for (const t of textsD) { if (t) { t.pop = 0; d.push(t); } }
 
-        if (n.rail && T.value) {
-          n.rail.bind(T.value, allItems);
-        }
         p.forEach((e, t) => {
           n.showText(e, !0, Math.min(t * _, k));
         });
@@ -124,8 +118,7 @@ const ue = {
         ref_key: "root",
         ref: j,
         "data-gl-shield": "",
-        class: "fixed inset-0 overflow-hidden",
-        onPointermove: L
+        class: "fixed inset-0 overflow-hidden"
       }, [
         X(u, null, {
           default: F(() => [
@@ -149,9 +142,7 @@ const ue = {
                     r("span", {
                       ref_for: !0,
                       ref: l(w),
-                      class: "pointer-events-auto cursor-pointer whitespace-nowrap text-18 s:text-28 leading-none tracking-[-0.04em]",
-                      onPointerenter: s => c(o, !0),
-                      onPointerleave: s => c(o, !1)
+                      class: "pointer-events-auto cursor-pointer whitespace-nowrap text-18 s:text-28 leading-none tracking-[-0.04em]"
                     }, v(a.title), 513),
                     o < whatIDoItems.length - 1 ? (
                       i(), r("span", {
@@ -177,9 +168,7 @@ const ue = {
                     r("span", {
                       ref_for: !0,
                       ref: l(w),
-                      class: "pointer-events-auto cursor-pointer whitespace-nowrap text-18 s:text-28 leading-none tracking-[-0.04em]",
-                      onPointerenter: s => c(whatIDoItems.length + o, !0),
-                      onPointerleave: s => c(whatIDoItems.length + o, !1)
+                      class: "pointer-events-auto cursor-pointer whitespace-nowrap text-18 s:text-28 leading-none tracking-[-0.04em]"
                     }, v(a.title), 513),
                     o < toolkitItems.length - 1 ? (
                       i(), r("span", {
@@ -195,9 +184,6 @@ const ue = {
               ])
             ])
           ])
-        ]),
-        f("div", { class: "pointer-events-none absolute inset-0" }, [
-          f("div", { ref_key: "panel", ref: T, class: "h-200 w-0 rounded-20" }, null, 512)
         ])
       ], 512);
     };
