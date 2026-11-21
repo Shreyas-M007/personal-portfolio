@@ -44,6 +44,12 @@ const ue = {
     const p = [], d = [];
 
     const y = () => {
+      if (b.small) {
+        for (let e = 0; e < d.length; e++) {
+          if (d[e]?.material) S.set(d[e].material.uniforms.u_alpha, { value: 0 });
+        }
+        return;
+      }
       // 1. whatIDoItems (indices 0..3 in d, connecting word e and word e+1 in x)
       for (let e = 0; e < 4; e++) {
         const t = d[e];
@@ -142,7 +148,7 @@ const ue = {
                     r("span", {
                       ref_for: !0,
                       ref: l(w),
-                      class: "pointer-events-auto cursor-pointer whitespace-nowrap text-18 s:text-28 leading-none tracking-[-0.04em]"
+                      class: "pointer-events-auto cursor-pointer whitespace-normal s:whitespace-nowrap text-15 s:text-28 leading-snug s:leading-none tracking-[-0.04em] text-center max-w-[86vw] s:max-w-none"
                     }, v(a.title), 513),
                     o < whatIDoItems.length - 1 ? (
                       i(), r("span", {
@@ -168,7 +174,7 @@ const ue = {
                     r("span", {
                       ref_for: !0,
                       ref: l(w),
-                      class: "pointer-events-auto cursor-pointer whitespace-nowrap text-18 s:text-28 leading-none tracking-[-0.04em]"
+                      class: "pointer-events-auto cursor-pointer whitespace-normal s:whitespace-nowrap text-15 s:text-28 leading-snug s:leading-none tracking-[-0.04em] text-center max-w-[86vw] s:max-w-none"
                     }, v(a.title), 513),
                     o < toolkitItems.length - 1 ? (
                       i(), r("span", {
